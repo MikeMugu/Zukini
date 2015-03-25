@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\dev\Zukini\IContactPro.Test.Functional\bin\Debug\IContactPro.Test.Functional.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-03-24" time="14:21:03">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\dev\Zukini" machine-name="VIC-MWATKINS3" user="mwatkins" user-domain="VOCUSINC" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\dev\Zukini\IContactPro.Test.Functional\bin\Debug\IContactPro.Test.Functional.dll" executed="True" result="Success" success="True" time="15.083" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="IContactPro" executed="True" result="Success" success="True" time="15.078" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="15.078" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Functional" executed="True" result="Success" success="True" time="15.078" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Features" executed="True" result="Success" success="True" time="15.078" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="SmokeTestsFeature" description="SmokeTests" executed="True" result="Success" success="True" time="15.077" asserts="0">
+                        <results>
+                          <test-case name="IContactPro.Test.Functional.Features.SmokeTestsFeature.LoginToIContactProWorksAsExpected" description="Login to iContactPro works as expected" executed="True" result="Success" success="True" time="14.895" asserts="0">
+                            <categories>
+                              <category name="smokeTests" />
+                            </categories>
+                          </test-case>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

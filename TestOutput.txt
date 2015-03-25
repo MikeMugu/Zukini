@@ -1,0 +1,5 @@
+***** IContactPro.Test.Functional.Features.SmokeTestsFeature.LoginToIContactProWorksAsExpected
+Given I log in to iContactPro with the smoke test account
+-> done: SmokeTestsSteps.GivenILogInToIContactProWithTheSmokeTestAccount() (4.5s)
+Then I should be on the Home page
+-> done: SmokeTestsSteps.ThenIShouldBeOnTheHomePage() (0.1s)

@@ -1,0 +1,124 @@
+***** Specflow.Example.Facebook.Features.Account.ManageSecurityFeature.ChangePassword
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManageFriendsFeature.ConnectToANewFriend
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManageFriendsFeature.RestrictFriend
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManageFriendsFeature.Unfriend
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManagePagesFeature.LikeNewPage
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManagePagesFeature.UnlikeAPage
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManagePhotosFeature.AddPhoto
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManagePhotosFeature.AddPhotoAlbum
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManagePhotosFeature.DeletePhoto
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Profile.ManagePhotosFeature.ReorderAlbumnsPhotos
+Given I have entered 50 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(50) (0.0s)
+And I have entered 70 into the calculator
+-> done: Steps.GivenIHaveEnteredIntoTheCalculator(70) (0.0s)
+When I press add
+-> done: Steps.WhenIPressAdd() (0.0s)
+Then the result should be 120 on the screen
+-> done: Steps.ThenTheResultShouldBeOnTheScreen(120) (0.0s)
+***** Specflow.Example.Facebook.Features.Timeline.InteractWithPostFeature.CommentOnAPost
+***** Specflow.Example.Facebook.Features.Timeline.InteractWithPostFeature.LikeAPost
+Given my fiend bob has posted 'I'm exited'
+-> done: Steps.GivenMyFiendBobHasPostedMExited("I") (0.0s)
+And I am on my timeline
+-> done: Steps.GivenIAmOnMyTimeline() (0.0s)
+When I press like on the post
+-> error: 
+Then the post should be liked
+-> skipped because of previous errors
+And the screen should say 'like(1)'
+-> skipped because of previous errors
+***** Specflow.Example.Facebook.Features.Timeline.PostSomethingFeature.UpdateStatus
+Given I'm on timeline page
+-> done: Steps.GivenIMOnTimelinePage() (0.0s)
+Given I enter 'my today's status' in the status box
+-> done: Steps.GivenIEnterSStatusInTheStatusBox("my today") (0.0s)
+When I press post
+-> done: Steps.WhenIPressPost() (0.0s)
+Then my status should be changed.
+-> pending: Steps.ThenMyStatusShouldBeChanged_()
+***** Specflow.Example.Facebook.Features.Timeline.PostSomethingFeature.UploadPhotoWithoutAlbum
+Given I'm on timeline page
+-> done: Steps.GivenIMOnTimelinePage() (0.0s)
+Given I click on 'add photo'
+-> done: Steps.GivenIClickOn("add photo") (0.0s)
+And I click on 'upload' and choose a file
+-> done: Steps.GivenIClickOnAndChooseAFile("upload") (0.0s)
+When I press post
+-> done: Steps.WhenIPressPost() (0.0s)
+Then there should be an album created called 'timeline photos'
+-> done: Steps.ThenThereShouldBeAnAlbumCreatedCalled("timeline photos") (0.0s)
+And there should be a photo added to it
+-> done: Steps.ThenThereShouldBeAPhotoAddedToIt() (0.0s)
