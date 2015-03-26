@@ -1,1 +1,1 @@
-SpecFlow Wrapper classes used for demo purposes.
+Uses SpecFlow, Selenium.WebDriver and Coypu with a PageObject structure to simplify automated browser testing.
