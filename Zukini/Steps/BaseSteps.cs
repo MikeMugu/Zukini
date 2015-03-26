@@ -1,4 +1,5 @@
 ﻿using BoDi;
+using Coypu;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using TechTalk.SpecFlow;
@@ -24,11 +25,11 @@ namespace Zukini.Steps
         /// <summary>
         /// Returns the IWebDriver instance as registered with the ObjectContainer.
         /// </summary>
-        protected IWebDriver Driver 
+        protected BrowserSession Browser 
         { 
             get
             {
-                return _objectContainer.Resolve<IWebDriver>();
+                return _objectContainer.Resolve<BrowserSession>();
             }
         }
     }

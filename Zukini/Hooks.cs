@@ -1,4 +1,6 @@
 ﻿using BoDi;
+using Coypu;
+using Coypu.Drivers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using System;
@@ -31,8 +33,9 @@ namespace Zukini
         [BeforeScenario]
         protected void BeforeScenario()
         {
-            IWebDriver driver = new FirefoxDriver();
-            _objectContainer.RegisterInstanceAs<IWebDriver>(driver);
+            // TODO: Pass SessionConfiguration to BrowserSession
+            var browser = new BrowserSession();
+            _objectContainer.RegisterInstanceAs<BrowserSession>(browser);
         }
 
         /// <summary>
@@ -42,16 +45,15 @@ namespace Zukini
         [AfterScenario]
         protected void AfterScenario()
         {
-            var driver = _objectContainer.Resolve<IWebDriver>();
-            if (driver != null)
+            var browser = _objectContainer.Resolve<BrowserSession>();
+            if (browser != null)
             {
                 if (ScenarioContext.Current.TestError != null)
                 {
-                    Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                    screenshot.SaveAsFile("TestError.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                    browser.SaveScreenshot("TestError.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                 }
 
-                driver.Quit();
+                browser.Dispose();
             }
         }
     }

@@ -1,12 +1,9 @@
-﻿using BoDi;
-using IContactPro.Test.Pages;
-using OpenQA.Selenium.Support.PageObjects;
-using System;
-using TechTalk.SpecFlow;
-using Zukini.StepSupport;
+﻿using System;
 using System.Configuration;
-using System.Reflection;
-using System.IO;
+using TechTalk.SpecFlow;
+using BoDi;
+using IContactPro.Test.Pages;
+using Zukini.Steps;
 
 namespace IContactPro.Test.Functional.Steps
 {
@@ -23,10 +20,9 @@ namespace IContactPro.Test.Functional.Steps
         {
             // TODO Factor out to Settings class
             var loginUrl = ConfigurationManager.AppSettings["HomeUrl"];
-            this.Driver.Navigate().GoToUrl(new Uri(loginUrl));
+            Browser.Visit(loginUrl);
 
-            var loginPage = new LoginPage(this.Driver);
-            PageFactory.InitElements(Driver, loginPage);
+            var loginPage = new LoginPage(this.Browser);
 
             loginPage.AssertCurrentPage();
             loginPage.Login("mwatkins@icontact.com", "Passw0rd");

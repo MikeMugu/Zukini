@@ -1,33 +1,26 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using Coypu;
 using System;
-using Zukini.PageSupport;
+using Zukini.Pages;
 
 namespace IContactPro.Test.Pages
 {
     public class LoginPage : BasePage
     {
-        private static string _forgotPasswordText = "Forgot your password?";
-
         #region Page Elements
 
-        [FindsBy(How = How.Id, Using = "txtUserAccount")]
-        public IWebElement UsernameTextBox;
-
-        [FindsBy(How = How.Id, Using = "txtPassword")]
-        public IWebElement PasswordTextBox;
-
-        [FindsBy(How = How.XPath, Using = "//*[@id=\"divSubmitVisible\"]/input")]
-        public IWebElement SubmitButton;
+        public ElementScope Username { get { return Browser.FindField("Username"); } }
+        public ElementScope Password { get { return Browser.FindField("Password"); } }
+        public ElementScope SubmitButton { get { return Browser.FindXPath("//*[@id=\"divSubmitVisible\"]/input"); } }
+        public ElementScope ForgotPasswordLink { get { return Browser.FindLink("Forgot your password?"); } }
 
         #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginPage"/> class.
         /// </summary>
-        /// <param name="driver">An initialized instance of the WebDriver.</param>
-        public LoginPage(IWebDriver driver) 
-            : base(driver)
+        /// <param name="browserSession">An initialized instance of the BrowserSession.</param>
+        public LoginPage(BrowserSession browserSession) 
+            : base(browserSession)
         {
         }
 
@@ -36,7 +29,7 @@ namespace IContactPro.Test.Pages
         /// </summary>
         public void AssertCurrentPage()
         {
-            AssertCurrentPage("Login", By.LinkText(_forgotPasswordText));
+            AssertCurrentPage("Login", ForgotPasswordLink.Exists());
         }
 
         /// <summary>
@@ -46,8 +39,8 @@ namespace IContactPro.Test.Pages
         /// <param name="password">The password.</param>
         public void Login(string username, string password)
         {
-            UsernameTextBox.SendKeys(username);
-            PasswordTextBox.SendKeys(password);
+            Username.FillInWith(username);
+            Password.FillInWith(password);
             SubmitButton.Click();
         }
 

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Coypu">
+      <HintPath>..\packages\Coypu.2.8.0\lib\net40\Coypu.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -45,12 +48,8 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.43.0\lib\net40\WebDriver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,13 +67,9 @@
       <Project>{3cd9ea84-f562-403d-90e3-35992df6d668}</Project>
       <Name>IContactPro.Test.Pages</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zukini.PageSupport\Zukini.PageSupport.csproj">
-      <Project>{e71c1f21-308a-4c4e-9e58-2c1b77a549d4}</Project>
-      <Name>Zukini.PageSupport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Zukini.StepSupport\Zukini.StepSupport.csproj">
-      <Project>{e4ced020-2f55-4eaf-a99b-7e5cd10c953f}</Project>
-      <Name>Zukini.StepSupport</Name>
+    <ProjectReference Include="..\Zukini\Zukini.csproj">
+      <Project>{aa04cd0e-f5a9-4331-849b-30d3facdfcee}</Project>
+      <Name>Zukini</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +83,7 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

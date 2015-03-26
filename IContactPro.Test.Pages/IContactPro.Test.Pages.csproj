@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Coypu">
+      <HintPath>..\packages\Coypu.2.8.0\lib\net40\Coypu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -38,12 +41,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.2.45.0\lib\net40\WebDriver.Support.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomePage.cs" />
@@ -51,17 +48,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zukini.PageSupport\Zukini.PageSupport.csproj">
-      <Project>{e71c1f21-308a-4c4e-9e58-2c1b77a549d4}</Project>
-      <Name>Zukini.PageSupport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Zukini.StepSupport\Zukini.StepSupport.csproj">
-      <Project>{e4ced020-2f55-4eaf-a99b-7e5cd10c953f}</Project>
-      <Name>Zukini.StepSupport</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Zukini\Zukini.csproj">
+      <Project>{aa04cd0e-f5a9-4331-849b-30d3facdfcee}</Project>
+      <Name>Zukini</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

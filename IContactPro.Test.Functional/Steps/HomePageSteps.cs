@@ -2,7 +2,7 @@
 using IContactPro.Test.Pages;
 using System;
 using TechTalk.SpecFlow;
-using Zukini.StepSupport;
+using Zukini.Steps;
 
 namespace IContactPro.Test.Functional.Steps
 {
@@ -17,7 +17,7 @@ namespace IContactPro.Test.Functional.Steps
         [Then(@"I should be on the Home page")]
         public void ThenIShouldBeOnTheHomePage()
         {
-            new HomePage(this.Driver).AssertCurrentPage();
+            new HomePage(this.Browser).AssertCurrentPage();
         }
     }
 }
