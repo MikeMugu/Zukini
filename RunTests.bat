@@ -36,12 +36,13 @@ rem ===========================================================================
 @echo **************** Generating SpecFlow Report *************************
 %SPECFLOW_EXE% nunitexecutionreport %PROJECT_FILE% /out:%TEST_RESULTS_HTML% /xmlTestResult:%TEST_RESULTS% /testOutput:%TEST_OUTPUT% /xsltFile:%REPORT_TEMPLATE%
 
+
 if ERRORLEVEL 1 goto :Error
 goto :eof
 
 :ViewReport
 rem ===========================================================================
-%TEST_RESULTS_HTML%
+start %TEST_RESULTS_HTML%
 
 if ERRORLEVEL 1 goto :Error
 goto :eof

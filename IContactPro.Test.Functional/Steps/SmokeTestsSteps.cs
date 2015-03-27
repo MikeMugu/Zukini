@@ -18,14 +18,12 @@ namespace IContactPro.Test.Functional.Steps
         [Given(@"I log in to iContactPro with the smoke test account")]
         public void GivenILogInToIContactProWithTheSmokeTestAccount()
         {
-            // TODO Factor out to Settings class
-            var loginUrl = ConfigurationManager.AppSettings["HomeUrl"];
-            Browser.Visit(loginUrl);
+            Browser.Visit(TestSettings.ApplicationUrl);
 
             var loginPage = new LoginPage(this.Browser);
 
             loginPage.AssertCurrentPage();
-            loginPage.Login("mwatkins@icontact.com", "Passw0rd");
+            loginPage.Login(TestSettings.SmokeTestUsername + "1", TestSettings.SmokeTestPassword);
         }
     }
 }
