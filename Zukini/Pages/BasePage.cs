@@ -1,5 +1,4 @@
 ﻿using Coypu;
-using OpenQA.Selenium;
 using System;
 
 namespace Zukini.Pages

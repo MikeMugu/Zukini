@@ -1,8 +1,6 @@
 ﻿using BoDi;
 using Coypu;
 using Coypu.Drivers;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;

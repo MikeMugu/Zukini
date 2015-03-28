@@ -1,7 +1,5 @@
 ﻿using BoDi;
 using Coypu;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using TechTalk.SpecFlow;
 
 namespace Zukini.Steps

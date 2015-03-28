@@ -17,8 +17,8 @@ SET SPECFLOW_EXE=%~dp0packages\SpecFlow.1.9.0\Tools\specflow.exe
 SET TEST_RESULTS=%~dp0TestResults.xml
 SET TEST_OUTPUT=%~dp0TestOutput.txt
 SET TEST_RESULTS_HTML=%~dp0TestResults.html
-SET TEST_FILE=%~dp0IContactPro.Test.Functional\bin\Debug\IContactPro.Test.Functional.dll
-SET PROJECT_FILE=%~dp0IContactPro.Test.Functional\IContactPro.Test.Functional.csproj
+SET TEST_FILE=%~dp0Zukini.Examples.Features\bin\Debug\Zukini.Examples.Features.dll
+SET PROJECT_FILE=%~dp0Zukini.Examples.Features\Zukini.Examples.Features.csproj
 SET REPORT_TEMPLATE=%~dp03rdParty\SpecFlowReportTemplates\v1.0\nunit-dream\ExecutionReport.xslt
 
 goto :eof

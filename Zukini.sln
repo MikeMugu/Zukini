@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IContactPro.Test.Functional", "IContactPro.Test.Functional\IContactPro.Test.Functional.csproj", "{D89C3919-9F36-4C0C-BDB2-842EE4B867A9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IContactPro.Test.Pages", "IContactPro.Test.Pages\IContactPro.Test.Pages.csproj", "{3CD9EA84-F562-403D-90E3-35992DF6D668}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zukini", "Zukini\Zukini.csproj", "{AA04CD0E-F5A9-4331-849B-30D3FACDFCEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zukini.Examples.Features", "Zukini.Examples.Features\Zukini.Examples.Features.csproj", "{7B5FC33E-37DB-46EA-A2BF-8947FE2CBA09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zukini.Examples.Pages", "Zukini.Examples.Pages\Zukini.Examples.Pages.csproj", "{4F2953CD-CF1A-452A-9276-FF7F60CAB934}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D89C3919-9F36-4C0C-BDB2-842EE4B867A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D89C3919-9F36-4C0C-BDB2-842EE4B867A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D89C3919-9F36-4C0C-BDB2-842EE4B867A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D89C3919-9F36-4C0C-BDB2-842EE4B867A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CD9EA84-F562-403D-90E3-35992DF6D668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CD9EA84-F562-403D-90E3-35992DF6D668}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CD9EA84-F562-403D-90E3-35992DF6D668}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CD9EA84-F562-403D-90E3-35992DF6D668}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA04CD0E-F5A9-4331-849B-30D3FACDFCEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA04CD0E-F5A9-4331-849B-30D3FACDFCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA04CD0E-F5A9-4331-849B-30D3FACDFCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA04CD0E-F5A9-4331-849B-30D3FACDFCEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B5FC33E-37DB-46EA-A2BF-8947FE2CBA09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5FC33E-37DB-46EA-A2BF-8947FE2CBA09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5FC33E-37DB-46EA-A2BF-8947FE2CBA09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5FC33E-37DB-46EA-A2BF-8947FE2CBA09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F2953CD-CF1A-452A-9276-FF7F60CAB934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F2953CD-CF1A-452A-9276-FF7F60CAB934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F2953CD-CF1A-452A-9276-FF7F60CAB934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F2953CD-CF1A-452A-9276-FF7F60CAB934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
