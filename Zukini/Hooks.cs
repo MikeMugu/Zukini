@@ -33,8 +33,10 @@ namespace Zukini
         [BeforeScenario]
         protected void BeforeScenario()
         {
-            // TODO: Pass SessionConfiguration to BrowserSession
-            var browser = new BrowserSession();
+            // Check for a session configuration that was injected in and if one exists, use it
+            SessionConfiguration config = _objectContainer.Resolve<SessionConfiguration>();
+            var browser = config != null ? new BrowserSession(config) : new BrowserSession();
+            
             _objectContainer.RegisterInstanceAs<BrowserSession>(browser);
         }
 
