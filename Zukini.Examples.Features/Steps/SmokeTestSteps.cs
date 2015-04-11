@@ -38,5 +38,20 @@ namespace Zukini.Examples.Features.Steps
         {
             Assert.IsTrue(Browser.HasContent(searchResultMatch));
         }
+
+        [Given(@"I navigate to W3Schools table reference page")]
+        public void GivenINavigateToWSchoolsTableReferencePage()
+        {
+            Browser.Visit("http://www.w3schools.com/tags/tag_table.asp");
+        }
+
+        [Then(@"I should see that the table tag is supported in ""(.*)""")]
+        public void ThenIShouldSeeThatTheTableTagIsSupportedIn(string browserName)
+        {
+            var page = new W3SchoolsTablePage(Browser);
+            page.AssertCurrentPage();
+            Assert.IsTrue(page.IsBrowserSupported(browserName), String.Format("Expected browser {0} to be supported.", browserName));
+        }
+
     }
 }

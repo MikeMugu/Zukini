@@ -17,6 +17,5 @@ namespace Zukini.Examples.Pages
 
         public ElementScope SearchTextBox { get { return Browser.FindField("q"); } }
         public ElementScope SearchButton { get { return Browser.FindButton("Search"); } }
-
     }
 }
