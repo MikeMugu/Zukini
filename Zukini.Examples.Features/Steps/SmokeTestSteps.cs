@@ -18,7 +18,7 @@ namespace Zukini.Examples.Features.Steps
         [Given(@"I navigate to Google")]
         public void GivenINavigateToGoogle()
         {
-            Browser.Visit("http://www.google.com");
+            Browser.Visit(TestSettings.GoogleUrl);
         }
 
         [Given(@"I enter a search value of ""(.*)""")]
@@ -42,7 +42,7 @@ namespace Zukini.Examples.Features.Steps
         [Given(@"I navigate to W3Schools table reference page")]
         public void GivenINavigateToWSchoolsTableReferencePage()
         {
-            Browser.Visit("http://www.w3schools.com/tags/tag_table.asp");
+            Browser.Visit(TestSettings.W3SchoolsBaseUrl + "/tags/tag_table.asp");
         }
 
         [Then(@"I should see that the table tag is supported in ""(.*)""")]
