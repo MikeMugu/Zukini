@@ -113,7 +113,11 @@ Coypu is a great library, it does the work of wrapping the browser controls into
 All of these extension methods extend the ElementScope element, and can be used by simply adding a "using Zukini;" to your using statements.
 
 ##TableRows
+    
     FindAllRows()
+    
+Finds all rows that are children of the current element scope. 
+This method is usually called when the current element scope is a table.
 
 
 
