@@ -67,11 +67,11 @@ namespace Zukini.Examples.Features.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Perform a google search for SpecFlow returns specflow.org site")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("google_search")]
         public virtual void PerformAGoogleSearchForSpecFlowReturnsSpecflow_OrgSite()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Perform a google search for SpecFlow returns specflow.org site", new string[] {
-                        "mytag"});
+                        "google_search"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8

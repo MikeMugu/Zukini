@@ -1,11 +1,18 @@
 :://///////////////////////////////////////////////////////////////////////////
 :: This batch file is responsible for running SpecFlow tests and generating
 :: a specflow test run report.
+::
+:: Usage:
+::	RunTests.bat [-tags [tag1,tag2]] [-showreport]
+::		-tags: 			Optionally specify which tags to run
+::		-showreport:	Optionally specify this flag to automatically show
+::						the test run report when finished.
 :://///////////////////////////////////////////////////////////////////////////
 @echo off
 @setlocal
 
 call :Defaults
+call :ParseArguments %*
 call :RunTests
 call :GenerateSpecFlowReport
 call :ViewReport
@@ -23,10 +30,35 @@ SET REPORT_TEMPLATE=%~dp03rdParty\SpecFlowReportTemplates\v1.0\nunit-dream\Execu
 
 goto :eof
 
+:ParseArguments
+rem ===========================================================================
+if /I .%1 == . goto :eof
+if /I .%1 == .-tags goto :ArgumentTags
+if /I .%1 == .-showreport goto :ArgumentShowReport
+
+:ArgumentTags
+rem ===========================================================================
+SET TAGS=%2
+shift
+shift
+goto :ParseArguments
+
+:ArgumentShowReport
+rem ===========================================================================
+SET SHOWREPORT=TRUE
+shift
+shift
+goto :ParseArguments
+
+
 :RunTests
 rem ===========================================================================
 @echo ********************* Running Tests *********************************
-%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /noshadow %TEST_FILE%
+IF DEFINED TAGS (
+	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /include:"%TAGS%" /noshadow %TEST_FILE%
+) ELSE (
+	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /noshadow %TEST_FILE%
+)
 
 if ERRORLEVEL 1 goto :Error
 goto :eof
@@ -42,7 +74,9 @@ goto :eof
 
 :ViewReport
 rem ===========================================================================
-start %TEST_RESULTS_HTML%
+if DEFINED SHOWREPORT (
+	start %TEST_RESULTS_HTML%
+)
 
 if ERRORLEVEL 1 goto :Error
 goto :eof
