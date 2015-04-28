@@ -17,3 +17,10 @@ Scenario: I want to show how to use row and cell helpers
 	And I should see that the table tag is supported in "IE"
 	And I should see that the table tag is supported in "FireFox"
 	And I should see that the table tag is supported in "Safari"
+
+@property_bucket
+Scenario: I want to demonstrate how to use the property bucket
+	Given I navigate to W3Schools table reference page
+	And I remember the sub-header text
+	Then the sub-header text should have been "THE WORLD'S LARGEST WEB DEVELOPER SITE"
+	

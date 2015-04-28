@@ -76,6 +76,34 @@ Company.Product.Tests (Or Features)
             Feature1Steps.cs
             Feature2Steps.cs
             
+####PropertyBucket
+Another utility included in the Zukini.BaseSteps class is a PropertyBucket that can be used for storing and retrieving properties between steps. The PropertyBucket gets initialized at the beginning of each test, so properties can be stored between steps, but not between tests. This is very much on purpose as you do not want to store global properties that can cause inter-test dependencies.
+
+#####Example
+The PropertyBucket is available within any of your step defs.
+
+    // To remember a property
+    PropertyBucket.Remember("MyPropertyName", MyPropertyToSave);
+    OR
+    PropertyBucket.Remember<string>("MyPropertyName", "MyStringValue");
+
+The first argument is simply a key to identify how to retrieve the property later. The second is any object you want to save. This can be a string, an object of some sort, an integer, whatever. The second example is a generic overload that allows you to explicitly tell the method what type the item is that your saving. I prefer the second just to be explicit.
+
+If the property you are trying to save is already there, a PropertyAlreadyExistsException will be thrown. You can change this behavior by passing in a third parameter like so:
+
+    // Overwrite my property
+    PropertyBucket.Remember("MyPropertyName", MyPropertyToSave, true);
+    
+
+To retrieve a property:
+
+    PropertyBucket.GetProperty("MyPropertyName")
+    OR
+    PropertyBucket.GetProperty<String>("MyPropertyName")
+    
+Same thing here, your passing in the property name you want to retrieve. If the property has not been remembered yet, a PropertyNotFoundException will be thrown.
+
+
 ###Pages
 Okay, getting down to the nitty gritty here. Page classes are a common pattern for keeping tests from becoming brittle, annoying, and downright unmaintainable. There are numerous blogs and articles out there about the subject so I will not go into why this is a good pattern here but I will give you some resources to check out, starting with CheezyWorld. When I started with Cucumber, I used CheezyWorlds blog as a map on how to implement a good page object pattern and it turned out pretty well. He has a series of blogs on the subject starting here: http://www.cheezyworld.com/2010/11/09/ui-tests-not-brittle/. I would reccommend checking it out, when you are done reading the first article, click the 'Next Article' link. Repeat until the articles are no longer talking about Cucumber and UI Tests.
 

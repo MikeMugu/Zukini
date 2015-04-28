@@ -30,5 +30,17 @@ namespace Zukini.Steps
                 return _objectContainer.Resolve<BrowserSession>();
             }
         }
+
+        /// <summary>
+        /// Returns the registered PropertyBucket used for remembering properties
+        /// between steps.
+        /// </summary>
+        protected PropertyBucket PropertyBucket
+        {
+            get
+            {
+                return _objectContainer.Resolve<PropertyBucket>();
+            }
+        }
     }
 }

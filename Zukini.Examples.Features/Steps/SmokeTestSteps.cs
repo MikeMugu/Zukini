@@ -53,5 +53,19 @@ namespace Zukini.Examples.Features.Steps
             Assert.IsTrue(page.IsBrowserSupported(browserName), String.Format("Expected browser {0} to be supported.", browserName));
         }
 
+        [Given(@"I remember the sub-header text")]
+        public void GivenIRememberTheSubHeaderText()
+        {
+            var page = new W3SchoolsTablePage(Browser);
+            var divText = page.TopTextDiv.Text;
+            PropertyBucket.Remember("W3SchoolsHeaderText", divText);
+        }
+
+        [Then(@"the sub-header text should have been ""(.*)""")]
+        public void ThenTheSubHeaderTextShouldHaveBeen(string headerText)
+        {
+            string rememberedText = PropertyBucket.GetProperty<string>("W3SchoolsHeaderText");
+            Assert.AreEqual(headerText, rememberedText);
+        }
     }
 }
