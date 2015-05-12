@@ -103,6 +103,11 @@ To retrieve a property:
     
 Same thing here, your passing in the property name you want to retrieve. If the property has not been remembered yet, a PropertyNotFoundException will be thrown.
 
+#####TestId
+I find it handy to have a UniqueID that I can use to reference my tests and that stays consistent throughout the test. I use it to do things like name screenshots. As such, there is a TestId automatically available on the property bucket. Simply reference with PropertyBucket.TestId. I also exposed this as a protected Step Definition property, so within a step definition, you can simply call this.TestId. 
+
+Screenshots are also named using the TestId to make matching them up a bit easier.
+
 
 ###Pages
 Okay, getting down to the nitty gritty here. Page classes are a common pattern for keeping tests from becoming brittle, annoying, and downright unmaintainable. There are numerous blogs and articles out there about the subject so I will not go into why this is a good pattern here but I will give you some resources to check out, starting with CheezyWorld. When I started with Cucumber, I used CheezyWorlds blog as a map on how to implement a good page object pattern and it turned out pretty well. He has a series of blogs on the subject starting here: http://www.cheezyworld.com/2010/11/09/ui-tests-not-brittle/. I would reccommend checking it out, when you are done reading the first article, click the 'Next Article' link. Repeat until the articles are no longer talking about Cucumber and UI Tests.
@@ -265,7 +270,7 @@ In addition to the base classes and extension methods, there is a RunTest.bat fi
     -tags:          Specify which tags to run (comma seperated list). Omitting this flag will run all tests.
     -showreport:    Specify this option to have the generated test report launch in your default browser after the test run is complete.
     
-To use this for a different project, you just have to modify the batch file to specify your Test dll and .csproj file.
+By default, any tests with the @skip tag will be skipped during execution. To use this for a different project, you just have to modify the batch file to specify your Test dll and .csproj file.
 
 ##Other Reccommendations
 One other reccommendation I would make is to factor out your test settings into your App.config. Usually XML transforms are for web projects, however I use the wonder Visual Studio plugin "Configuration Transform" to generate an App.config file for each Visual Studio Configuration I have (e.g. Debug, Release, etc...). This allows me to override configuration values depending on what environment I am testing in.
