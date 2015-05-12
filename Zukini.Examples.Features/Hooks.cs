@@ -15,10 +15,12 @@ namespace Zukini.Examples.Features
     public class Hooks
     {
         private readonly SessionConfiguration _sessionConfiguration;
+        private readonly ZukiniConfiguration _zukiniConfiguration;
 
-        public Hooks(SessionConfiguration config)
+        public Hooks(SessionConfiguration sessionConfig, ZukiniConfiguration zukiniConfig)
         {
-            _sessionConfiguration = config;
+            _sessionConfiguration = sessionConfig;
+            _zukiniConfiguration = zukiniConfig;
         }
 
         [BeforeScenario]
@@ -28,6 +30,10 @@ namespace Zukini.Examples.Features
             _sessionConfiguration.Browser = GetBrowser(GetConfigValue("Browser", "firefox"));
             _sessionConfiguration.Timeout = TimeSpan.FromSeconds(Convert.ToDouble(GetConfigValue("Timeout", "3.0")));
             _sessionConfiguration.RetryInterval = TimeSpan.FromSeconds(Convert.ToDouble(GetConfigValue("RetryInterval", "0.1")));
+
+            // Set Zukini Specific configurations
+            _zukiniConfiguration.MaximizeBrowser = Convert.ToBoolean(GetConfigValue("MaximizeBrowser", "true"));
+            _zukiniConfiguration.ScreenshotDirectory = GetConfigValue("ScreenshotDirectory", "Screenshots");
         }
 
         /// <summary>
@@ -41,7 +47,6 @@ namespace Zukini.Examples.Features
             var configValue = ConfigurationManager.AppSettings[key];
             return String.IsNullOrEmpty(configValue) ? defaultValue : configValue;
         }
-
 
         /// <summary>
         /// Helper method to retrieve the browser based off of the string that is passed in.

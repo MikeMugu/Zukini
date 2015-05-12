@@ -162,6 +162,34 @@ This example will setup the browser to use FireFox, set a default timeout of 3 s
 
 Additionally, the BeforeScenario hook in Zukini will register the BrowserSession with the injected IObjectContainer so it is available to our Steps and Pages. (See here for more details on IObjectContainer in SpecFlow: https://github.com/techtalk/SpecFlow/wiki/Context-Injection).
 
+###ZukiniConfiguration
+There is also a ZukiniConfiguration that can be set. To utilize, simply change your Hooks constructor to take in a ZukiniConfiguration as well as a SessionConfiguration like so:
+
+    private readonly SessionConfiguration _sessionConfiguration;
+    private readonly ZukiniConfiguration _zukiniConfiguration;
+
+    public Hooks(SessionConfiguration sessionConfig, ZukiniConfiguration zukiniConfig)
+    {
+        _sessionConfiguration = sessionConfig;
+        _zukiniConfiguration = zukiniConfig;
+    }
+
+The ZukiniConfiguration allows you to specify a couple of extra items such as whether to Maximize the browser on startup or not. It also allows you to set where your screenshots are saved when executing. Example:
+
+    [BeforeScenario]
+    public void BeforeScenario()
+    {
+        _sessionConfiguration.Browser = Coypu.Drivers.Browser.Firefox;
+        _sessionConfiguration.Timeout = TimeSpan.FromSeconds(3);
+        _sessionConfiguration.RetryInterval = TimeSpan.FromSeconds(0.1);
+
+        // Set Zukini Specific configurations
+        _zukiniConfiguration.MaximizeBrowser = true;
+        _zukiniConfiguration.ScreenshotDirectory = "..\..\Screenshots";
+    }
+
+The previous settings will maximize the browser on startup, and change the directory where screenshots are saved to the relative directory specified. I find this useful when integrating with CI tools like Jenkins as it lets you put the screenshots in an accessible place for viewing.
+
 ###AfterScenario
 The AfterScenario hook in Zukini will properly close and dispose of the Browser object. It will also take a screenshot if a test error ocurred. The screenshot currently shows up in the TestResults folder of the current directory and is named with a unique name for each test.
 

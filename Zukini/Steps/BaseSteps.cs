@@ -42,5 +42,18 @@ namespace Zukini.Steps
                 return _objectContainer.Resolve<PropertyBucket>();
             }
         }
+
+        /// <summary>
+        /// Returns the uniquely generated TestId associated with this test.
+        /// This is just a handy property to get the testid without 
+        /// </summary>
+        protected string TestId
+        {
+            get
+            {
+                var propertyBucket = _objectContainer.Resolve<PropertyBucket>();
+                return propertyBucket.TestId;
+            }
+        }
     }
 }

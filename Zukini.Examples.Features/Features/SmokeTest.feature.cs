@@ -127,6 +127,29 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Performing a search for SpecFlow and expecting random text should fail and give m" +
+            "e a screenshot")]
+        [NUnit.Framework.CategoryAttribute("skip")]
+        public virtual void PerformingASearchForSpecFlowAndExpectingRandomTextShouldFailAndGiveMeAScreenshot()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Performing a search for SpecFlow and expecting random text should fail and give m" +
+                    "e a screenshot", new string[] {
+                        "skip"});
+#line 28
+this.ScenarioSetup(scenarioInfo);
+#line 29
+ testRunner.Given("I navigate to Google", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 30
+ testRunner.And("I enter a search value of \"SpecFlow\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.When("I press Google Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+ testRunner.Then("I should see \"ZZZXXXYYYGGGJJJPPPP\" in the results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

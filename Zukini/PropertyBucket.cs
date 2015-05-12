@@ -9,6 +9,7 @@ namespace Zukini
     public class PropertyBucket
     {
         private readonly Dictionary<string, object> _properties;
+        private string _testId;
 
         /// <summary>
         /// Creates a new instance of the property bucket.
@@ -68,6 +69,26 @@ namespace Zukini
                 throw new PropertyNotFoundException(key);
             }
             return item;
+        }
+
+        /// <summary>
+        /// Returns a generated unique id that represents the test id.
+        /// This can be used as an identifier throughout a tests life.
+        /// Handy for things like screenshot names, users, emails or other 
+        /// data that you want to be unique each time it is created.
+        /// </summary>
+        public string TestId
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_testId))
+                {
+                    var date = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    var guid = Guid.NewGuid().ToString("N").Substring(0, 5);
+                    _testId = String.Format("{0}_{1}", date, guid);
+                }
+                return _testId;
+            }
         }
 
         /// <summary>

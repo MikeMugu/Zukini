@@ -23,4 +23,10 @@ Scenario: I want to demonstrate how to use the property bucket
 	Given I navigate to W3Schools table reference page
 	And I remember the sub-header text
 	Then the sub-header text should have been "THE WORLD'S LARGEST WEB DEVELOPER SITE"
-	
+
+@skip
+Scenario: Performing a search for SpecFlow and expecting random text should fail and give me a screenshot
+	Given I navigate to Google
+	And I enter a search value of "SpecFlow"
+	When I press Google Search
+	Then I should see "ZZZXXXYYYGGGJJJPPPP" in the results	

@@ -55,9 +55,9 @@ goto :ParseArguments
 rem ===========================================================================
 @echo ********************* Running Tests *********************************
 IF DEFINED TAGS (
-	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /include:"%TAGS%" /noshadow %TEST_FILE%
+	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /exclude:"skip" /include:"%TAGS%" /noshadow %TEST_FILE%
 ) ELSE (
-	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /noshadow %TEST_FILE%
+	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /exclude:"skip" /noshadow %TEST_FILE%
 )
 
 if ERRORLEVEL 1 goto :Error

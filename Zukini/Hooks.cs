@@ -38,9 +38,17 @@ namespace Zukini
             var browser = config != null ? new BrowserSession(config) : new BrowserSession();
             _objectContainer.RegisterInstanceAs<BrowserSession>(browser);
 
+            // Apply zukini specific settings
+            if (ZukiniConfig.MaximizeBrowser)
+            {
+                browser.MaximiseWindow();
+            }
+
             // Create a property bucket so we have a place to store values between steps
             var propertyBucket = new PropertyBucket();
             _objectContainer.RegisterInstanceAs<PropertyBucket>(propertyBucket);
+
+            Console.WriteLine("Unique Test Id: {0}", propertyBucket.TestId);
         }
 
         /// <summary>
@@ -63,6 +71,15 @@ namespace Zukini
         }
 
         /// <summary>
+        /// Returns the ZukiniConfiguration if one was registered, otherwise returns 
+        /// a new ZukiniConfiguration with default settings.
+        /// </summary>
+        private ZukiniConfiguration ZukiniConfig
+        {
+            get { return _objectContainer.Resolve<ZukiniConfiguration>() ?? new ZukiniConfiguration(); }
+        }
+
+        /// <summary>
         /// Helper method to take a screenshot of the browser and save out to the TestResults folder.
         /// </summary>
         /// <param name="browser">BrowserSession to use for taking screenshot.</param>
@@ -70,7 +87,7 @@ namespace Zukini
         {
             try
             {
-                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), "TestResults");
+                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), ZukiniConfig.ScreenshotDirectory);
                 if (!Directory.Exists(artifactDirectory))
                 {
                     Directory.CreateDirectory(artifactDirectory);
@@ -80,7 +97,7 @@ namespace Zukini
                 browser.SaveScreenshot(screenshotFilePath, System.Drawing.Imaging.ImageFormat.Jpeg);
                 
                 // TODO: Add to the report transform to interpret this as a link (XSLT - yuck)
-                // Console.WriteLine("Screenshot: {0}", new Uri(screenshotFilePath));
+                Console.WriteLine("Screenshot: {0}", new Uri(screenshotFilePath));
             }
             catch (Exception ex)
             {
@@ -90,15 +107,15 @@ namespace Zukini
 
         /// <summary>
         /// Constructs the name of the screenshot based on the feature title, scenario title
-        /// and datetime stamp.
+        /// and test id.
         /// </summary>
         private string GetScreenshotName()
         {
             var feature = FeatureContext.Current.FeatureInfo.Title.Replace(" ","");
             var title = ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", "");
-            var date = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var propertyBucket = _objectContainer.Resolve<PropertyBucket>();
 
-            return String.Format("{0}_{1}_{2}_screenshot.png", feature, title, date);
+            return String.Format("{0}_{1}_{2}.png", feature, title, propertyBucket.TestId);
         }
     }
 }
