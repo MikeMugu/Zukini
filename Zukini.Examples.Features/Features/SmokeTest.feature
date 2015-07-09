@@ -30,3 +30,17 @@ Scenario: Performing a search for SpecFlow and expecting random text should fail
 	And I enter a search value of "SpecFlow"
 	When I press Google Search
 	Then I should see "ZZZXXXYYYGGGJJJPPPP" in the results	
+
+
+@API
+Scenario: Make a post to an API and check the response returned
+	Given I make a fake API call wwith the following Data
+	| email         | name       | body           | comments       |
+	| test@test.com | joe tester | This is a test | Yeah Cucumber! |
+	Then I should see that the "email" field returned the test@test.com value
+	Then I should see that the "name" field returned the joe tester value
+	Then I should see that the "body" field returned the This is a test value
+	Then I should see that the "comments" field returned the Yeah Cucumber! value
+
+
+
