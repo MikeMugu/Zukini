@@ -15,5 +15,6 @@ namespace Zukini.Examples.Features
     {
         public static string GoogleUrl { get { return ConfigurationManager.AppSettings["GoogleUrl"]; } }
         public static string W3SchoolsBaseUrl { get { return ConfigurationManager.AppSettings["W3SchoolsBaseUrl"]; } }
+        public static string WWFUrl { get { return ConfigurationManager.AppSettings["WWFUrl"]; } }
     }
 }

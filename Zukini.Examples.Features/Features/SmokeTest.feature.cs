@@ -32,8 +32,8 @@ namespace Zukini.Examples.Features.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SmokeTest", "In order to provide an example of Zukini\nAs a user\nI want to try it out against G" +
-                    "oogle", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SmokeTest", "In order to provide an example of Zukini\r\nAs a user\r\nI want to try it out against" +
+                    " Google", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -176,11 +176,53 @@ this.ScenarioSetup(scenarioInfo);
 #line 40
  testRunner.Then("I should see that the \"email\" field returned the test@test.com value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 41
- testRunner.Then("I should see that the \"name\" field returned the joe tester value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I should see that the \"name\" field returned the joe tester value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 42
- testRunner.Then("I should see that the \"body\" field returned the This is a test value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I should see that the \"body\" field returned the This is a test value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 43
- testRunner.Then("I should see that the \"comments\" field returned the Yeah Cucumber! value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I should see that the \"comments\" field returned the Yeah Cucumber! value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Header links should be replaced by a Menu Icon in smaller views")]
+        [NUnit.Framework.CategoryAttribute("responsive")]
+        public virtual void HeaderLinksShouldBeReplacedByAMenuIconInSmallerViews()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Header links should be replaced by a Menu Icon in smaller views", new string[] {
+                        "responsive"});
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line 48
+ testRunner.Given("I am on the WWF site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 49
+ testRunner.Then("I should see links for \"OUR WORK\" and \"SPECIES\" and \"PLACES\" in the header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 50
+ testRunner.When("I change my Viewport to 640 and 800", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 51
+ testRunner.Then("I should see a Menu Icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Images should move under their associated Story Text in smaller views")]
+        [NUnit.Framework.CategoryAttribute("responsive")]
+        public virtual void ImagesShouldMoveUnderTheirAssociatedStoryTextInSmallerViews()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Images should move under their associated Story Text in smaller views", new string[] {
+                        "responsive"});
+#line 55
+this.ScenarioSetup(scenarioInfo);
+#line 56
+    testRunner.Given("I am on the WWF site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 57
+ testRunner.Then("I should see the Story Text and the Story Images lined up horizontally", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 58
+ testRunner.When("I change my Viewport to 640 and 800", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 59
+ testRunner.Then("I should see the Image appear beneath its associated Story text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

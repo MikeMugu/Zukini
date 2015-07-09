@@ -38,9 +38,22 @@ Scenario: Make a post to an API and check the response returned
 	| email         | name       | body           | comments       |
 	| test@test.com | joe tester | This is a test | Yeah Cucumber! |
 	Then I should see that the "email" field returned the test@test.com value
-	Then I should see that the "name" field returned the joe tester value
-	Then I should see that the "body" field returned the This is a test value
-	Then I should see that the "comments" field returned the Yeah Cucumber! value
+	And I should see that the "name" field returned the joe tester value
+	And I should see that the "body" field returned the This is a test value
+	And I should see that the "comments" field returned the Yeah Cucumber! value
 
 
+@responsive 
+Scenario: Header links should be replaced by a Menu Icon in smaller views
+	Given I am on the WWF site
+	Then I should see links for "OUR WORK" and "SPECIES" and "PLACES" in the header
+	When I change my Viewport to 640 and 800
+	Then I should see a Menu Icon
+	
 
+@responsive 
+Scenario: Images should move under their associated Story Text in smaller views
+    Given I am on the WWF site
+	Then I should see the Story Text and the Story Images lined up horizontally
+	When I change my Viewport to 640 and 800
+	Then I should see the Image appear beneath its associated Story text 
