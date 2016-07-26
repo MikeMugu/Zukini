@@ -13,7 +13,7 @@ namespace Zukini.Examples.Pages
         private const string PageTitle = "HTML table tag";
 
         public ElementScope BrowserReferenceTable { get { return Browser.FindCss(".browserref"); } }
-        public ElementScope TopTextDiv { get { return Browser.FindId("toptext"); } }
+        public ElementScope TopTextDiv { get { return Browser.FindCss(".toptext"); } }
 
         public W3SchoolsTablePage(BrowserSession browserSession)
             : base(browserSession)
