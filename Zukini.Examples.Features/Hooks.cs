@@ -1,13 +1,12 @@
 ﻿using BoDi;
 using Coypu;
 using Coypu.Drivers;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using Zukini.Examples.Features.CustomDrivers;
 
 namespace Zukini.Examples.Features
 {
@@ -16,9 +15,13 @@ namespace Zukini.Examples.Features
     {
         private readonly SessionConfiguration _sessionConfiguration;
         private readonly ZukiniConfiguration _zukiniConfiguration;
+        private readonly IObjectContainer _objectContainer;
 
-        public Hooks(SessionConfiguration sessionConfig, ZukiniConfiguration zukiniConfig)
+        public Hooks(IObjectContainer container, 
+            SessionConfiguration sessionConfig, 
+            ZukiniConfiguration zukiniConfig)
         {
+            _objectContainer = container;
             _sessionConfiguration = sessionConfig;
             _zukiniConfiguration = zukiniConfig;
         }
@@ -34,6 +37,12 @@ namespace Zukini.Examples.Features
             // Set Zukini Specific configurations
             _zukiniConfiguration.MaximizeBrowser = Convert.ToBoolean(GetConfigValue("MaximizeBrowser", "true"));
             _zukiniConfiguration.ScreenshotDirectory = GetConfigValue("ScreenshotDirectory", "Screenshots");
+
+            // Example of creating a custom chrome driver with specific options
+            // RegisterCustomChromeBrowser();
+
+            // Example of creating a custom firefox driver with profile options
+            // RegisterCustomFirefoxBrowser();
         }
 
         /// <summary>
@@ -70,5 +79,43 @@ namespace Zukini.Examples.Features
             }
         }
 
+        /// <summary>
+        /// Provides an example of creating and registering a custom Chrome web driver.        
+        /// </summary>
+        private void RegisterCustomChromeBrowser()
+        {
+            // create our chrome options and set a value
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("no-sandbox");
+
+            // Pass options to a new chrome browser and pass into the BrowserSession
+            var customChromeDriver = new CustomChromeSeleniumDriver(chromeOptions);
+            var browserSession = new BrowserSession(customChromeDriver);
+
+            // Finally, register with the DI container.
+            _objectContainer.RegisterInstanceAs<BrowserSession>(browserSession);
+        }
+
+        /// <summary>
+        /// Provides an example of how to create and register a custom Firefox driver with 
+        /// a custom firefox Profile.
+        /// </summary>
+        private void RegisterCustomFirefoxBrowser()
+        {
+            // Create profile and set some settings
+            // (typical scneario of specifying how to download files)
+            var firefoxProfile = new FirefoxProfile();
+            firefoxProfile.SetPreference("browser.download.folderList", 2);
+            firefoxProfile.SetPreference("browser.download.manager.showWhenStarting", false);
+            firefoxProfile.SetPreference("browser.download.dir", "C:\\Temp"); // Better to pass this in via a config value
+            firefoxProfile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip");
+
+            // Pass options to a new chrome browser and pass into the BrowserSession
+            var customFirefoxDriver = new CustomFirefoxSeleniumDriver(firefoxProfile);
+            var browserSession = new BrowserSession(customFirefoxDriver);
+
+            // Finally, register with the DI container.
+            _objectContainer.RegisterInstanceAs<BrowserSession>(browserSession);
+        }
     }
 }

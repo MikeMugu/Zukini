@@ -1,6 +1,8 @@
 ﻿using BoDi;
 using Coypu;
 using Coypu.Drivers;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -33,10 +35,21 @@ namespace Zukini
         [BeforeScenario]
         protected void BeforeScenario()
         {
-            // Check for a session configuration that was injected in and if one exists, use it
+            BrowserSession browser;
             SessionConfiguration config = _objectContainer.Resolve<SessionConfiguration>();
-            var browser = config != null ? new BrowserSession(config) : new BrowserSession();
-            _objectContainer.RegisterInstanceAs<BrowserSession>(browser);
+
+            // If the BrowserSession was provided, then use it.
+            // Otherwise create a new session using a config (if provided)
+            var providedSession = TryResolveDependency<BrowserSession>();
+            if (providedSession != null)
+            {
+                browser = providedSession;
+            }
+            else
+            {
+                browser = config != null ? new BrowserSession(config) : new BrowserSession();
+                _objectContainer.RegisterInstanceAs<BrowserSession>(browser);
+            }
 
             // Apply zukini specific settings
             if (ZukiniConfig.MaximizeBrowser)
@@ -49,6 +62,18 @@ namespace Zukini
             _objectContainer.RegisterInstanceAs<PropertyBucket>(propertyBucket);
 
             Console.WriteLine("Unique Test Id: {0}", propertyBucket.TestId);
+        }
+
+        private T TryResolveDependency<T>()
+        {
+            try
+            {
+                return _objectContainer.Resolve<T>();
+            }
+            catch
+            {
+                return default(T);
+            }
         }
 
         /// <summary>

@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomDrivers\CustomFirefoxSeleniumDriver.cs" />
+    <Compile Include="CustomDrivers\CustomChromeSeleniumDriver.cs" />
     <Compile Include="Features\SmokeTest.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

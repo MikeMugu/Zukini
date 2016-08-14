@@ -1,6 +1,5 @@
 ﻿using BoDi;
 using Coypu;
-using TechTalk.SpecFlow;
 
 namespace Zukini.Steps
 {
