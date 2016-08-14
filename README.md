@@ -195,6 +195,27 @@ The ZukiniConfiguration allows you to specify a couple of extra items such as wh
 
 The previous settings will maximize the browser on startup, and change the directory where screenshots are saved to the relative directory specified. I find this useful when integrating with CI tools like Jenkins as it lets you put the screenshots in an accessible place for viewing.
 
+###Providing a custom Driver
+In most cases, you will want to customize something about the driver you are using. For example, you may want to provide your own FireFox profile or set specific settings when using Chrome. As of version 1.1.5, you can now do this. To provide your own Driver, you must instantiate a custom driver and pass it into a BrowserSession object, then register that type with the Dependency Injection container. This way, the rest of the code base will know to use your driver. 
+
+####Example
+
+    private void RegisterCustomChromeBrowser()
+    {
+        // create our chrome options and set a value
+        var chromeOptions = new ChromeOptions();
+        chromeOptions.AddArgument("no-sandbox");
+
+        // Pass options to a new chrome browser and pass into the BrowserSession
+        var customChromeDriver = new CustomChromeSeleniumDriver(chromeOptions);
+            var browserSession = new BrowserSession(customChromeDriver);
+
+        // Finally, register with the DI container.
+        _objectContainer.RegisterInstanceAs<BrowserSession>(browserSession);
+    }
+    
+You would then call this method from within the BeginScenario method. For a full example, see the BeforeScenario() hook in https://github.com/MikeMugu/Zukini/blob/master/Zukini.Examples.Features/Hooks.cs 
+
 ###AfterScenario
 The AfterScenario hook in Zukini will properly close and dispose of the Browser object. It will also take a screenshot if a test error ocurred. The screenshot currently shows up in the TestResults folder of the current directory and is named with a unique name for each test.
 
