@@ -19,7 +19,7 @@ call :ViewReport
 
 :Defaults
 rem ===========================================================================
-SET NUNIT_EXE=%~dp03rdParty\NUnit\v2.6.4\bin\nunit-console-x86.exe
+SET NUNIT_EXE=%~dp0packages\NUnit.Runners.2.6.4\tools\nunit-console-x86.exe
 SET SPECFLOW_EXE=%~dp0packages\SpecFlow.1.9.0\Tools\specflow.exe
 SET TEST_RESULTS=%~dp0TestResults.xml
 SET TEST_OUTPUT=%~dp0TestOutput.txt

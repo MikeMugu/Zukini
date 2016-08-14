@@ -284,6 +284,8 @@ In addition to the base classes and extension methods, there is a RunTest.bat fi
 2. After running the tests, it generates a nice report using the very nice specflow report template provided by mvalipour on GitHUb here: https://github.com/mvalipour/specflow-report-templates 
 3. It also provides a way to specify tags
 
+**Before executing, copy the specflow.exe.config file located in this repository into the packages\SpecFlow.1.9.0\Tools folder. This is to force SpecFlow.exe to use the .NET 4.0 runtime.
+
 ####Usage:
 
     RunTests.bat [-tags [tag1,tag2] [-showreport]
