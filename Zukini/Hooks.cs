@@ -56,18 +56,6 @@ namespace Zukini
             Console.WriteLine("Unique Test Id: {0}", propertyBucket.TestId);
         }
 
-        private T TryResolveDependency<T>()
-        {
-            try
-            {
-                return _objectContainer.Resolve<T>();
-            }
-            catch
-            {
-                return default(T);
-            }
-        }
-
         /// <summary>
         /// Global After Scenario hook used to take a screenshot (if there is an error) 
         /// and shuts down the driver.
@@ -86,6 +74,25 @@ namespace Zukini
                 browser.Dispose();
             }
         }
+
+        /// <summary>
+        /// Tries to resolve a dependency from our object container and 
+        /// prevents us from blowing up if it does not exist. 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        private T TryResolveDependency<T>()
+        {
+            try
+            {
+                return _objectContainer.Resolve<T>();
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
+
 
         /// <summary>
         /// Returns the ZukiniConfiguration if one was registered, otherwise returns 
