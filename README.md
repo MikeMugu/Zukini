@@ -7,7 +7,7 @@ that provides a browser session hook for your tests, and some other niceties.
 1. If you don't have Visual Studio, download the community edition of Visual Studio here: [https://www.visualstudio.com/en-us/products/free-developer-offers-vs.aspx]
 2. Launch Visual Studio and install the following plugins (Tools->Extentions and Updates->Search):
     * NUnit Test Adapter
-    * SpecFlow for Visual Studio 2013
+    * SpecFlow for Visual Studio 2015
 3. Pull down the code
 4. Load the Zukini.sln file
 5. Write tests
