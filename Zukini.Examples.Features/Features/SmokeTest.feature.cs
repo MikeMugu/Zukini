@@ -149,6 +149,37 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demonstrate how to use SpecFlow data tables")]
+        [NUnit.Framework.CategoryAttribute("table_example")]
+        [NUnit.Framework.TestCaseAttribute("Chrome", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("IE", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("FireFox", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("Safari", new string[0])]
+        public virtual void IWantToDemonstrateHowToUseSpecFlowDataTables(string browser, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "table_example"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate how to use SpecFlow data tables", @__tags);
+#line 35
+this.ScenarioSetup(scenarioInfo);
+#line 36
+ testRunner.Given("I navigate to W3Schools table reference page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Browser"});
+            table1.AddRow(new string[] {
+                        string.Format("{0}", browser)});
+#line 37
+ testRunner.Then("I should see that the table tag is supported for the following", ((string)(null)), table1, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

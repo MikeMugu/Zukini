@@ -30,3 +30,16 @@ Scenario: Performing a search for SpecFlow and expecting random text should fail
 	And I enter a search value of "SpecFlow"
 	When I press Google Search
 	Then I should see "ZZZXXXYYYGGGJJJPPPP" in the results	
+
+@table_example
+Scenario Outline: I want to demonstrate how to use SpecFlow data tables
+	Given I navigate to W3Schools table reference page
+	Then I should see that the table tag is supported for the following
+		| Browser   |
+		| <Browser> |
+	Examples:
+		| Browser |
+		| Chrome  |
+		| IE      |
+		| FireFox |
+		| Safari  |

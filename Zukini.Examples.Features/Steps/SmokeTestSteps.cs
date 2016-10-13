@@ -67,5 +67,19 @@ namespace Zukini.Examples.Features.Steps
             string rememberedText = PropertyBucket.GetProperty<string>("W3SchoolsHeaderText");
             Assert.AreEqual(headerText, rememberedText);
         }
+
+        [Then(@"I should see that the table tag is supported for the following")]
+        public void ThenIShouldSeeThatTheTableTagIsSupportedForTheFollowing(Table table)
+        {
+            var page = new W3SchoolsTablePage(Browser);
+            page.AssertCurrentPage();
+
+            // Iterate through the table and verify support for eavh browser
+            foreach(TableRow row in table.Rows)
+            {
+                string browserName = row["Browser"];
+                Assert.IsTrue(page.IsBrowserSupported(browserName), $"Expected browser {browserName} to be supported.");
+            }
+        }
     }
 }
