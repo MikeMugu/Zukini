@@ -3,6 +3,7 @@ using Coypu;
 using Coypu.Drivers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Configuration;
 using TechTalk.SpecFlow;
@@ -43,6 +44,10 @@ namespace Zukini.Examples.Features
 
             // Example of creating a custom firefox driver with profile options
             // RegisterCustomFirefoxBrowser();
+
+            // Example of creating a custom remote chrome driver with options for use with Selenium Grid
+            // IMPORTANT: Must add grid url to Grid Settings in App.config file
+            // RegisterCustomRemoteChromeBrowser();
         }
 
         /// <summary>
@@ -113,6 +118,28 @@ namespace Zukini.Examples.Features
             // Pass options to a new chrome browser and pass into the BrowserSession
             var customFirefoxDriver = new CustomFirefoxSeleniumDriver(firefoxProfile);
             var browserSession = new BrowserSession(customFirefoxDriver);
+
+            // Finally, register with the DI container.
+            _objectContainer.RegisterInstanceAs<BrowserSession>(browserSession);
+        }
+
+        /// <summary>
+        /// Configures a custom remote Chrome driver        
+        /// </summary>
+        private void RegisterCustomRemoteChromeBrowser()
+        {
+            // Create chrome options and add any/all arguments
+            var options = new ChromeOptions();
+            options.AddArgument("no-sandbox");
+
+            // Must cast options to DesiredCapabilities due to issue with .net and driver
+            // https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/7043
+            var capabilities = (DesiredCapabilities)options.ToCapabilities();
+            capabilities.SetCapability("browserName", "chrome");
+
+            // Pass options to a new remote chrome browser and pass into the BrowserSession
+            var customRemoteChromeDriver = new CustomRemoteChromeSeleniumDriver(capabilities);
+            var browserSession = new BrowserSession(customRemoteChromeDriver);
 
             // Finally, register with the DI container.
             _objectContainer.RegisterInstanceAs<BrowserSession>(browserSession);
