@@ -1,0 +1,15 @@
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Zukini.Examples.Pages.dll.config
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Zukini.Examples.Pages.dll
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Zukini.Examples.Pages.pdb
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Coypu.dll
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\WebDriver.dll
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\WebDriver.Support.dll
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Zukini.dll
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\TechTalk.SpecFlow.dll
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Zukini.pdb
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\Coypu.xml
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\WebDriver.xml
+C:\work\Zukini\Zukini.Examples.Pages\bin\Debug\WebDriver.Support.xml
+C:\work\Zukini\Zukini.Examples.Pages\obj\Debug\Zukini.Examples.Pages.csprojResolveAssemblyReference.cache
+C:\work\Zukini\Zukini.Examples.Pages\obj\Debug\Zukini.Examples.Pages.dll
+C:\work\Zukini\Zukini.Examples.Pages\obj\Debug\Zukini.Examples.Pages.pdb
