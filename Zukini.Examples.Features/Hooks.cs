@@ -46,6 +46,7 @@ namespace Zukini.Examples.Features
             // RegisterCustomFirefoxBrowser();
 
             // Example of created a custom chrome remote driver with specific options
+            // Must add Grid Url to App.config - Grid Settings
             // RegisterCustomRemoteChromeBrowser();
         }
 
