@@ -1,0 +1,13 @@
+C:\work\Zukini\Zukini\bin\Debug\Zukini.dll.config
+C:\work\Zukini\Zukini\bin\Debug\Zukini.dll
+C:\work\Zukini\Zukini\bin\Debug\Zukini.pdb
+C:\work\Zukini\Zukini\bin\Debug\Coypu.dll
+C:\work\Zukini\Zukini\bin\Debug\TechTalk.SpecFlow.dll
+C:\work\Zukini\Zukini\bin\Debug\WebDriver.dll
+C:\work\Zukini\Zukini\bin\Debug\WebDriver.Support.dll
+C:\work\Zukini\Zukini\bin\Debug\Coypu.xml
+C:\work\Zukini\Zukini\bin\Debug\WebDriver.xml
+C:\work\Zukini\Zukini\bin\Debug\WebDriver.Support.xml
+C:\work\Zukini\Zukini\obj\Debug\Zukini.csprojResolveAssemblyReference.cache
+C:\work\Zukini\Zukini\obj\Debug\Zukini.dll
+C:\work\Zukini\Zukini\obj\Debug\Zukini.pdb
