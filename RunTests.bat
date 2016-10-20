@@ -19,7 +19,7 @@ call :ViewReport
 
 :Defaults
 rem ===========================================================================
-SET NUNIT_EXE=%~dp0packages\NUnit.Runners.2.6.4\tools\nunit-console-x86.exe
+SET NUNIT_EXE=%~dp0packages\NUnit.ConsoleRunner.3.5.0\tools\nunit3-console.exe
 SET SPECFLOW_EXE=%~dp0packages\SpecFlow.2.1.0\Tools\specflow.exe
 SET TEST_RESULTS=%~dp0TestResults.xml
 SET TEST_OUTPUT=%~dp0TestOutput.txt
@@ -55,9 +55,9 @@ goto :ParseArguments
 rem ===========================================================================
 @echo ********************* Running Tests *********************************
 IF DEFINED TAGS (
-	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /exclude:"skip" /include:"%TAGS%" /noshadow %TEST_FILE%
+	%NUNIT_EXE% /labels:ON /out:%TEST_OUTPUT% /result:%TEST_RESULTS%;format=nunit2 /where:"cat == %TAGS%" %TEST_FILE%
 ) ELSE (
-	%NUNIT_EXE% /labels /out:%TEST_OUTPUT% /xml:%TEST_RESULTS% /exclude:"skip" /noshadow %TEST_FILE%
+	%NUNIT_EXE% /labels:ON /out:%TEST_OUTPUT% /result:%TEST_RESULTS%;format=nunit2 %TEST_FILE%
 )
 
 if ERRORLEVEL 1 goto :Error
@@ -66,7 +66,7 @@ goto :eof
 :GenerateSpecFlowReport
 rem ===========================================================================
 @echo **************** Generating SpecFlow Report *************************
-%SPECFLOW_EXE% nunitexecutionreport %PROJECT_FILE% /out:%TEST_RESULTS_HTML% /xmlTestResult:%TEST_RESULTS% /testOutput:%TEST_OUTPUT% /xsltFile:%REPORT_TEMPLATE%
+%SPECFLOW_EXE% nunitexecutionreport %PROJECT_FILE% /out:%TEST_RESULTS_HTML% /xmlTestResult:%TEST_RESULTS% /testOutput:%TEST_OUTPUT%
 
 
 if ERRORLEVEL 1 goto :Error

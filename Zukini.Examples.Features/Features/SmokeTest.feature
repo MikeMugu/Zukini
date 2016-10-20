@@ -24,7 +24,7 @@ Scenario: I want to demonstrate how to use the property bucket
 	And I remember the sub-header text
 	Then the sub-header text should have been "THE WORLD'S LARGEST WEB DEVELOPER SITE"
 
-@skip
+@ignore
 Scenario: Performing a search for SpecFlow and expecting random text should fail and give me a screenshot
 	Given I navigate to Google
 	And I enter a search value of "SpecFlow"

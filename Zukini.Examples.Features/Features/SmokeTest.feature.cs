@@ -130,12 +130,12 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Performing a search for SpecFlow and expecting random text should fail and give m" +
             "e a screenshot")]
-        [NUnit.Framework.CategoryAttribute("skip")]
+        [NUnit.Framework.IgnoreAttribute("Ignored scenario")]
         public virtual void PerformingASearchForSpecFlowAndExpectingRandomTextShouldFailAndGiveMeAScreenshot()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Performing a search for SpecFlow and expecting random text should fail and give m" +
                     "e a screenshot", new string[] {
-                        "skip"});
+                        "ignore"});
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29
