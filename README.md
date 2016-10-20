@@ -281,8 +281,8 @@ I have indcluded an example test that goes to the W3Schools Table tag page and v
 ##RunTests.bat
 In addition to the base classes and extension methods, there is a RunTest.bat file that makes it easy to run your tests. This batch file does a few things:
 1. First, it runs the tests using the NUnit test runner. 
-2. After running the tests, it generates a nice report using the very nice specflow report template provided by mvalipour on GitHUb here: https://github.com/mvalipour/specflow-report-templates 
-3. It also provides a way to specify tags
+2. After running the tests, it generates a report using SpecFlow.exe (default report) 
+3. Provides a way to specify tags
 
 **Before executing, copy the specflow.exe.config file located in this repository into the packages\SpecFlow.1.9.0\Tools folder. This is to force SpecFlow.exe to use the .NET 4.0 runtime.
 
