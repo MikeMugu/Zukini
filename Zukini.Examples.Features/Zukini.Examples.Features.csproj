@@ -82,6 +82,10 @@
       <Project>{4f2953cd-cf1a-452a-9276-ff7f60cab934}</Project>
       <Name>Zukini.Examples.Pages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zukini.UI\Zukini.UI.csproj">
+      <Project>{8e5638a8-13da-4f84-b2a7-4ab79a534e12}</Project>
+      <Name>Zukini.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zukini\Zukini.csproj">
       <Project>{aa04cd0e-f5a9-4331-849b-30d3facdfcee}</Project>
       <Name>Zukini</Name>

@@ -8,6 +8,7 @@ using System;
 using System.Configuration;
 using TechTalk.SpecFlow;
 using Zukini.Examples.Features.CustomDrivers;
+using Zukini.UI;
 
 namespace Zukini.Examples.Features
 {
@@ -15,12 +16,12 @@ namespace Zukini.Examples.Features
     public class Hooks
     {
         private readonly SessionConfiguration _sessionConfiguration;
-        private readonly ZukiniConfiguration _zukiniConfiguration;
+        private readonly ZukiniUIConfiguration _zukiniConfiguration;
         private readonly IObjectContainer _objectContainer;
 
         public Hooks(IObjectContainer container, 
             SessionConfiguration sessionConfig, 
-            ZukiniConfiguration zukiniConfig)
+            ZukiniUIConfiguration zukiniConfig)
         {
             _objectContainer = container;
             _sessionConfiguration = sessionConfig;

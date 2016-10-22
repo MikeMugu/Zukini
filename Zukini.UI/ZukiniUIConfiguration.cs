@@ -1,7 +1,7 @@
 ﻿
-namespace Zukini
+namespace Zukini.UI
 {
-    public class ZukiniConfiguration
+    public class ZukiniUIConfiguration
     {
         private string _screenshotDirectory = "Screenshots";
         private bool _maximizeBrowser = true;
