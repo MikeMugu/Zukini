@@ -202,7 +202,7 @@ this.ScenarioSetup(scenarioInfo);
                         "test@test.com",
                         "Joe Tester",
                         "123 Main St",
-                        "Somehwere",
+                        "Somewhere",
                         "CA",
                         "90210"});
 #line 49
