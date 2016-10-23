@@ -3,12 +3,12 @@ using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
 using Zukini.Examples.Pages;
-using Zukini.Steps;
+using Zukini.UI.Steps;
 
 namespace Zukini.Examples.Features.Steps
 {
     [Binding]
-    public class SmokeTestSteps : BaseSteps
+    public class SmokeTestSteps : UISteps
     {
         public SmokeTestSteps(IObjectContainer objectContainer)
             : base(objectContainer)

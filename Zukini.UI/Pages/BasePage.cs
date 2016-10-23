@@ -1,7 +1,7 @@
 ﻿using Coypu;
 using System;
 
-namespace Zukini.Pages
+namespace Zukini.UI.Pages
 {
     public class BasePage
     {

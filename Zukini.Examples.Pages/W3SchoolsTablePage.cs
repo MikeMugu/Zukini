@@ -1,7 +1,7 @@
 ﻿using Coypu;
 using System;
 using System.Linq;
-using Zukini.Pages;
+using Zukini.UI.Pages;
 
 namespace Zukini.Examples.Pages
 {

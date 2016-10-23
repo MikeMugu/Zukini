@@ -1,5 +1,5 @@
 ﻿using Coypu;
-using Zukini.Pages;
+using Zukini.UI.Pages;
 
 namespace Zukini.Examples.Pages
 {
