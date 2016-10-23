@@ -180,6 +180,48 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make a post to an API and check the response returned")]
+        [NUnit.Framework.CategoryAttribute("api_example")]
+        public virtual void MakeAPostToAnAPIAndCheckTheResponseReturned()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a post to an API and check the response returned", new string[] {
+                        "api_example"});
+#line 48
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "email",
+                        "name",
+                        "address",
+                        "city",
+                        "state",
+                        "zip"});
+            table2.AddRow(new string[] {
+                        "test@test.com",
+                        "Joe Tester",
+                        "123 Main St",
+                        "Somehwere",
+                        "CA",
+                        "90210"});
+#line 49
+ testRunner.Given("I make a fake API call with the data", ((string)(null)), table2, "Given ");
+#line 52
+ testRunner.Then("I should see that the \"email\" field returned a value of \"test@test.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 53
+ testRunner.And("I should see that the \"name\" field returned a value of \"Joe Tester\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+ testRunner.And("I should see that the \"address\" field returned a value of \"123 Main St\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 55
+ testRunner.And("I should see that the \"city\" field returned a value of \"Somewhere\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+ testRunner.And("I should see that the \"state\" field returned a value of \"CA\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+ testRunner.And("I should see that the \"zip\" field returned a value of \"90210\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -4,7 +4,7 @@ using Zukini.Steps;
 
 namespace Zukini.UI.Steps
 {
-    public class UISteps : BaseSteps
+    public abstract class UISteps : BaseSteps
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UISteps"/> class.
