@@ -24,9 +24,7 @@ namespace Zukini
         public Hooks(IObjectContainer objectContainer, ScenarioContext scenarioContext, FeatureContext featureContext)
         {
             _objectContainer = objectContainer;
-            if (scenarioContext == null) throw new ArgumentNullException("ScenarioContext");
             _scenarioContext = scenarioContext;
-            if (featureContext == null) throw new ArgumentNullException("FeatureContext");
             _featureContext = featureContext;
         }
 
@@ -77,7 +75,7 @@ namespace Zukini
             if (browser != null)
             {
                 if(_scenarioContext.TestError != null)
-                {
+                {                   
                     TakeScreenshot(browser);
                 }
 
