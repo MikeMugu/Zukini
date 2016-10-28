@@ -10,14 +10,22 @@ namespace Zukini
     public class Hooks
     {
         private IObjectContainer _objectContainer;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly FeatureContext _featureContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Hooks"/> class.
         /// </summary>
         /// <param name="objectContainer">The object container (Injected with DI).</param>
-        public Hooks(IObjectContainer objectContainer)
+        /// <param name="scenarioContext">The scenario context (Injected with DI).</param>
+        /// <param name="featureContext">The feature context (Injected with DI).</param>
+        /// With parallel test execution we cannot use static properties of contexts so we must
+        /// inject them: http://www.specflow.org/documentation/Parallel-Execution/
+        public Hooks(IObjectContainer objectContainer, ScenarioContext scenarioContext, FeatureContext featureContext)
         {
             _objectContainer = objectContainer;
+            _scenarioContext = scenarioContext;
+            _featureContext = featureContext;
         }
 
         /// <summary>
@@ -66,8 +74,8 @@ namespace Zukini
             var browser = _objectContainer.Resolve<BrowserSession>();
             if (browser != null)
             {
-                if (ScenarioContext.Current.TestError != null)
-                {
+                if(_scenarioContext.TestError != null)
+                {                   
                     TakeScreenshot(browser);
                 }
 
@@ -135,8 +143,8 @@ namespace Zukini
         /// </summary>
         private string GetScreenshotName()
         {
-            var feature = FeatureContext.Current.FeatureInfo.Title.Replace(" ","");
-            var title = ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", "");
+            var feature = _featureContext.FeatureInfo.Title.Replace(" ","");
+            var title = _scenarioContext.ScenarioInfo.Title.Replace(" ","");
             var propertyBucket = _objectContainer.Resolve<PropertyBucket>();
 
             return String.Format("{0}_{1}_{2}.png", feature, title, propertyBucket.TestId);
