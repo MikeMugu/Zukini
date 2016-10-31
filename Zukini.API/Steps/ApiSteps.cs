@@ -2,7 +2,6 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using TechTalk.SpecFlow;
 using Zukini.Steps;
 
 namespace Zukini.API.Steps

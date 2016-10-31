@@ -1,11 +1,6 @@
-﻿using System.Dynamic;
-using System.Collections.Generic;
-using System.Linq;
-using BoDi;
-using RestSharp;
+﻿using BoDi;
 using TechTalk.SpecFlow;
 using Zukini.API.Steps;
-using Zukini.API;
 using NUnit.Framework;
 using System;
 
