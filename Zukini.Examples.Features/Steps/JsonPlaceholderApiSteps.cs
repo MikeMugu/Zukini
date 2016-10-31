@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using Zukini.API.Steps;
 using Zukini.API;
 using NUnit.Framework;
+using System;
 
 namespace Zukini.Examples.Features.Steps
 {
@@ -21,44 +22,15 @@ namespace Zukini.Examples.Features.Steps
         [Given(@"I make a fake API call with the data")]
         public void GivenIMakeAFakeAPICallWithTheData(Table table)
         {
-            // Setup rest client
-            var restClient = new RestClient(TestSettings.JsonPlaceholderApiUrl);
-
-            // Setup rest request
-            var request = new RestRequest("/posts", Method.POST);
-            request.AddJsonBody(table.Rows[0]);
-
-            // Get response
-            var response = restClient.Execute<Dictionary<string, string>>(request);
-
-            
-            // Have to understand the Table structure for this
-            // TODO: Factor out to helper method in Zukini.API
-            PropertyBucket.Remember<dynamic>("ContactData", response.Data);
+            var result = Post(new Uri(TestSettings.JsonPlaceholderApiUrl), "/posts", table.Rows[0]);
+            PropertyBucket.Remember<dynamic>("ContactData", result);
         }
 
         [Then(@"I should see that the ""(.*)"" field returned a value of ""(.*)""")]
         public void ThenIShouldSeeThatTheFieldReturnedAValueOf(string fieldName, string expectedValue)
         {
             var contactData = PropertyBucket.GetProperty<dynamic>("ContactData");
-            Assert.AreEqual(expectedValue, contactData.GetValue(fieldName).ToString());
+            Assert.AreEqual(expectedValue, contactData[fieldName]);
         }
-
-
-        //private Dictionary<string, string> ConvertResponse(string responseData)
-        //{
-        //    return null;
-        //}
-
-        //private IList<Dictionary<string, string>> ConvertResponseToList(string responseData)
-        //{
-        //    List<Dictionary<string, string>> results = new List<Dictionary<string, string>();
-        //    foreach(var row in responseData.Rows)
-        //    {
-        //        results.Add(row);
-        //    }
-
-        //    return results;
-        //}
     }
 }
