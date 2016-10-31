@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoypuExtensions.cs" />
     <Compile Include="UIHooks.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CurrentPageException.cs" />
