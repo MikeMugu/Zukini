@@ -1,4 +1,7 @@
-﻿using BoDi;
+﻿using System.Dynamic;
+using System.Collections.Generic;
+using System.Linq;
+using BoDi;
 using RestSharp;
 using TechTalk.SpecFlow;
 using Zukini.API.Steps;
@@ -20,18 +23,18 @@ namespace Zukini.Examples.Features.Steps
         {
             // Setup rest client
             var restClient = new RestClient(TestSettings.JsonPlaceholderApiUrl);
-            restClient.AddHandler("application/json", new DynamicJsonDeserializer());
 
             // Setup rest request
             var request = new RestRequest("/posts", Method.POST);
-            request.AddJsonBody(table);
+            request.AddJsonBody(table.Rows[0]);
 
             // Get response
-            var response = restClient.Execute<dynamic>(request);
+            var response = restClient.Execute<Dictionary<string, string>>(request);
+
             
             // Have to understand the Table structure for this
             // TODO: Factor out to helper method in Zukini.API
-            PropertyBucket.Remember<dynamic>("ContactData", response.Data.Rows[0]);
+            PropertyBucket.Remember<dynamic>("ContactData", response.Data);
         }
 
         [Then(@"I should see that the ""(.*)"" field returned a value of ""(.*)""")]
@@ -40,5 +43,22 @@ namespace Zukini.Examples.Features.Steps
             var contactData = PropertyBucket.GetProperty<dynamic>("ContactData");
             Assert.AreEqual(expectedValue, contactData.GetValue(fieldName).ToString());
         }
+
+
+        //private Dictionary<string, string> ConvertResponse(string responseData)
+        //{
+        //    return null;
+        //}
+
+        //private IList<Dictionary<string, string>> ConvertResponseToList(string responseData)
+        //{
+        //    List<Dictionary<string, string>> results = new List<Dictionary<string, string>();
+        //    foreach(var row in responseData.Rows)
+        //    {
+        //        results.Add(row);
+        //    }
+
+        //    return results;
+        //}
     }
 }

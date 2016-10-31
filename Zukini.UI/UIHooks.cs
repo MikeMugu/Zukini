@@ -10,11 +10,13 @@ namespace Zukini.UI
     public class UIHooks : Hooks
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UIHooks"/> class.
+        /// Initializes a new instance of the <see cref="UIHooks" /> class.
         /// </summary>
         /// <param name="objectContainer">The object container (Injected with DI).</param>
-        public UIHooks(IObjectContainer objectContainer) :
-            base(objectContainer)
+        /// <param name="scenarioContext">The current ScenarioContext (Injected with DI).</param>
+        /// <param name="featureContext">The current FeatureContext (Injected with DI).</param>
+        public UIHooks(IObjectContainer objectContainer, ScenarioContext scenarioContext, FeatureContext featureContext) :
+            base(objectContainer, scenarioContext, featureContext)
         {
         }
 
@@ -58,7 +60,7 @@ namespace Zukini.UI
             var browser = ObjectContainer.Resolve<BrowserSession>();
             if (browser != null)
             {
-                if (ScenarioContext.Current.TestError != null)
+                if (this.ScenarioContext.TestError != null)
                 {
                     TakeScreenshot(browser);
                 }
@@ -126,8 +128,8 @@ namespace Zukini.UI
         /// </summary>
         private string GetScreenshotName()
         {
-            var feature = FeatureContext.Current.FeatureInfo.Title.Replace(" ", "");
-            var title = ScenarioContext.Current.ScenarioInfo.Title.Replace(" ", "");
+            var feature = this.FeatureContext.FeatureInfo.Title.Replace(" ", "");
+            var title = this.ScenarioContext.ScenarioInfo.Title.Replace(" ", "");
             var propertyBucket = ObjectContainer.Resolve<PropertyBucket>();
 
             return String.Format("{0}_{1}_{2}.png", feature, title, propertyBucket.TestId);

@@ -74,7 +74,7 @@ namespace Zukini.Examples.Features.Steps
             var page = new W3SchoolsTablePage(Browser);
             page.AssertCurrentPage();
 
-            // Iterate through the table and verify support for eavh browser
+            // Iterate through the table and verify support for each browser
             foreach(TableRow row in table.Rows)
             {
                 string browserName = row["Browser"];

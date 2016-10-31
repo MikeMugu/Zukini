@@ -1,6 +1,8 @@
 ﻿using RestSharp.Deserializers;
 using RestSharp;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Dynamic;
 
 namespace Zukini.API
 {
@@ -12,7 +14,10 @@ namespace Zukini.API
 
         public T Deserialize<T>(IRestResponse response)
         {
-            return JsonConvert.DeserializeObject<dynamic>(response.Content);
+            var converter = new ExpandoObjectConverter();
+            dynamic result = JsonConvert.DeserializeObject<ExpandoObject>(response.Content, converter);
+
+            return result;
         }
     }
 }
