@@ -7,10 +7,10 @@ using OpenQA.Selenium.Remote;
 using System;
 using System.Configuration;
 using TechTalk.SpecFlow;
-using Zukini.Examples.Features.CustomDrivers;
+using Zukini.UI.Examples.Features.CustomDrivers;
 using Zukini.UI;
 
-namespace Zukini.Examples.Features
+namespace Zukini.UI.Examples.Features
 {
     [Binding]
     public class Hooks

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Zukini.Examples.Features
+namespace Zukini.UI.Examples.Features
 {
     /// <summary>
     /// Helper class to make getting at the test settings easy. 

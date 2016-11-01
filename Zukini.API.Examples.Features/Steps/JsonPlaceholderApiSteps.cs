@@ -1,10 +1,10 @@
 ﻿using BoDi;
-using TechTalk.SpecFlow;
-using Zukini.API.Steps;
 using NUnit.Framework;
 using System;
+using TechTalk.SpecFlow;
+using Zukini.API.Steps;
 
-namespace Zukini.Examples.Features.Steps
+namespace Zukini.API.Examples.Features.Steps
 {
     [Binding]
     public class JsonPlaceholderApiSteps : ApiSteps

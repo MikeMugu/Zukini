@@ -1,7 +1,7 @@
 ﻿using Coypu;
 using Zukini.UI.Pages;
 
-namespace Zukini.Examples.Pages
+namespace Zukini.UI.Examples.Pages
 {
     public class GoogleSearchPage : BasePage
     {

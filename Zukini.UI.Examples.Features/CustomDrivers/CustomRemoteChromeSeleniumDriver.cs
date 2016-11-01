@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using System;
 
-namespace Zukini.Examples.Features.CustomDrivers
+namespace Zukini.UI.Examples.Features.CustomDrivers
 {
     public class CustomRemoteChromeSeleniumDriver : SeleniumWebDriver
     {

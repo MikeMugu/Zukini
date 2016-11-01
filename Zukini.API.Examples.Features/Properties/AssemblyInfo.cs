@@ -1,18 +1,22 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using NUnit.Framework;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Zukini.Examples.Pages")]
+[assembly: AssemblyTitle("Zukini.API.Examples.Features")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Zukini.Examples.Pages")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("Zukini.API.Examples.Features")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+// Added to enable NUnit parallel test execution
+[assembly: Parallelizable(ParallelScope.Fixtures)]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -20,7 +24,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c4c762ec-dc5c-4644-a608-6fa9beb10532")]
+[assembly: Guid("d74b855c-606d-4d8d-a0c6-f56455d9b0bc")]
 
 // Version information for an assembly consists of the following four values:
 //

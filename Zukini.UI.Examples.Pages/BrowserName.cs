@@ -1,5 +1,5 @@
 ﻿
-namespace Zukini.Examples.Pages
+namespace Zukini.UI.Examples.Pages
 {
     public enum BrowserName
     {

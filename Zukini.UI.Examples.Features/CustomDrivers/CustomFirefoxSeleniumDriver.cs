@@ -2,7 +2,7 @@
 using Coypu.Drivers.Selenium;
 using OpenQA.Selenium.Firefox;
 
-namespace Zukini.Examples.Features.CustomDrivers
+namespace Zukini.UI.Examples.Features.CustomDrivers
 {
     public class CustomFirefoxSeleniumDriver : SeleniumWebDriver
     {

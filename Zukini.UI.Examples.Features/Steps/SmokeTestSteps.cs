@@ -2,10 +2,10 @@
 using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
-using Zukini.Examples.Pages;
+using Zukini.UI.Examples.Pages;
 using Zukini.UI.Steps;
 
-namespace Zukini.Examples.Features.Steps
+namespace Zukini.UI.Examples.Features.Steps
 {
     [Binding]
     public class SmokeTestSteps : UISteps

@@ -4,7 +4,7 @@ using System.Linq;
 using Zukini.UI;
 using Zukini.UI.Pages;
 
-namespace Zukini.Examples.Pages
+namespace Zukini.UI.Examples.Pages
 {
     public class W3SchoolsTablePage : BasePage
     {
