@@ -7,4 +7,4 @@
 :: Links in this file are relative to the Zukini project setup and may need to be edited
 :: to your project structure.
 :://///////////////////////////////////////////////////////////////////////////
-.\packages\Pickles.CommandLine.2.10.0\tools\pickles.exe --feature-directory=.\Zukini.Examples.Features\Features --output-directory=.\Pickles --link-results-file=.\TestResult.xml 
+.\packages\Pickles.CommandLine.2.10.0\tools\pickles.exe --feature-directory=.\Zukini.Examples.Features\Features --output-directory=.\Pickles --link-results-file=.\TestResults.xml 
