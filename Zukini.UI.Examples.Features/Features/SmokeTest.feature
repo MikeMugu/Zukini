@@ -1,4 +1,5 @@
-﻿Feature: SmokeTest
+﻿@ui
+Feature: SmokeTest
 	In order to provide an example of Zukini
 	As a user
 	I want to try it out against Google
