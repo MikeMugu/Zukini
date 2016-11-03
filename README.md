@@ -1,7 +1,21 @@
 #Zukini
-Zukini is a simple project that combines Selenium WebDriver, SpecFlow, NUnit and Coypu in a project setup to use a Page Object pattern. 
-It provides some basic things typically needed in an automation framework such as taking screenshots on failure, a base StepDef class
+Zukini is a simple project that sets out to provide an out of the box test automation framework for both UI and API testing. At it's core,
+Zukini provides a well established design pattern for authoring BDD style tests as well as some helper methods that we have found useful
+throughout our careers in software engineering.
+
+There are three main parts to Zukini:
+
+###Zukini
+This is the core assembly to Zukini and contains logic that applies to any type of testing whether it is API or UI based. Examples include common Hooks, PropertyBucket helpers, Unique test id generator, etc...
+
+### Zukini.UI
+Zukini.UI provides functionality specific to performing Selenium based UI tests. Zukini.UI combines Selenium WebDriver, SpecFlow, NUnit and Coypu in a project setup to use a Page Object pattern. 
+
+It also provides some basic things typically needed in a UI automation framework such as taking screenshots on failure, a base StepDef class
 that provides a browser session hook for your tests, and some other niceties.
+
+### Zukini.API
+Zukini.API utilizes RestSharp to provide some simple helper methods used to test API's. It attempts to simplify the task of testing different API verbs (e.g. POST, PUT, GET, etc..). 
 
 ##Getting Started
 1. If you don't have Visual Studio, download the community edition of Visual Studio here: [https://www.visualstudio.com/en-us/products/free-developer-offers-vs.aspx]
@@ -13,9 +27,15 @@ that provides a browser session hook for your tests, and some other niceties.
 5. Write tests
 
 ##Test Structure
-Zukini uses a simple test structure that is fairly common amongst automation pros:
+Zukini.UI uses a simple test structure that is fairly common amongst automation pros:
 
     Features->StepDefs->PageObjects->Coypu->Selenium (or your choice of driver)
+
+For Zukini.API, the structure is simply:
+
+    Features->StepDefs
+
+You could probably add an Endpoint (instead of PageObject) layer in there if you want but up to you.
 
 ###Features
 Features are normal SpecFlow features. If you installed the SpecFlow for Visual Studio plugin, when creating a new item in visual studio, should be given the option to create a new SpecFlow feature file. See here for instructions on creating SpecFlow Feature Files: http://www.specflow.org/getting-started/
@@ -35,28 +55,53 @@ When creating features, you are likely going to create Step Defintitions (otherw
         }
     }
     
-To use Zukini, we need to do a couple of things:
-1. Derive our class from Zukini.Steps.BaseSteps
+#####Zukini.UI
+To use Zukini.UI, we need to do a couple of things:
+
+1. Derive our class from Zukini.UI.Steps.BaseSteps
 2. Create a constructor to inject in the IObjectContainer
 
 For step 1, simply change your class declaration to:
 
     [Binding]
-    public class SmokeTestSteps : Zukini.Steps.BaseSteps
+    public class SmokeTestSteps : Zukini.UI.Steps.BaseSteps
     {
         ...
     }
 
 Doing this gives us access to a class level Browser object that is used for navigating to things in the browser, manipulating contols, but mostly so we can pass the browser to our pages (more on this later).
 
-For step 2, add a constructure with the following signature:
+Step 2, add a constructor with the following signature:
 
     public SmokeTestSteps(IObjectContainer objectContainer)
         : base(objectContainer)
     {
     }
 
-We need to pass in the ObjectContainer so we can get access to the Browser. In Zukini, there is a BeforeScenario hook that initializes a BrowserSession with the goodness needed to drive the browser.
+We need to pass in the ObjectContainer so we can get access to the Browser. In Zukini.UI, there is a BeforeScenario hook that initializes a BrowserSession with the goodness needed to drive the browser.
+
+#####Zukini.API
+For Zukini.API, the process is similar:
+
+1. Derive our class from Zukini.API.Steps.ApiSteps
+2. Create a constructor to inject in the IObjectContainer
+
+Step 1, simply change your class declaration to:
+
+    [Binding]
+    public class JsonPlaceholderApiSteps : Zukini.API.Steps.ApiSteps
+    {
+        ...
+    }
+
+Step 2, add a constructor with the following signature:
+
+    public JsonPlaceholderApiSteps(IObjectContainer objectContainer)
+            : base(objectContainer)
+        {
+        }
+
+#####Step definition Structure
 
 Again, I like to place my step definition files in a folder called, you guessed it, "Steps". The structure of my test assembly usually looks something like this:
 
@@ -167,19 +212,29 @@ This example will setup the browser to use FireFox, set a default timeout of 3 s
 
 Additionally, the BeforeScenario hook in Zukini will register the BrowserSession with the injected IObjectContainer so it is available to our Steps and Pages. (See here for more details on IObjectContainer in SpecFlow: https://github.com/techtalk/SpecFlow/wiki/Context-Injection).
 
-###ZukiniConfiguration
-There is also a ZukiniConfiguration that can be set. To utilize, simply change your Hooks constructor to take in a ZukiniConfiguration as well as a SessionConfiguration like so:
+###ZukiniUIConfiguration
+There is also a ZukiniUIConfiguration that can be set. To utilize, simply change your Hooks constructor to take in a ZukiniUIConfiguration as well as a SessionConfiguration like so:
 
     private readonly SessionConfiguration _sessionConfiguration;
     private readonly ZukiniConfiguration _zukiniConfiguration;
+    private readonly IObjectContainer _objectContainer;
 
-    public Hooks(SessionConfiguration sessionConfig, ZukiniConfiguration zukiniConfig)
+    public Hooks(IObjectContainer container, 
+                 SessionConfiguration sessionConfig, 
+                 ZukiniUIConfiguration zukiniConfig)
     {
+        _objectContainer = container;
         _sessionConfiguration = sessionConfig;
         _zukiniConfiguration = zukiniConfig;
     }
 
-The ZukiniConfiguration allows you to specify a couple of extra items such as whether to Maximize the browser on startup or not. It also allows you to set where your screenshots are saved when executing. Example:
+A couple of notes about the other arguments in this constructor:
+
+1. We take in the IObjectContainer so we have access to the DI container. In the example project, this allows us to register custom drivers that are setup with custom profiles (see Providing a custom driver below).
+2. The SessionConfiguration is a Coypu object that we use to setup set our Session for the test.
+ 
+
+The ZukiniUIConfiguration allows you to specify a couple of extra items such as whether to Maximize the browser on startup or not. It also allows you to set where your screenshots are saved when executing. Example:
 
     [BeforeScenario]
     public void BeforeScenario()
@@ -278,6 +333,14 @@ I have indcluded an example test that goes to the W3Schools Table tag page and v
         return cell.Text.Equals("Yes", StringComparison.CurrentCultureIgnoreCase);
     }
 
+
+##API Helper Methods
+If you derive from the Zukini.API.Steps.ApiSteps base class, you will get some helper methods for free.
+
+* There are several HTTP VERB methods used to perform actions such as GET, POST, etc... These methods return full response objects that can be interrogated as part of your tests.
+
+* For each VERB method, there are also SimpleVERB methods. These methods perform the same VERB actions, but instead of returning the entire Response object, it only returns the data (for those times where you just want to validate the data coming back).
+
 ##RunTests.bat
 In addition to the base classes and extension methods, there is a RunTest.bat file that makes it easy to run your tests. This batch file does a few things:
 1. First, it runs the tests using the NUnit test runner. 
@@ -295,9 +358,9 @@ In addition to the base classes and extension methods, there is a RunTest.bat fi
     
 By default, any tests with the @skip tag will be skipped during execution. To use this for a different project, you just have to modify the batch file to specify your Test dll and .csproj file.
 
-##Other Reccommendations
-One other reccommendation I would make is to factor out your test settings into your App.config. Usually XML transforms are for web projects, however I use the wonder Visual Studio plugin "Configuration Transform" to generate an App.config file for each Visual Studio Configuration I have (e.g. Debug, Release, etc...). This allows me to override configuration values depending on what environment I am testing in.
+##Other Recommendations
+One other recommendation I would make is to factor out your test settings into your App.config. Usually XML transforms are for web projects, however I use the wonder Visual Studio plugin "Configuration Transform" to generate an App.config file for each Visual Studio Configuration I have (e.g. Debug, Release, etc...). This allows me to override configuration values depending on what environment I am testing in.
 
-For example, you might have an App.confg that has the settings for testing locally, but then an App.Internal.Config for the internal envionment, an App.Staging.config for your Pre-prod environment, and an App.Prod.config file for your produciton environment. I have included an example of this in the Zukini.Examples.Features project.
+For example, you might have an App.confg that has the settings for testing locally, but then an App.Internal.Config for the internal environment, an App.Staging.config for your Pre-prod environment, and an App.Prod.config file for your production environment. I have included an example of this in the Zukini.Examples.Features project.
 
 Checkout: https://msdn.microsoft.com/en-us/library/dd465326%28v=vs.110%29.aspx for more information on XML transforms in Visual Studio.
