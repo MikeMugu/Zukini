@@ -1,5 +1,6 @@
 ﻿using BoDi;
 using Coypu;
+using Coypu.Drivers;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
@@ -28,7 +29,7 @@ namespace Zukini.UI
         protected void BeforeUIScenario()
         {
             BrowserSession browser;
-            SessionConfiguration config = ObjectContainer.Resolve<SessionConfiguration>();
+            SessionConfiguration sessionConfig = ObjectContainer.Resolve<SessionConfiguration>();
 
             // If the BrowserSession was provided, then use it.
             // Otherwise create a new session using a config (if provided)
@@ -39,7 +40,7 @@ namespace Zukini.UI
             }
             else
             {
-                browser = config != null ? new BrowserSession(config) : new BrowserSession();
+                browser = sessionConfig != null ? new BrowserSession(sessionConfig) : new BrowserSession();
                 ObjectContainer.RegisterInstanceAs<BrowserSession>(browser);
             }
 
