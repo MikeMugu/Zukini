@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Zukini.UI")]
 [assembly: AssemblyDescription("Out of the box test automation framework utilizing SpecFlow, Coypu, Selenium and a page object pattern for automated UI testing.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Mike Watkins")]
+[assembly: AssemblyCompany("MikeMugu")]
 [assembly: AssemblyProduct("Zukini.UI")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

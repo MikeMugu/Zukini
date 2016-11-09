@@ -67,11 +67,11 @@ namespace Zukini.API.Examples.Features.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get a resource from an API and validate teh return data")]
+        [NUnit.Framework.DescriptionAttribute("Get a resource from an API and validate the return data")]
         [NUnit.Framework.CategoryAttribute("get_example")]
-        public virtual void GetAResourceFromAnAPIAndValidateTehReturnData()
+        public virtual void GetAResourceFromAnAPIAndValidateTheReturnData()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a resource from an API and validate teh return data", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get a resource from an API and validate the return data", new string[] {
                         "get_example"});
 #line 8
 this.ScenarioSetup(scenarioInfo);

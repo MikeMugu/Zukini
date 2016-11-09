@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://www.gnu.org/licenses/gpl-3.0.html</licenseUrl>
+    <projectUrl>https://github.com/MikeMugu/Zukini</projectUrl>
+    <iconUrl>http://s18.postimg.org/cbn7lv0bp/Zukini.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>
+	
+	</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Zukini Automation .Net Nunit</tags>
+    <references>
+      <reference file="Zukini.dll" />
+	  <reference file="Zukini.API.dll" />
+    </references>  
+  </metadata>
+  <files>
+    <file src="bin/Release/Zukini.dll" target="lib/net461"/>
+	<file src="content/App.config.install.xdt" target="content" />
+	<file src="content/App.config.uninstall.xdt" target="content" />
+	<file src="content/Features/ZukiniExample.feature" target="content/Features" />
+	<file src="content/Steps/ZukiniExampleSteps.cs" target="content/Steps" />
+  </files>  
+</package>

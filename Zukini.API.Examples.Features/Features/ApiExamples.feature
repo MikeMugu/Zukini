@@ -5,7 +5,7 @@ Feature: API Example Features
 	I want to try it out against a prototype API
 
 @get_example
-Scenario: Get a resource from an API and validate teh return data
+Scenario: Get a resource from an API and validate the return data
 	Given I perform a GET for post "1"
 	Then the Get response should contain the following data
 	| userId | id | title                                                                      | body                                                                                                                                                              |

@@ -8,11 +8,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Zukini.API")]
 [assembly: AssemblyDescription("Out of the box test automation framework utilizing SpecFlow for API testing.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Mike Watkins")]
+[assembly: AssemblyCompany("MikeMugu")]
 [assembly: AssemblyProduct("Zukini.API")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
