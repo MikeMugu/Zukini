@@ -24,6 +24,9 @@
   <files>
     <file src="bin/Release/Zukini.dll" target="lib/net461"/>
 	<file src="content/Hooks.cs" target="content" />
+	<file src="content/Steps/ZukiniExampleSteps.cs" target="content/Steps" />
+	<file src="content/Features/ZukiniExample.feature" target="content/Features" />
+	<file src="content/Pages/GoogleSearchPage.cs" target="content/Pages" />
 	<file src="content/App.config.install.xdt" target="content" />
 	<file src="content/App.config.uninstall.xdt" target="content" />
   </files>  
