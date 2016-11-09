@@ -19,13 +19,13 @@ call :ViewReport
 
 :Defaults
 rem ===========================================================================
-SET NUNIT_EXE=%~dp0packages\NUnit.ConsoleRunner.3.5.0\tools\nunit3-console.exe
-SET SPECFLOW_EXE=%~dp0packages\SpecFlow.2.1.0\Tools\specflow.exe
+SET NUNIT_EXE=%~dp0..\packages\NUnit.ConsoleRunner.3.5.0\tools\nunit3-console.exe
+SET SPECFLOW_EXE=%~dp0..\packages\SpecFlow.2.1.0\Tools\specflow.exe
 SET TEST_RESULTS=%~dp0TestResults.xml
 SET TEST_OUTPUT=%~dp0TestOutput.txt
 SET TEST_RESULTS_HTML=%~dp0TestResults.html
-SET TEST_FILE=%~dp0Zukini.UI.Examples.Features\bin\Debug\Zukini.UI.Examples.Features.dll
-SET PROJECT_FILE=%~dp0Zukini.UI.Examples.Features\Zukini.UI.Examples.Features.csproj
+SET TEST_FILE=%~dp0bin\Debug\Zukini.API.Examples.Features.dll
+SET PROJECT_FILE=%~dp0Zukini.API.Examples.Features.csproj
 
 goto :eof
 
