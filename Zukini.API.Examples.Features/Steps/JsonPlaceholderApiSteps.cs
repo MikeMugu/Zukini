@@ -39,14 +39,14 @@ namespace Zukini.API.Examples.Features.Steps
             switch (method)
             {
                 case "Patch":
-                    result = SimplePatch(BaseApiUrl, $"posts/{id}", table.Rows[0]);
+                    result = SimplePatch(BaseApiUrl, String.Format("posts/{0}", id), table.Rows[0]);
                     break;
                 case "Put":
-                    result = SimplePut(BaseApiUrl, $"posts/{id}", table.Rows[0]);
+                    result = SimplePut(BaseApiUrl, String.Format("posts/{0}", id), table.Rows[0]);
                     break;
             }
 
-            PropertyBucket.Remember<Dictionary<string, string>>($"{method}Data", result);
+            PropertyBucket.Remember<Dictionary<string, string>>(String.Format("{0}Data", method), result);
         }
 
         [Then(@"the post data should return ""(.*)"" in the ""(.*)"" field")]
@@ -60,7 +60,7 @@ namespace Zukini.API.Examples.Features.Steps
         [Then(@"the ""(Patch|Put)"" data should return ""(.*)"" in the ""(.*)"" field")]
         public void ThenThePutOrPostDataShouldReturnInTheField(string method, string expectedValue, string fieldName)
         {
-            var resultData = PropertyBucket.GetProperty<Dictionary<string, string>>($"{method}Data");
+            var resultData = PropertyBucket.GetProperty<Dictionary<string, string>>(String.Format("{0}Data", method));
             Assert.AreEqual(expectedValue, resultData[fieldName]);
         }
 
@@ -71,7 +71,7 @@ namespace Zukini.API.Examples.Features.Steps
         [Given(@"I perform a GET for post ""(.*)""")]
         public void GivenIPerformAGETForPost(int postId)
         {
-            var response = SimpleGet(BaseApiUrl, $"/posts/{postId}");
+            var response = SimpleGet(BaseApiUrl, String.Format("/posts/{0}", postId));
             PropertyBucket.Remember("PostData", response);
         }
 
@@ -94,7 +94,7 @@ namespace Zukini.API.Examples.Features.Steps
         [Given(@"I perform a DELETE for postId ""(.*)""")]
         public void GivenIPerformADELETEForPostId(int postId)
         {
-            var response = Delete(BaseApiUrl, $"posts/{postId}");
+            var response = Delete(BaseApiUrl, String.Format("posts/{0}", postId));
             PropertyBucket.Remember<IRestResponse>("DeleteResponse", response);
         }
 
@@ -110,8 +110,8 @@ namespace Zukini.API.Examples.Features.Steps
             }
             else
             {
-                throw new Exception($"Invalid HttpStatusCode specified: {statusCode}");
-            }            
+                throw new Exception(String.Format("Invalid HttpStatusCode specified: {0}", statusCode));
+            }
         }
 
         #endregion
