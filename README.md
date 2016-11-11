@@ -20,7 +20,7 @@ Zukini.API utilizes RestSharp to provide some simple helper methods used to test
 ##Getting Started
 1. If you don't have Visual Studio, download the community edition of Visual Studio here: [https://www.visualstudio.com/en-us/products/free-developer-offers-vs.aspx]
 2. Launch Visual Studio and install the following plugins (Tools->Extentions and Updates->Search):
-    * NUnit Test Adapter
+    * NUnit3 Test Adapter (Version 2 will no longer work) 
     * SpecFlow for Visual Studio 2015
 3. Pull down the code
 4. Load the Zukini.sln file
