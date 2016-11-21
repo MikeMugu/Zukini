@@ -48,7 +48,7 @@ namespace Zukini.UI.Examples.Features
 
             // Example of creating a custom chrome remote driver with options
             // IMPORTANT: Must add hub url to App.config - Grid Settings
-            if(!String.IsNullOrWhiteSpace(TestSettings.GridUrl))
+            if(!String.IsNullOrWhiteSpace(GetConfigValue("GridUrl", "")))
             {
                 RegisterCustomRemoteChromeBrowser();
             }
