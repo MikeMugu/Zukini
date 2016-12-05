@@ -25,7 +25,7 @@ namespace Zukini.UI
         /// Global BeforeScenario hook used to new up the WebDriver instance
         /// prior to each test.
         /// </summary>
-        [BeforeScenario(Order = 0)]
+        [BeforeScenario]
         protected void BeforeUIScenario()
         {
             BrowserSession browser;
@@ -55,7 +55,7 @@ namespace Zukini.UI
         /// Global After Scenario hook used to take a screenshot (if there is an error) 
         /// and shuts down the driver.
         /// </summary>
-        [AfterScenario(Order = 10)]
+        [AfterScenario]
         protected void AfterUIScenario()
         {
             var browser = ObjectContainer.Resolve<BrowserSession>();
