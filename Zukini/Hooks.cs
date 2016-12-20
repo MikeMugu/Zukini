@@ -55,8 +55,7 @@ namespace Zukini
         protected void BeforeScenario()
         {
             // Create a property bucket so we have a place to store values between steps
-            var propertyBucket = new PropertyBucket();
-            _objectContainer.RegisterInstanceAs<PropertyBucket>(propertyBucket);
+            var propertyBucket = _objectContainer.Resolve<PropertyBucket>();
 
             Console.WriteLine("Unique Test Id: {0}", propertyBucket.TestId);
         }
