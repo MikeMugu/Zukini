@@ -1,0 +1,11 @@
+<NUnitProject>
+  <Settings activeconfig="Debug"/>
+  <Config name="Debug">
+    <assembly path="Zukini.UI.Examples.Features\bin\Debug\Zukini.UI.Examples.Features.dll"/>
+    <assembly path="Zukini.API.Examples.Features\bin\Debug\Zukini.API.Examples.Features.dll"/>
+  </Config>
+  <Config name="Release">
+    <assembly path="Zukini.UI.Examples.Features\bin\Release\Zukini.UI.Examples.Features.dll"/>
+    <assembly path="Zukini.API.Examples.Features\bin\Release\Zukini.API.Examples.Features.dll"/>
+  </Config>
+</NUnitProject>
