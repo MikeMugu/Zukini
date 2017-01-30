@@ -9,7 +9,7 @@ Scenario: Perform a google search for SpecFlow returns specflow.org site
 	Given I navigate to Google
 	And I enter a search value of "SpecFlow"
 	When I press Google Search
-	Then I should see "www.specflow.org" in the results
+	Then I should see "specflow.org" in the results
 
 @table_example
 Scenario: I want to show how to use row and cell helpers
@@ -45,3 +45,13 @@ Scenario Outline: I want to demonstrate how to use SpecFlow data tables
 		| FireFox |
 		| Safari  |
 
+@browser_session_extension
+Scenario: I want to demonstrate how to wait for a button to appear
+	Given I create a delayed button
+	Then the delayed button should eventually exist
+
+@browser_session_extension
+Scenario: I want to demonstrate how to try until a button appears
+	Given I create a button that creates a delayed button
+	When I use TryUntil on the button
+	Then the second button should exist

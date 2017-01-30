@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using Zukini.UI;
+using Zukini.UI.ExtensionMethods;
 using Zukini.UI.Pages;
 
 namespace Zukini.UI.Examples.Pages

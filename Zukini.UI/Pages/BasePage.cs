@@ -41,7 +41,7 @@ namespace Zukini.UI.Pages
         {
             if (!condition)
             {
-                throw new CurrentPageException(String.Format("'{0}' is not the current page.", pageName));
+                throw new CurrentPageException(String.Format("'{0}' is not the current page. Actual page was '{1}'", pageName, Browser.Location));
             }
         }
     }
