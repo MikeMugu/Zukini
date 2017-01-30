@@ -1,12 +1,9 @@
 ﻿using BoDi;
 using Coypu;
-using Coypu.Actions;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
 using TechTalk.SpecFlow;
 using Zukini.UI.Examples.Pages;
 using Zukini.UI.ExtensionMethods;
