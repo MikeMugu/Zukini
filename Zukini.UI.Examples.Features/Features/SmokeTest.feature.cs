@@ -82,7 +82,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I press Google Search", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Then("I should see \"www.specflow.org\" in the results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should see \"specflow.org\" in the results", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
