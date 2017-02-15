@@ -196,6 +196,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I create a delayed button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 51
  testRunner.Then("the delayed button should eventually exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 52
+  testRunner.And("the delayed button has a size and location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -207,13 +209,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate how to try until a button appears", new string[] {
                         "browser_session_extension"});
-#line 54
-this.ScenarioSetup(scenarioInfo);
 #line 55
- testRunner.Given("I create a button that creates a delayed button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 56
- testRunner.When("I use TryUntil on the button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I create a button that creates a delayed button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 57
+ testRunner.When("I use TryUntil on the button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 58
  testRunner.Then("the second button should exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

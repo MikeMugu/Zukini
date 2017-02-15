@@ -2,11 +2,9 @@
 using Coypu;
 using NUnit.Framework;
 using System;
-using System.IO;
 using System.Linq;
 using TechTalk.SpecFlow;
 using Zukini.UI.Examples.Pages;
-using Zukini.UI.ExtensionMethods;
 using Zukini.UI.Steps;
 
 namespace Zukini.UI.Examples.Features.Steps
@@ -92,7 +90,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I create a delayed button")]
         public void GivenICreateADelayedButton()
         {
-            string jsButton = Properties.Resources.ResourceManager.GetString("jsDelayedButton");
+            string jsButton = "setTimeout( createButton, 2000 ); function createButton() { var button = document.createElement(\"button\"); button.innerHTML = \"I am button\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
             Browser.ExecuteScript(jsButton);
         }
 
@@ -107,10 +105,20 @@ namespace Zukini.UI.Examples.Features.Steps
             Assert.IsTrue(buttons.Count() == 1, "Button should exist by now");
         }
 
+        [Then(@"the delayed button has a size and location")]
+        public void ThenTheDelayedButtonHasASizeAndLocation()
+        {
+            ElementScope button = Browser.FindXPath("//button");
+            Assert.IsTrue(button.Rectangle().Size.Height > 1, "Button had no height");
+            Assert.IsTrue(button.Rectangle().Size.Width > 1, "Button had no width");
+            Assert.IsTrue(button.Rectangle().Location.X > 1, "Button had no X location");
+            Assert.IsTrue(button.Rectangle().Location.Y > 1, "Button had no Y location");
+        }
+
         [Given(@"I create a button that creates a delayed button")]
         public void GivenICreateAButtonThatCreatesADelayedButton()
         {
-            string jsButton = Properties.Resources.ResourceManager.GetString("jsButtonCreatesDelayedButton");
+            string jsButton = "createButtonToClick(); function createButtonToClick() { var button = document.createElement(\"button\"); button.id = \"button1\"; button.innerHTML = \"I am button\"; button.addEventListener(\"click\", setTimeout( createSecondButton, 2000 )); document.getElementsByTagName(\"body\")[0].appendChild(button); } function createSecondButton() { var button = document.createElement(\"button\"); button.id = \"button2\"; button.innerHTML = \"Hello World\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
             Browser.ExecuteScript(jsButton);
         }
 

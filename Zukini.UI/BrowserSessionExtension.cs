@@ -4,10 +4,20 @@ using Coypu.Queries;
 using System;
 using System.Threading;
 
-namespace Zukini.UI.ExtensionMethods
+namespace Zukini.UI
 {
     public static class BrowserSessionExtension
     {
+        /// <summary>
+        /// Scrolls the element into view.
+        /// </summary>
+        /// <param name="browserSession">The browser session.</param>
+        /// <param name="element">The element.</param>
+        public static void ScrollIntoView(this BrowserSession browserSession, ElementScope element)
+        {
+            browserSession.ExecuteScript("arguments[0].scrollIntoView(true);", element);
+        }
+
         /// <summary>
         /// Wrapper for BrowserSession.TryUntil that allows the use of a bool Func until instead of a PredicateQuery
         /// </summary>
@@ -79,6 +89,27 @@ namespace Zukini.UI.ExtensionMethods
         /// there is no need to repeat the action, and the caller is simply waiting for the side effect to occur (until).
         /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
         /// </summary>
+        /// <param name="browserSession">The browser session.</param>
+        /// <param name="until">The until.</param>
+        /// <param name="descriptionForError">Provide a helpful description for troubleshooting timeouts</param>
+        /// <exception cref="Exception"></exception>
+        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until, string descriptionForError)
+        {
+            try
+            {
+                WaitUntil(browserSession, until);
+            }
+            catch (Exception e)
+            {
+                throw new TimeoutException(descriptionForError, e);
+            }
+        }
+
+        /// <summary>
+        /// Wrapper for BrowserSession.TryUntil that defaults to a "do nothing" action for instances when the action already occurred,
+        /// there is no need to repeat the action, and the caller is simply waiting for the side effect to occur (until).
+        /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
+        /// </summary>
         /// <remarks>
         /// This version of the TryUntil method allows the caller to override the options used for the action and until
         /// This version of the TryUntil method is not typically used, refer to:
@@ -92,6 +123,32 @@ namespace Zukini.UI.ExtensionMethods
             var doNothing = new LambdaBrowserAction(() => { }, new Options()); // options can't be null
             var predicate = new LambdaPredicateQuery(until, new Options()); // options can't be null despite being optional
             browserSession.TryUntil(doNothing, predicate, options);
+        }
+
+        /// <summary>
+        /// Wrapper for BrowserSession.TryUntil that defaults to a "do nothing" action for instances when the action already occurred,
+        /// there is no need to repeat the action, and the caller is simply waiting for the side effect to occur (until).
+        /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
+        /// </summary>
+        /// <remarks>
+        /// This version of the TryUntil method allows the caller to override the options used for the action and until
+        /// This version of the TryUntil method is not typically used, refer to:
+        /// WaitUntil(this BrowserSession browserSession, Func<bool> until)
+        /// </remarks>
+        /// <param name="browserSession">The browser session.</param>
+        /// <param name="until">The until.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="descriptionForError">Provide a helpful description for troubleshooting timeouts</param>
+        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until, Options options, string descriptionForError)
+        {
+            try
+            {
+                WaitUntil(browserSession, until, options);
+            }
+            catch (Exception e)
+            {
+                throw new TimeoutException(descriptionForError, e);
+            }
         }
 
         /// <summary>

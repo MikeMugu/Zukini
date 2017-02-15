@@ -117,26 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="jsButtonCreatesDelayedButton" xml:space="preserve">
-    <value>createButtonToClick();
-
-function createButtonToClick()
-{
-var button = document.createElement("button");
-button.id = "button1";
-button.innerHTML = "I am button";
-button.addEventListener("click", setTimeout( createSecondButton, 2000 ));
-document.getElementsByTagName("body")[0].appendChild(button);
-}
-
-function createSecondButton()
-{
-var button = document.createElement("button");
-button.id = "button2";
-button.innerHTML = "Hello World";
-document.getElementsByTagName("body")[0].appendChild(button);
-}</value>
-  </data>
   <data name="jsDelayedButton" xml:space="preserve">
     <value>setTimeout( createButton, 2000 );
 function createButton()

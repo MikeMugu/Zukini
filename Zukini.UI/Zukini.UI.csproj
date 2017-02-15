@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoypuExtensions.cs" />
-    <Compile Include="ExtensionMethods\BrowserSessionExtension.cs" />
+    <Compile Include="BrowserSessionExtension.cs" />
     <Compile Include="UIHooks.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CurrentPageException.cs" />

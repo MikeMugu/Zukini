@@ -61,31 +61,6 @@ namespace Zukini.UI.Examples.Features.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to createButtonToClick();
-        ///
-        ///function createButtonToClick()
-        ///{
-        ///var button = document.createElement(&quot;button&quot;);
-        ///button.id = &quot;button1&quot;;
-        ///button.innerHTML = &quot;I am button&quot;;
-        ///button.addEventListener(&quot;click&quot;, setTimeout( createSecondButton, 2000 ));
-        ///document.getElementsByTagName(&quot;body&quot;)[0].appendChild(button);
-        ///}
-        ///
-        ///function createSecondButton()
-        ///{
-        ///var button = document.createElement(&quot;button&quot;);
-        ///button.id = &quot;button2&quot;;
-        ///button.innerHTML = &quot;Hello World&quot;;
-        ///document.getElementsByTagName(&quot;body&quot;)[0].appendChild(button) [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string jsButtonCreatesDelayedButton {
-            get {
-                return ResourceManager.GetString("jsButtonCreatesDelayedButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to setTimeout( createButton, 2000 );
         ///function createButton()
         ///{
