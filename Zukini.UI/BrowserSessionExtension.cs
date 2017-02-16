@@ -83,13 +83,9 @@ namespace Zukini.UI
         {
             var doNothing = new LambdaBrowserAction(() => { }, new Options()); // options can't be null
             var predicate = new LambdaPredicateQuery(until, new Options()); // options can't be null despite being optional
-            if (options == null)
-            {
-                options = new Options();
-            }
             try
             {
-                browserSession.TryUntil(doNothing, predicate, options);
+                browserSession.TryUntil(doNothing, predicate, options ?? new Options());
             }
             catch (Exception e)
             {
