@@ -90,7 +90,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I create a delayed button")]
         public void GivenICreateADelayedButton()
         {
-            string jsButton = "setTimeout( createButton, 2000 ); function createButton() { var button = document.createElement(\"button\"); button.innerHTML = \"I am button\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
+            string jsButton = "setTimeout( createButton, 1000 ); function createButton() { var button = document.createElement(\"button\"); button.innerHTML = \"I am button\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
             Browser.ExecuteScript(jsButton);
         }
 
@@ -125,9 +125,6 @@ namespace Zukini.UI.Examples.Features.Steps
         [When(@"I use TryUntil on the button")]
         public void WhenIUseTryUntilOnTheButton()
         {
-            var buttons = Browser.FindAllXPath("//button");
-            Assert.IsTrue(buttons.Count() == 1, "Only one button should exist");
-
             Action action = new Action(() => Browser.FindButton("button1").Click());
             Browser.TryUntil(action, () => { return Browser.FindAllXPath("//button").Count() == 2; });
         }
