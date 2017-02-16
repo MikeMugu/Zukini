@@ -76,74 +76,20 @@ namespace Zukini.UI
         /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
         /// </summary>
         /// <param name="browserSession">The browser session.</param>
-        /// <param name="until">The until.</param>
-        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until)
+        /// <param name="until">The until condition to wait for as a function that returns a bool.</param>
+        /// <param name="descriptionForError">Provide a helpful description for troubleshooting timeouts</param>
+        /// <param name="options">The options used for the call to Coypu.TryUntil, optional.</param>
+        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until, string descriptionForError, Options options = null)
         {
             var doNothing = new LambdaBrowserAction(() => { }, new Options()); // options can't be null
             var predicate = new LambdaPredicateQuery(until, new Options()); // options can't be null despite being optional
-            browserSession.TryUntil(doNothing, predicate);
-        }
-
-        /// <summary>
-        /// Wrapper for BrowserSession.TryUntil that defaults to a "do nothing" action for instances when the action already occurred,
-        /// there is no need to repeat the action, and the caller is simply waiting for the side effect to occur (until).
-        /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
-        /// </summary>
-        /// <param name="browserSession">The browser session.</param>
-        /// <param name="until">The until.</param>
-        /// <param name="descriptionForError">Provide a helpful description for troubleshooting timeouts</param>
-        /// <exception cref="Exception"></exception>
-        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until, string descriptionForError)
-        {
+            if (options == null)
+            {
+                options = new Options();
+            }
             try
             {
-                WaitUntil(browserSession, until);
-            }
-            catch (Exception e)
-            {
-                throw new TimeoutException(descriptionForError, e);
-            }
-        }
-
-        /// <summary>
-        /// Wrapper for BrowserSession.TryUntil that defaults to a "do nothing" action for instances when the action already occurred,
-        /// there is no need to repeat the action, and the caller is simply waiting for the side effect to occur (until).
-        /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
-        /// </summary>
-        /// <remarks>
-        /// This version of the TryUntil method allows the caller to override the options used for the action and until
-        /// This version of the TryUntil method is not typically used, refer to:
-        /// WaitUntil(this BrowserSession browserSession, Func<bool> until)
-        /// </remarks>
-        /// <param name="browserSession">The browser session.</param>
-        /// <param name="until">The until.</param>
-        /// <param name="options">The options.</param>
-        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until, Options options)
-        {
-            var doNothing = new LambdaBrowserAction(() => { }, new Options()); // options can't be null
-            var predicate = new LambdaPredicateQuery(until, new Options()); // options can't be null despite being optional
-            browserSession.TryUntil(doNothing, predicate, options);
-        }
-
-        /// <summary>
-        /// Wrapper for BrowserSession.TryUntil that defaults to a "do nothing" action for instances when the action already occurred,
-        /// there is no need to repeat the action, and the caller is simply waiting for the side effect to occur (until).
-        /// A bool Func is passed in instead of a PredicateQuery for the until parameter.
-        /// </summary>
-        /// <remarks>
-        /// This version of the TryUntil method allows the caller to override the options used for the action and until
-        /// This version of the TryUntil method is not typically used, refer to:
-        /// WaitUntil(this BrowserSession browserSession, Func<bool> until)
-        /// </remarks>
-        /// <param name="browserSession">The browser session.</param>
-        /// <param name="until">The until.</param>
-        /// <param name="options">The options.</param>
-        /// <param name="descriptionForError">Provide a helpful description for troubleshooting timeouts</param>
-        public static void WaitUntil(this BrowserSession browserSession, Func<bool> until, Options options, string descriptionForError)
-        {
-            try
-            {
-                WaitUntil(browserSession, until, options);
+                browserSession.TryUntil(doNothing, predicate, options);
             }
             catch (Exception e)
             {

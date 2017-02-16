@@ -100,7 +100,7 @@ namespace Zukini.UI.Examples.Features.Steps
             var buttons = Browser.FindAllXPath("//button");
             Assert.IsFalse(buttons.Count() > 0, "Button should not have existed yet");
 
-            Browser.WaitUntil(() => Browser.FindAllXPath("//button").Count() > 0);
+            Browser.WaitUntil(() => Browser.FindAllXPath("//button").Count() > 0, "Waiting for buttons to appear");
             buttons = Browser.FindAllXPath("//button");
             Assert.IsTrue(buttons.Count() == 1, "Button should exist by now");
         }
