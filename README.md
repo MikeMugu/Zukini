@@ -359,7 +359,7 @@ In addition to the base classes and extension methods, there is a RunTest.bat fi
 By default, any tests with the @skip tag will be skipped during execution. To use this for a different project, you just have to modify the batch file to specify your Test dll and .csproj file.
 
 ##Other Recommendations
-One other recommendation I would make is to factor out your test settings into your App.config. Usually XML transforms are for web projects, however I use the wonder Visual Studio plugin "Configuration Transform" to generate an App.config file for each Visual Studio Configuration I have (e.g. Debug, Release, etc...). This allows me to override configuration values depending on what environment I am testing in.
+One other recommendation I would make is to factor out your test settings into your App.config. Usually XML transforms are for web projects, however I use the Visual Studio plugin "Configuration Transform" to generate an App.config file for each Visual Studio Configuration I have (e.g. Debug, Release, etc...). This allows me to override configuration values depending on what environment I am testing in.
 
 For example, you might have an App.confg that has the settings for testing locally, but then an App.Internal.Config for the internal environment, an App.Staging.config for your Pre-prod environment, and an App.Prod.config file for your production environment. I have included an example of this in the Zukini.Examples.Features project.
 
