@@ -278,7 +278,7 @@ The AfterScenario hook in Zukini will properly close and dispose of the Browser 
 ##Extension Methods
 Coypu is a great library, it does the work of wrapping the browser controls into an easy to use API that makes manipulating the browser pretty darn easy. The one thing it does not do great is manipulate tables. Typically you need to do things like, hey, is there a row in this table that contains the text "blah". Or, give me the 3rd row in the table, and from that row, give me the 2nd cell. For this, Zukini provides a few extension methods to help dealing with tables.
 
-All of these extension methods extend the ElementScope element, and can be used by simply adding a "using Zukini;" to your using statements.
+All of these extension methods extend the ElementScope element or BrowserSession, and can be used by simply adding a "using Zukini;" to your using statements.
 
 ###TableRows
     
@@ -333,6 +333,56 @@ I have indcluded an example test that goes to the W3Schools Table tag page and v
         return cell.Text.Equals("Yes", StringComparison.CurrentCultureIgnoreCase);
     }
 
+###Rectangle
+
+	Rectangle Rectangle()
+
+Convenient accessor to get the location and size properties from the native WebElement.
+
+###Example Usage
+
+	public Size GetElementSize(ElementScope element)
+	{
+		return element.Rectangle().Size;
+	}
+
+	public Point GetElementLocation(ElementScope element)
+	{
+		return element.Rectangle().Location;
+	}
+
+###ScrollIntoView
+
+	 void ScrollIntoView(ElementScope element)
+
+Using the BrowserSession, scrolls an element into view.
+
+###Example Usage
+
+	var customRemoteChromeDriver = new CustomRemoteChromeSeleniumDriver(new DesiredCapabilities());
+	var browserSession = new BrowserSession(_sessionConfiguration, customRemoteChromeDriver);
+	browserSession.ScrollIntoView(pageObject.SomeElement);
+
+###TryUntil
+
+	void TryUntil(Action action, [Options actionOptions,] Func<bool> until [,Options tryUntilOptions])
+
+Convenience method that provides a wrapper around Coypu's built-in TryUntil methods that allows the caller to use lambda expressions directly rather than BrowserActions and PredicateQueries
+
+###Example Usage
+
+	
+	Browser.TryUntil(()=> pageObject.AddElementsButton.Click(), () => pageObject.ElementsThatIncreaseInNumber.Count() > 0, "Elements were not added to the page");
+
+###WaitUntil
+
+	void WaitUntil(Func<bool> until [Options options,] [string descriptionForError])
+
+Convenience method for "no op" usages of TryUntil where the Action parameter is a "do nothing" lambda expression like () => {}. This is helpful when you do not want to continually execute an Action parameter while waiting for the until condition becomes true such as clicking a button and then waiting for something to update. It is recommended to use the optional parameter 'descriptionForError' to aid with debugging test failures and timeouts.
+
+	var oldCount = page.ElementsThatIncreaseInNumber.Count();
+	pageObject.AddElementsButton.Click();
+	Browser.WaitUntil(() => pageObject.ElementsThatIncreaseInNumber.Count() > oldCount, "Elements were not added to the page");
 
 ##API Helper Methods
 If you derive from the Zukini.API.Steps.ApiSteps base class, you will get some helper methods for free.

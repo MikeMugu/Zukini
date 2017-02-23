@@ -1,6 +1,8 @@
 ﻿using BoDi;
+using Coypu;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using TechTalk.SpecFlow;
 using Zukini.UI.Examples.Pages;
 using Zukini.UI.Steps;
@@ -10,15 +12,18 @@ namespace Zukini.UI.Examples.Features.Steps
     [Binding]
     public class SmokeTestSteps : UISteps
     {
-        public SmokeTestSteps(IObjectContainer objectContainer)
+        private SessionConfiguration _sessionConfiguration;
+
+        public SmokeTestSteps(IObjectContainer objectContainer, SessionConfiguration sessionConfiguration)
             : base(objectContainer)
         {
+            _sessionConfiguration = sessionConfiguration;
         }
 
         [Given(@"I navigate to Google")]
         public void GivenINavigateToGoogle()
         {
-            Browser.Visit(TestSettings.GoogleUrl);
+            Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleUrl);
         }
 
         [Given(@"I enter a search value of ""(.*)""")]
@@ -42,7 +47,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I navigate to W3Schools table reference page")]
         public void GivenINavigateToWSchoolsTableReferencePage()
         {
-            Browser.Visit(TestSettings.W3SchoolsBaseUrl + "/tags/tag_table.asp");
+            Browser.WaitForNavigation(_sessionConfiguration, TestSettings.W3SchoolsBaseUrl + "/tags/tag_table.asp");
         }
 
         [Then(@"I should see that the table tag is supported in ""(.*)""")]
@@ -80,6 +85,55 @@ namespace Zukini.UI.Examples.Features.Steps
                 string browserName = row["Browser"];
                 Assert.IsTrue(page.IsBrowserSupported(browserName), $"Expected browser {browserName} to be supported.");
             }
+        }
+
+        [Given(@"I create a delayed button")]
+        public void GivenICreateADelayedButton()
+        {
+            string jsButton = "setTimeout( createButton, 1000 ); function createButton() { var button = document.createElement(\"button\"); button.innerHTML = \"I am button\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
+            Browser.ExecuteScript(jsButton);
+        }
+
+        [Then(@"the delayed button should eventually exist")]
+        public void ThenTheDelayedButtonShouldEventuallyExist()
+        {
+            var buttons = Browser.FindAllXPath("//button");
+            Assert.IsFalse(buttons.Count() > 0, "Button should not have existed yet");
+
+            Browser.WaitUntil(() => Browser.FindAllXPath("//button").Count() > 0, "Waiting for buttons to appear");
+            buttons = Browser.FindAllXPath("//button");
+            Assert.IsTrue(buttons.Count() == 1, "Button should exist by now");
+        }
+
+        [Then(@"the delayed button has a size and location")]
+        public void ThenTheDelayedButtonHasASizeAndLocation()
+        {
+            ElementScope button = Browser.FindXPath("//button");
+            Assert.IsTrue(button.Rectangle().Size.Height > 1, "Button had no height");
+            Assert.IsTrue(button.Rectangle().Size.Width > 1, "Button had no width");
+            Assert.IsTrue(button.Rectangle().Location.X > 1, "Button had no X location");
+            Assert.IsTrue(button.Rectangle().Location.Y > 1, "Button had no Y location");
+        }
+
+        [Given(@"I create a button that creates a delayed button")]
+        public void GivenICreateAButtonThatCreatesADelayedButton()
+        {
+            string jsButton = "createButtonToClick(); function createButtonToClick() { var button = document.createElement(\"button\"); button.id = \"button1\"; button.innerHTML = \"I am button\"; button.addEventListener(\"click\", setTimeout( createSecondButton, 2000 )); document.getElementsByTagName(\"body\")[0].appendChild(button); } function createSecondButton() { var button = document.createElement(\"button\"); button.id = \"button2\"; button.innerHTML = \"Hello World\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
+            Browser.ExecuteScript(jsButton);
+        }
+
+        [When(@"I use TryUntil on the button")]
+        public void WhenIUseTryUntilOnTheButton()
+        {
+            Action action = new Action(() => Browser.FindButton("button1").Click());
+            Browser.TryUntil(action, () => { return Browser.FindAllXPath("//button").Count() == 2; });
+        }
+
+        [Then(@"the second button should exist")]
+        public void ThenTheSecondButtonShouldExist()
+        {
+            var buttons = Browser.FindAllXPath("//button");
+            Assert.IsTrue(buttons.Count() == 2, "Buttons should exist by now");
         }
     }
 }

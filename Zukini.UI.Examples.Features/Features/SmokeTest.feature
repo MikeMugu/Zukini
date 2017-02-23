@@ -45,3 +45,14 @@ Scenario Outline: I want to demonstrate how to use SpecFlow data tables
 		| FireFox |
 		| Safari  |
 
+@browser_session_extension
+Scenario: I want to demonstrate how to wait for a button to appear
+	Given I create a delayed button
+	Then the delayed button should eventually exist
+		And the delayed button has a size and location
+
+@browser_session_extension
+Scenario: I want to demonstrate how to try until a button appears
+	Given I create a button that creates a delayed button
+	When I use TryUntil on the button
+	Then the second button should exist
