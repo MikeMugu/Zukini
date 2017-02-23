@@ -1,6 +1,7 @@
 ﻿using BoDi;
 using Coypu;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using System;
 using System.Linq;
 using TechTalk.SpecFlow;
@@ -134,6 +135,45 @@ namespace Zukini.UI.Examples.Features.Steps
         {
             var buttons = Browser.FindAllXPath("//button");
             Assert.IsTrue(buttons.Count() == 2, "Buttons should exist by now");
+        }
+
+        [Given(@"I try to navigate to Google")]
+        public void GivenITryToNavigateToGoogle()
+        {
+            try
+            {
+                Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleUrl);
+                PropertyBucket.Remember("NavigationTimedOut", false);
+            }
+            catch (TimeoutException e)
+            {
+                PropertyBucket.Remember("NavigationTimedOut", true);
+            }
+        }
+
+        [Given(@"I try to navigate to a url that changes the browser location")]
+        public void GivenITryToNavigateToAUrlThatChangesTheBrowserLocation()
+        {
+            try
+            {
+                Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleHttpUrl);
+                PropertyBucket.Remember("NavigationTimedOut", false);
+            }
+            catch (TimeoutException)
+            {
+                PropertyBucket.Remember("NavigationTimedOut", true);
+            }
+        }
+
+        [Then(@"navigation (does|does not) timeout")]
+        public void ThenNavigationWillTimeOut(string flag)
+        {
+            bool navigationTimedOut = PropertyBucket.GetProperty<bool>("NavigationTimedOut");
+            if (flag == "does") {
+                Assert.That(navigationTimedOut, Is.True, "Navigation did not timeout");
+            } else {
+                Assert.That(navigationTimedOut, Is.False, "Navigation did not timeout");
+            }
         }
     }
 }

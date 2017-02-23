@@ -220,6 +220,40 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("WaitForNavigation does timeout")]
+        [NUnit.Framework.CategoryAttribute("browser_session_extension")]
+        public virtual void WaitForNavigationDoesTimeout()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("WaitForNavigation does timeout", new string[] {
+                        "browser_session_extension"});
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 62
+ testRunner.Given("I try to navigate to a url that changes the browser location", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 63
+ testRunner.Then("navigation does timeout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("WaitForNavigation does not timeout")]
+        [NUnit.Framework.CategoryAttribute("browser_session_extension")]
+        public virtual void WaitForNavigationDoesNotTimeout()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("WaitForNavigation does not timeout", new string[] {
+                        "browser_session_extension"});
+#line 66
+this.ScenarioSetup(scenarioInfo);
+#line 67
+ testRunner.Given("I try to navigate to Google", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 68
+ testRunner.Then("navigation does not timeout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

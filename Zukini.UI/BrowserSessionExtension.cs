@@ -109,7 +109,7 @@ namespace Zukini.UI
                 Thread.Sleep(Convert.ToInt32(sessionConfiguration.RetryInterval.TotalMilliseconds));
                 currentWait += sessionConfiguration.RetryInterval.TotalMilliseconds;
             }
-            if (currentWait > sessionConfiguration.Timeout.TotalMilliseconds)
+            if (!browserSession.Location.AbsoluteUri.StartsWith(url))
             {
                 throw new TimeoutException($"Exceeded timeout '{sessionConfiguration.Timeout.TotalMilliseconds} ms' trying to navigate to page '{url}'. Browser still on page '{browserSession.Location.AbsoluteUri}'.");
             }
