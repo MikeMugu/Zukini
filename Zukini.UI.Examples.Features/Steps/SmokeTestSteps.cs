@@ -148,6 +148,17 @@ namespace Zukini.UI.Examples.Features.Steps
             PropertyBucket.Remember("NavigationTimedOut", NavigationTimedOut(TestSettings.GoogleHttpUrl));
         }
 
+        [Then(@"navigation (does|does not) timeout")]
+        public void ThenNavigationWillTimeOut(string flag)
+        {
+            bool navigationTimedOut = PropertyBucket.GetProperty<bool>("NavigationTimedOut");
+            if (flag == "does") {
+                Assert.That(navigationTimedOut, Is.True, "Navigation did not timeout");
+            } else {
+                Assert.That(navigationTimedOut, Is.False, "Navigation timed out");
+            }
+        }
+
         private bool NavigationTimedOut(string url)
         {
             try
@@ -158,17 +169,6 @@ namespace Zukini.UI.Examples.Features.Steps
             catch (TimeoutException)
             {
                 return true;
-            }
-        }
-
-        [Then(@"navigation (does|does not) timeout")]
-        public void ThenNavigationWillTimeOut(string flag)
-        {
-            bool navigationTimedOut = PropertyBucket.GetProperty<bool>("NavigationTimedOut");
-            if (flag == "does") {
-                Assert.That(navigationTimedOut, Is.True, "Navigation did not timeout");
-            } else {
-                Assert.That(navigationTimedOut, Is.False, "Navigation timed out");
             }
         }
     }
