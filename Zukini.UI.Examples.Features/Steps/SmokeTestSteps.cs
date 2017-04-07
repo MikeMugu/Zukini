@@ -135,5 +135,41 @@ namespace Zukini.UI.Examples.Features.Steps
             var buttons = Browser.FindAllXPath("//button");
             Assert.IsTrue(buttons.Count() == 2, "Buttons should exist by now");
         }
+
+        [Given(@"I try to navigate to Google")]
+        public void GivenITryToNavigateToGoogle()
+        {
+            PropertyBucket.Remember("NavigationTimedOut", NavigationTimedOut(TestSettings.GoogleUrl));
+        }
+
+        [Given(@"I try to navigate to a url that changes the browser location")]
+        public void GivenITryToNavigateToAUrlThatChangesTheBrowserLocation()
+        {
+            PropertyBucket.Remember("NavigationTimedOut", NavigationTimedOut(TestSettings.GoogleHttpUrl));
+        }
+
+        [Then(@"navigation (does|does not) timeout")]
+        public void ThenNavigationWillTimeOut(string flag)
+        {
+            bool navigationTimedOut = PropertyBucket.GetProperty<bool>("NavigationTimedOut");
+            if (flag == "does") {
+                Assert.That(navigationTimedOut, Is.True, "Navigation did not timeout");
+            } else {
+                Assert.That(navigationTimedOut, Is.False, "Navigation timed out");
+            }
+        }
+
+        private bool NavigationTimedOut(string url)
+        {
+            try
+            {
+                Browser.WaitForNavigation(_sessionConfiguration, url);
+                return false;
+            }
+            catch (TimeoutException)
+            {
+                return true;
+            }
+        }
     }
 }

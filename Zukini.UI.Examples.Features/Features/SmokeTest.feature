@@ -56,3 +56,13 @@ Scenario: I want to demonstrate how to try until a button appears
 	Given I create a button that creates a delayed button
 	When I use TryUntil on the button
 	Then the second button should exist
+
+@browser_session_extension
+Scenario: WaitForNavigation does timeout
+	Given I try to navigate to a url that changes the browser location
+	Then navigation does timeout
+
+@browser_session_extension
+Scenario: WaitForNavigation does not timeout
+	Given I try to navigate to Google
+	Then navigation does not timeout

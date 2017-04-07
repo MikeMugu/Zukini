@@ -9,6 +9,7 @@ namespace Zukini.UI.Examples.Features
     public static class TestSettings
     {
         public static string GoogleUrl { get { return ConfigurationManager.AppSettings["GoogleUrl"]; } }
+        public static string GoogleHttpUrl { get { return ConfigurationManager.AppSettings["GoogleHttpUrl"]; } }
         public static string W3SchoolsBaseUrl { get { return ConfigurationManager.AppSettings["W3SchoolsBaseUrl"]; } }
         public static string JsonPlaceholderApiUrl {  get { return ConfigurationManager.AppSettings["JsonPlaceholderApiUrl"]; } }
         public static string GridUrl { get { return ConfigurationManager.AppSettings["GridUrl"]; } }
