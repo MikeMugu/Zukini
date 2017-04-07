@@ -133,5 +133,17 @@ namespace Zukini
             
             return false;
         }
+
+        /// <summary>
+        /// Determines whether the key exists.
+        /// </summary>
+        /// <param name="key">The key to search for</param>
+        /// <returns>
+        ///   <c>true</c> if the specified key contains key; otherwise, <c>false</c>.
+        /// </returns>
+        public bool ContainsKey(string key)
+        {
+            return _properties.ContainsKey(key);
+        }
     }
 }
