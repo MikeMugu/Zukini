@@ -1,8 +1,6 @@
 ﻿using Coypu;
-using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
 namespace Zukini.UI
@@ -119,16 +117,6 @@ namespace Zukini.UI
         {
             var cells = elementScope.FindAllCells();
             return cells.FirstOrDefault(c => c.Text == searchValue);
-        }
-
-        #endregion
-
-        #region Native Convenience Accessors
-
-        public static Rectangle Rectangle(this ElementScope element)
-        {
-            var native = (IWebElement)element.Native;
-            return new Rectangle(native.Location, native.Size);
         }
 
         #endregion
