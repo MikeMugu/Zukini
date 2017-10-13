@@ -9,6 +9,12 @@ namespace Zukini.UI
     // TODO: remove once added to Zukini
     public static class ElementScopeExtension
     {
+        /// <summary>
+        /// Gets the Rectangle for the element
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>Rectangle</returns>
+        /// <exception cref="System.ArgumentException">Thrown when element is not IWebElement</exception>
         public static Rectangle Rectangle(this ElementScope element)
         {
             var native = (IWebElement)element.Native;
