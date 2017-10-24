@@ -6,7 +6,6 @@ using System.IO;
 
 namespace Zukini.UI
 {
-    // TODO: remove once added to Zukini
     public static class ElementScopeExtension
     {
         /// <summary>
