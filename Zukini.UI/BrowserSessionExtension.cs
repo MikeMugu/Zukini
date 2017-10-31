@@ -19,6 +19,41 @@ namespace Zukini.UI
         }
 
         /// <summary>
+        /// Uses javascript to click on an element. Unlike Selenium or Coypu clicks, this click
+        /// does not have visibility constraits that would cause it to "click another/overlaying element"
+        /// </summary>
+        /// <param name="browserSession">The browser session.</param>
+        /// <param name="element">The element to receive the click.</param>
+        public static void JavaScriptClick(this BrowserSession browserSession, ElementScope element)
+        {
+            browserSession.ExecuteScript("arguments[0].click();", element);
+        }
+
+        /// <summary>
+        /// Disables the animations on the document.body by appending notransition as css style to the document head
+        /// and appends the notransition class name to the document.body class.
+        /// Persists until the page is refreshed or navigated to.
+        /// </summary>
+        /// <param name="browserSession">The browser session.</param>
+        public static void DisableAnimations(this BrowserSession browserSession)
+        {
+            var style = ".notransition * { -webkit - transition: none !important; -moz - transition: none !important; -o - transition: none !important; -ms - transition: none !important; transition: none !important; }";
+            var javascript = $"var style = document.createElement('style');style.innerHTML='{style}';document.head.append(style);document.body.className += ' notransition';";
+            browserSession.ExecuteScript(javascript);
+        }
+
+        /// <summary>
+        /// Gets local browser timeshift from UTC time.
+        /// </summary>
+        /// <param name="browserSession"></param>
+        /// <returns>TimeSpan</returns>
+        public static TimeSpan GetBrowserTimezoneOffset(this BrowserSession browserSession)
+        {
+            int shift = Convert.ToInt16(browserSession.ExecuteScript("return new Date().getTimezoneOffset()"));
+            return TimeSpan.FromMinutes(shift);
+        }
+
+        /// <summary>
         /// Wrapper for BrowserSession.TryUntil that allows the use of a bool Func until instead of a PredicateQuery
         /// </summary>
         /// <param name="browserSession">The browser session.</param>
