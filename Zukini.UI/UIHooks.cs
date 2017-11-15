@@ -133,9 +133,9 @@ namespace Zukini.UI
             var title = this.ScenarioContext.ScenarioInfo.Title.Replace(" ", "");
             var propertyBucket = ObjectContainer.Resolve<PropertyBucket>();
 
-            return String.Format("{0}_{1}_{2}.png", feature, title, propertyBucket.TestId);
+            var name = $"{feature}_{title}_{propertyBucket.TestId}.png";
+            var finalName = string.Join("_", name.Split(Path.GetInvalidFileNameChars()));
+            return finalName;
         }
-
-
     }
 }

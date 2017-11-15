@@ -19,6 +19,16 @@ namespace Zukini.API.Steps
         }
 
         /// <summary>
+        /// Request builder - provides convinient way to create requests of different types. 
+        /// </summary>
+        /// <param name="baseUrl">base url to run against</param>
+        /// <returns></returns>
+        public virtual RestBuilder Request(Uri baseUrl)
+        {
+            return new RestBuilder(baseUrl);
+        }
+
+        /// <summary>
         /// Performs a GET request to the specified API call and returns the data returned.
         /// </summary>
         /// <param name="baseUrl">The base URL of the API endpoint.</param>
@@ -26,10 +36,7 @@ namespace Zukini.API.Steps
         /// <returns>Dictionary of key/value pairs containing the result data.</returns>
         protected IRestResponse<Dictionary<string, string>> Get(Uri baseUrl, string resource)
         {
-            var restClient = new RestClient(baseUrl);
-            var request = new RestRequest(resource, Method.GET);
-
-            return restClient.Execute<Dictionary<string, string>>(request);
+            return Request(baseUrl).Get().ToEndPoint(resource).Exec<Dictionary<string, string>>();
         }
 
         /// <summary>
@@ -42,20 +49,7 @@ namespace Zukini.API.Steps
         /// <returns>RestResponse object (from RestSharp)</returns>
         protected IRestResponse<Dictionary<string,string>> Post(Uri baseUrl, string resource, object postData)
         {
-            if (postData == null)
-            {
-                throw new ArgumentNullException(nameof(postData));
-            }
-
-            // Setup rest client
-            var restClient = new RestClient(baseUrl);
-
-            // Setup rest request
-            var request = new RestRequest(resource, Method.POST);
-            request.AddJsonBody(postData);
-
-            // Get response
-            return restClient.Execute<Dictionary<string, string>>(request);
+            return Request(baseUrl).Post().ToEndPoint(resource).Data(postData).Exec<Dictionary<string, string>>();
         }
 
         /// <summary>
@@ -68,20 +62,7 @@ namespace Zukini.API.Steps
         /// <returns>RestResponse object (from RestSharp)</returns>
         protected IRestResponse<Dictionary<string, string>> Put(Uri baseUrl, string resource, object putData)
         {
-            if (putData == null)
-            {
-                throw new ArgumentNullException(nameof(putData));
-            }
-
-            // Setup rest client
-            var restClient = new RestClient(baseUrl);
-
-            // Setup rest request
-            var request = new RestRequest(resource, Method.PUT);
-            request.AddJsonBody(putData);
-
-            // Get response
-            return restClient.Execute<Dictionary<string, string>>(request);
+            return Request(baseUrl).Put().ToEndPoint(resource).Data(putData).Exec<Dictionary<string, string>>();
         }
 
         /// <summary>
@@ -107,20 +88,7 @@ namespace Zukini.API.Steps
         /// <returns>RestResponse object (from RestSharp)</returns>
         protected IRestResponse<Dictionary<string, string>> Patch(Uri baseUrl, string resource, object patchData)
         {
-            if (patchData == null)
-            {
-                throw new ArgumentNullException(nameof(patchData));
-            }
-
-            // Setup rest client
-            var restClient = new RestClient(baseUrl);
-
-            // Setup rest request
-            var request = new RestRequest(resource, Method.PATCH);
-            request.AddJsonBody(patchData);
-
-            // Get response
-            return restClient.Execute<Dictionary<string, string>>(request);
+            return Request(baseUrl).Patch().ToEndPoint(resource).Data(patchData).Exec<Dictionary<string, string>>();
         }
 
         /// <summary>
@@ -131,10 +99,7 @@ namespace Zukini.API.Steps
         /// <returns>RestSharp response object resulting from the call.</returns>
         protected IRestResponse<Dictionary<string,string>> Delete(Uri baseUrl, string resource)
         {
-            var restClient = new RestClient(baseUrl);
-            var request = new RestRequest(resource, Method.DELETE);
-
-            return restClient.Execute<Dictionary<string, string>>(request);
+            return Request(baseUrl).Delete().ToEndPoint(resource).Exec<Dictionary<string, string>>();
         }
 
         /// <summary>
@@ -143,7 +108,7 @@ namespace Zukini.API.Steps
         /// </summary>
         /// <param name="baseUrl">The base URL of the API endpoint.</param>
         /// <param name="resource">The resource in the API (e.g. /posts).</param>
-        /// <param name="obj">A JSON Serializable object to use as Post data.</param>
+        /// <param name="postData">A JSON Serializable object to use as Post data.</param>
         /// <returns>Dictionary of key/value pairs containing the result data.</returns>
         protected Dictionary<string, string> SimplePost(Uri baseUrl, string resource, object postData)
         {
