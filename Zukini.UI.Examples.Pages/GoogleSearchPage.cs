@@ -11,6 +11,6 @@ namespace Zukini.UI.Examples.Pages
         }
 
         public ElementScope SearchTextBox { get { return Browser.FindField("q"); } }
-        public ElementScope SearchButton { get { return Browser.FindButton("Search"); } }
+        public ElementScope SearchButton { get { return Browser.FindButton("Search", Options.First); } }
     }
 }
