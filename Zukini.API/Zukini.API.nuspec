@@ -22,7 +22,7 @@
     </references>  
   </metadata>
   <files>
-    <file src="bin/Release/Zukini.dll" target="lib/net451"/>
+	<file src="bin/Release/Zukini.dll" target="lib/net451"/>
 	<file src="content/App.config.install.xdt" target="content" />
 	<file src="content/App.config.uninstall.xdt" target="content" />
 	<file src="content/Features/ZukiniExample.feature" target="content/Features" />
