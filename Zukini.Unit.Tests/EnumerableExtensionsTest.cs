@@ -104,7 +104,7 @@ namespace Zukini.Unit.Tests
         {
             var errorMessage = $"Unable to take {5} number of items.";
             var ex = Assert.Throws<AssertionException>(() =>
-                    Enumerable.Empty<object>().TakeOrError(5),
+                    Enumerable.Empty<object>().Take(5),
                 "First for empty list didn't throw exception");
 
             Assert.AreEqual(ex.Message, errorMessage, "Expected exception error message is wrong");
@@ -115,7 +115,7 @@ namespace Zukini.Unit.Tests
         {
             var limit = 5;
             var items = Enumerable.Range(0, 1000);
-            var taken = items.TakeOrError(limit, "Error");
+            var taken = items.Take(limit, "Error");
             var expected = Enumerable.Range(0, limit);
 
             Assert.AreEqual(expected, taken, "Taken items wrong");

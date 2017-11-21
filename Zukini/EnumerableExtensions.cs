@@ -84,10 +84,10 @@ namespace Zukini
         /// <param name="count">Number of records to return</param>
         /// <param name="errorMessage">Message for AssertionException</param>
         /// <returns>TSource</returns>
-        public static IEnumerable<TSource> TakeOrError<TSource>(this IEnumerable<TSource> source, int count, string errorMessage = null)
+        public static IEnumerable<TSource> Take<TSource>(this IEnumerable<TSource> source, int count, string errorMessage = null)
         {
             var message = errorMessage ?? $"Unable to take {count} number of items.";
-            var item = source.Take(count).ToList();
+            var item = Enumerable.Take(source, count).ToList();
             if (item.Count != count) throw new AssertionException(message);
             return item;
         }
