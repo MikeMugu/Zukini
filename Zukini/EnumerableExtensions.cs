@@ -28,7 +28,7 @@ namespace Zukini
         public static TSource RandomFirst<TSource>(this IEnumerable<TSource> source,
             string errorMessage = "Cannot get random item: source is empty")
         {
-            return source.Shuffle().FirstOrError(errorMessage);
+            return source.Shuffle().First(errorMessage);
         }
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace Zukini
         /// <param name="source"></param>
         /// <param name="errorMessage"></param>
         /// <returns>TSource</returns>
-        public static TSource FirstOrError<TSource>(this IEnumerable<TSource> source, string errorMessage = "Item is not present.")
+        public static TSource First<TSource>(this IEnumerable<TSource> source, string errorMessage = "Item is not present.")
         {
-            if (source == null) throw new ArgumentException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             var list = source as IList<TSource>;
             if (list != null)
             {
@@ -64,10 +64,10 @@ namespace Zukini
         /// <param name="predicate"></param>
         /// <param name="errorMessage"></param>
         /// <returns>TSource</returns>
-        public static TSource FirstOrError<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, string errorMessage = "Item is not present.")
+        public static TSource First<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, string errorMessage = "Item is not present.")
         {
-            if (source == null) throw new ArgumentException("source");
-            if (predicate == null) throw new ArgumentException("predicate");
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
             foreach (var element in source)
             {
                 if (predicate(element)) return element;
@@ -103,6 +103,7 @@ namespace Zukini
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
             var known = new HashSet<TKey>();
             return source.Where(element => known.Add(keySelector(element)));
         }

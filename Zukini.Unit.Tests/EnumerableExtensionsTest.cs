@@ -14,8 +14,8 @@ namespace Zukini.Unit.Tests
         {
             var errorMessage = "This error is expected";
             Assert.Throws<AssertionException>(() =>
-                    Enumerable.Empty<object>().FirstOrError(errorMessage),
-                "FirstOrError for empty list didn't throw exception");
+                    Enumerable.Empty<object>().First(errorMessage),
+                "First for empty list didn't throw exception");
         }
 
         [TestMethod]
@@ -25,8 +25,8 @@ namespace Zukini.Unit.Tests
             var errorMessage = "This error is expected";
 
             var ex = Assert.Throws<AssertionException>(() =>
-                    items.Where(x => x < 0).FirstOrError(errorMessage),
-                "FirstOrError for non empty list didn't throw exception");
+                    items.Where(x => x < 0).First(errorMessage),
+                "First for non empty list didn't throw exception");
 
             Assert.AreEqual(ex.Message, errorMessage, "Expected exception error message is wrong");
         }
@@ -35,16 +35,16 @@ namespace Zukini.Unit.Tests
         public void FirstOrErrorForExpectedItem()
         {
             var items = new List<string> {"one", "two", "three"};
-            Assert.AreEqual("two", items.Where(_ => _ == "two").FirstOrError("Some error"),
-                "FirstOrError for expected item");
+            Assert.AreEqual("two", items.Where(_ => _ == "two").First("Some error"),
+                "First for expected item");
         }
 
         [TestMethod]
         public void FirstOrErrorWithFunctionForExpectedItem()
         {
             var objects = new[] {"10", "30", 50, new object(), "70", "90"};
-            Assert.AreEqual(50, objects.FirstOrError(it => it is int, "Error"),
-                "FirstOrError with function for expected item");
+            Assert.AreEqual(50, objects.First(it => it is int, "Error"),
+                "First with function for expected item");
         }
 
         [TestMethod]
@@ -52,8 +52,8 @@ namespace Zukini.Unit.Tests
         {
             var errorMessage = "This error is expected";
             var ex = Assert.Throws<AssertionException>(() =>
-                    Enumerable.Empty<int>().FirstOrError(it => it > 0, errorMessage),
-                "FirstOrError with function for empty list does not throw exception");
+                    Enumerable.Empty<int>().First(it => it > 0, errorMessage),
+                "First with function for empty list does not throw exception");
 
             Assert.AreEqual(ex.Message, errorMessage, "Expected exception error message is wrong");
         }
@@ -80,7 +80,7 @@ namespace Zukini.Unit.Tests
             var errorMessage = "This error is expected";
             Assert.Throws<AssertionException>(() =>
                     Enumerable.Empty<object>().RandomFirst(errorMessage),
-                "FirstOrError for empty list didn't throw exception");
+                "First for empty list didn't throw exception");
         }
 
         [TestMethod]
@@ -105,7 +105,7 @@ namespace Zukini.Unit.Tests
             var errorMessage = $"Unable to take {5} number of items.";
             var ex = Assert.Throws<AssertionException>(() =>
                     Enumerable.Empty<object>().TakeOrError(5),
-                "FirstOrError for empty list didn't throw exception");
+                "First for empty list didn't throw exception");
 
             Assert.AreEqual(ex.Message, errorMessage, "Expected exception error message is wrong");
         }
