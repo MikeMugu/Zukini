@@ -1,28 +1,36 @@
 ﻿using BoDi;
-using Coypu;
 using Zukini.Steps;
 
 namespace Zukini.UI.Steps
 {
-    public abstract class UISteps : BaseSteps
+    public abstract class UISteps : UISteps<StepsContext>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UISteps"/> class.
-        /// </summary>
-        /// <param name="objectContainer">The object container.</param>
-        public UISteps(IObjectContainer objectContainer) :
-            base(objectContainer)
+        public UISteps(IObjectContainer objectContainer) : base(objectContainer)
         {
+            Context = new StepsContext(objectContainer);
         }
 
         /// <summary>
-        /// Returns the IWebDriver instance as registered with the ObjectContainer.
+        /// Returns the registered PropertyBucket used for remembering properties
+        /// between steps.
         /// </summary>
-        protected BrowserSession Browser 
-        { 
+        protected PropertyBucket PropertyBucket
+        {
             get
             {
-                return ObjectContainer.Resolve<BrowserSession>();
+                return Context.PropertyBucket;
+            }
+        }
+
+        /// <summary>
+        /// Returns the uniquely generated TestId associated with this test.
+        /// This is just a handy property to get the testid without 
+        /// </summary>
+        protected string TestId
+        {
+            get
+            {
+                return Context.PropertyBucket.TestId;
             }
         }
     }

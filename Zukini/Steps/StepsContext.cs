@@ -2,7 +2,7 @@
 
 namespace Zukini.Steps
 {
-    public class BaseSteps
+    public class StepsContext
     {
         /// <summary>
         /// Represents the Injected ObjectContainer.
@@ -13,21 +13,9 @@ namespace Zukini.Steps
         /// Initializes a new instance of the <see cref="BaseSteps"/> class.
         /// </summary>
         /// <param name="objectContainer">The object container.</param>
-        public BaseSteps(IObjectContainer objectContainer)
+        public StepsContext(IObjectContainer objectContainer)
         {
             _objectContainer = objectContainer;
-        }
-
-        /// <summary>
-        /// Returns the registered PropertyBucket used for remembering properties
-        /// between steps.
-        /// </summary>
-        protected PropertyBucket PropertyBucket
-        {
-            get
-            {
-                return _objectContainer.Resolve<PropertyBucket>();
-            }
         }
 
         /// <summary>
@@ -41,12 +29,23 @@ namespace Zukini.Steps
             }
         }
 
+        /// <summary>
+        /// Returns the registered PropertyBucket used for remembering properties
+        /// between steps.
+        /// </summary>
+        public PropertyBucket PropertyBucket
+        {
+            get
+            {
+                return _objectContainer.Resolve<PropertyBucket>();
+            }
+        }
 
         /// <summary>
         /// Returns the uniquely generated TestId associated with this test.
         /// This is just a handy property to get the testid without 
         /// </summary>
-        protected string TestId
+        public string TestId
         {
             get
             {
