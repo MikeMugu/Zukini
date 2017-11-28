@@ -5,6 +5,9 @@ namespace Zukini.UI.Steps
 {
     public abstract class UISteps<T> : TechTalk.SpecFlow.Steps
     {
+        /// <summary>
+        /// A context that can contain various data for the step definition class
+        /// </summary>
         protected T Context;
 
         /// <summary>

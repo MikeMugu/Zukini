@@ -2,6 +2,10 @@
 
 namespace Zukini.Steps
 {
+    /// <summary>
+    /// The context class allows users to specify their own data for their step definition classes
+    /// The Zukini StepsContext provides the property bucket and test id by default for the ApiSteps and UISteps
+    /// </summary>
     public class StepsContext
     {
         /// <summary>
