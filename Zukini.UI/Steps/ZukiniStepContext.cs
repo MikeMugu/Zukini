@@ -1,12 +1,19 @@
 ﻿using BoDi;
 
-namespace Zukini.Steps
+namespace Zukini.UI.Steps
 {
     /// <summary>
     /// The context class allows users to specify their own data for their step definition classes
     /// The Zukini StepsContext provides the property bucket and test id by default for the ApiSteps and UISteps
     /// </summary>
-    public class StepsContext
+    /// <remarks>
+    ///     There are two copies of ZukiniStepContext, one in Zukini.API.Steps and one in Zukini.UI.Steps
+    ///     this is because there is a bug in .NET Framework versions 4.5.(0-2) - 4.6.1 that causes a compile error when
+    ///     other projects attemptes to inherit from ApiSteps or UISteps
+    ///     and when ZukiniStepContext is defined in Zukini.Steps
+    ///     Error CS0012  The type 'ZukiniStepContext' is defined in an assembly that is not referenced.You must add a reference to assembly 'Zukini, Version=1.2.5.0, Culture=neutral, PublicKeyToken=null'.	UnitTestProject1 C:\QA\Zukini\UnitTestProject1\UnitTest1.cs  8	Active
+    /// </remarks>
+    public class ZukiniStepContext
     {
         /// <summary>
         /// Represents the Injected ObjectContainer.
@@ -17,7 +24,7 @@ namespace Zukini.Steps
         /// Initializes a new instance of the <see cref="BaseSteps"/> class.
         /// </summary>
         /// <param name="objectContainer">The object container.</param>
-        public StepsContext(IObjectContainer objectContainer)
+        public ZukiniStepContext(IObjectContainer objectContainer)
         {
             _objectContainer = objectContainer;
         }

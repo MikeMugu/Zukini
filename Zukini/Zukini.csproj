@@ -55,7 +55,6 @@
     <Compile Include="PropertyAlreadyExistsException.cs" />
     <Compile Include="PropertyBucket.cs" />
     <Compile Include="PropertyNotFoundException.cs" />
-    <Compile Include="Steps\StepsContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

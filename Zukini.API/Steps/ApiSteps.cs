@@ -1,13 +1,12 @@
 ﻿using BoDi;
-using Zukini.Steps;
 
 namespace Zukini.API.Steps
 {
-    public abstract class ApiSteps : ApiSteps<StepsContext>
+    public abstract class ApiSteps : ApiSteps<ZukiniStepContext>
     {
         public ApiSteps(IObjectContainer objectContainer) : base(objectContainer)
         {
-            Context = new StepsContext(objectContainer);
+            Context = new ZukiniStepContext(objectContainer);
         }
 
         /// <summary>

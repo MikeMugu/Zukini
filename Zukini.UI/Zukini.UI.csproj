@@ -61,6 +61,7 @@
     <Compile Include="BrowserSessionExtension.cs" />
     <Compile Include="ElementScopeExtension.cs" />
     <Compile Include="Steps\UISteps.cs" />
+    <Compile Include="Steps\ZukiniStepContext.cs" />
     <Compile Include="UIHooks.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CurrentPageException.cs" />
