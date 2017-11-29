@@ -6,7 +6,7 @@ namespace Zukini.API.Steps
     {
         public ApiSteps(IObjectContainer objectContainer) : base(objectContainer)
         {
-            Context = new ZukiniStepContext(objectContainer);
+            Context = objectContainer.Resolve<ZukiniStepContext>();
         }
 
         /// <summary>
