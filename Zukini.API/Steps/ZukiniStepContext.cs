@@ -9,7 +9,7 @@ namespace Zukini.API.Steps
     /// <remarks>
     ///     There are two copies of ZukiniStepContext, one in Zukini.API.Steps and one in Zukini.UI.Steps
     ///     this is because there is a bug in .NET Framework versions 4.5.(0-2) - 4.6.1 that causes a compile error when
-    ///     other projects attemptes to inherit from ApiSteps or UISteps
+    ///     other projects attempts to inherit from ApiSteps or UISteps
     ///     and when ZukiniStepContext is defined in Zukini.Steps
     ///     Error CS0012  The type 'ZukiniStepContext' is defined in an assembly that is not referenced.You must add a reference to assembly 'Zukini, Version=1.2.5.0, Culture=neutral, PublicKeyToken=null'.	UnitTestProject1 C:\QA\Zukini\UnitTestProject1\UnitTest1.cs  8	Active
     /// </remarks>
