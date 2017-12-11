@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 
 namespace Zukini
 {
@@ -53,7 +52,7 @@ namespace Zukini
                     if (e.MoveNext()) return e.Current;
                 }
             }
-            throw new AssertionException(errorMessage);
+            throw new ZukiniAssertionException(errorMessage);
         }
         
         /// <summary>
@@ -72,7 +71,7 @@ namespace Zukini
             {
                 if (predicate(element)) return element;
             }
-            throw new AssertionException(errorMessage);
+            throw new ZukiniAssertionException(errorMessage);
         }
 
         /// <summary>
@@ -88,7 +87,7 @@ namespace Zukini
         {
             var message = errorMessage ?? $"Unable to take {count} number of items.";
             var item = Enumerable.Take(source, count).ToList();
-            if (item.Count != count) throw new AssertionException(message);
+            if (item.Count != count) throw new ZukiniAssertionException(message);
             return item;
         }
 

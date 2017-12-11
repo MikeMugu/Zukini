@@ -13,7 +13,7 @@ namespace Zukini.Unit.Tests
         public void FirstOrErrorForEmptyList()
         {
             var errorMessage = "This error is expected";
-            Assert.Throws<AssertionException>(() =>
+            Assert.Throws<ZukiniAssertionException>(() =>
                     Enumerable.Empty<object>().First(errorMessage),
                 "First for empty list didn't throw exception");
         }
@@ -24,7 +24,7 @@ namespace Zukini.Unit.Tests
             var items = Enumerable.Range(1, 10);
             var errorMessage = "This error is expected";
 
-            var ex = Assert.Throws<AssertionException>(() =>
+            var ex = Assert.Throws<ZukiniAssertionException>(() =>
                     items.Where(x => x < 0).First(errorMessage),
                 "First for non empty list didn't throw exception");
 
@@ -51,7 +51,7 @@ namespace Zukini.Unit.Tests
         public void FirstOrErrorWithFunctionForNotFoundItem()
         {
             var errorMessage = "This error is expected";
-            var ex = Assert.Throws<AssertionException>(() =>
+            var ex = Assert.Throws<ZukiniAssertionException>(() =>
                     Enumerable.Empty<int>().First(it => it > 0, errorMessage),
                 "First with function for empty list does not throw exception");
 
@@ -78,7 +78,7 @@ namespace Zukini.Unit.Tests
         public void RandomFirstOfEmptyThrowsError()
         {
             var errorMessage = "This error is expected";
-            Assert.Throws<AssertionException>(() =>
+            Assert.Throws<ZukiniAssertionException>(() =>
                     Enumerable.Empty<object>().RandomFirst(errorMessage),
                 "First for empty list didn't throw exception");
         }
@@ -103,7 +103,7 @@ namespace Zukini.Unit.Tests
         public void TakeOrErrorOfEmptyEnumerable()
         {
             var errorMessage = $"Unable to take {5} number of items.";
-            var ex = Assert.Throws<AssertionException>(() =>
+            var ex = Assert.Throws<ZukiniAssertionException>(() =>
                     Enumerable.Empty<object>().Take(5),
                 "First for empty list didn't throw exception");
 
