@@ -1,6 +1,6 @@
 ﻿using BoDi;
 
-namespace Zukini.API.Steps
+namespace Zukini
 {
     /// <summary>
     /// The context class allows users to specify their own data for their step definition classes
