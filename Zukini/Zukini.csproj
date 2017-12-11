@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FunUtils.cs" />
     <Compile Include="Hooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="PropertyBucket.cs" />
     <Compile Include="PropertyNotFoundException.cs" />
     <Compile Include="Steps\BaseSteps.cs" />
+    <Compile Include="ZukiniAssertionException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
