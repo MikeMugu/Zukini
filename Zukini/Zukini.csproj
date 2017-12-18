@@ -57,6 +57,7 @@
     <Compile Include="PropertyBucket.cs" />
     <Compile Include="PropertyNotFoundException.cs" />
     <Compile Include="ZukiniAssertionException.cs" />
+    <Compile Include="ZukiniStepContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

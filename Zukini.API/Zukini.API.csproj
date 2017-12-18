@@ -58,7 +58,6 @@
     <Compile Include="Steps\ApiSteps.cs" />
     <Compile Include="Steps\ApiStepsGeneric.cs" />
     <Compile Include="Steps\RestBuilder.cs" />
-    <Compile Include="Steps\ZukiniStepContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
