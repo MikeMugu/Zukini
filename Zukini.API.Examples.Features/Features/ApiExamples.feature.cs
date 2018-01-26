@@ -76,7 +76,7 @@ namespace Zukini.API.Examples.Features.Features
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.Given("I perform a GET for post \"1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I perform a GET for post \"2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "userId",
@@ -85,10 +85,11 @@ this.ScenarioSetup(scenarioInfo);
                         "body"});
             table1.AddRow(new string[] {
                         "1",
-                        "1",
-                        "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-                        "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit m" +
-                            "olestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"});
+                        "2",
+                        "qui est esse",
+                        "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores ne" +
+                            "que\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aper" +
+                            "iam non debitis possimus qui neque nisi nulla"});
 #line 10
  testRunner.Then("the Get response should contain the following data", ((string)(null)), table1, "Then ");
 #line hidden

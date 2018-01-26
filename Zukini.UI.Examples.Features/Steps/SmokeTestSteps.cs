@@ -118,7 +118,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I create a button that creates a delayed button")]
         public void GivenICreateAButtonThatCreatesADelayedButton()
         {
-            string jsButton = "createButtonToClick(); function createButtonToClick() { var button = document.createElement(\"button\"); button.id = \"button1\"; button.innerHTML = \"I am button\"; button.addEventListener(\"click\", setTimeout( createSecondButton, 2000 )); document.getElementsByTagName(\"body\")[0].appendChild(button); } function createSecondButton() { var button = document.createElement(\"button\"); button.id = \"button2\"; button.innerHTML = \"Hello World\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
+            string jsButton = "createButtonToClick(); function createButtonToClick() { var button = document.createElement(\"button\"); button.id = \"button1\"; button.innerHTML = \"I am button\"; button.addEventListener(\"click\", function(){ setTimeout( createSecondButton, 2000 ) }); document.getElementsByTagName(\"body\")[0].appendChild(button); } function createSecondButton() { var button = document.createElement(\"button\"); button.id = \"button2\"; button.innerHTML = \"Hello World\"; document.getElementsByTagName(\"body\")[0].appendChild(button); }";
             Browser.ExecuteScript(jsButton);
         }
 

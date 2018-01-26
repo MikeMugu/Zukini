@@ -60,11 +60,12 @@
     <Compile Include="CoypuExtensions.cs" />
     <Compile Include="BrowserSessionExtension.cs" />
     <Compile Include="ElementScopeExtension.cs" />
+    <Compile Include="Steps\UISteps.cs" />
     <Compile Include="UIHooks.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\CurrentPageException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\UISteps.cs" />
+    <Compile Include="Steps\UIStepsGeneric.cs" />
     <Compile Include="ZukiniUIConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>

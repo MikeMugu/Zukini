@@ -6,10 +6,10 @@ Feature: API Example Features
 
 @get_example
 Scenario: Get a resource from an API and validate the return data
-	Given I perform a GET for post "1"
+	Given I perform a GET for post "2"
 	Then the Get response should contain the following data
-	| userId | id | title                                                                      | body                                                                                                                                                              |
-	| 1      | 1  | sunt aut facere repellat provident occaecati excepturi optio reprehenderit | quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto |
+	| userId | id | title        | body                                                                                                                                                                                                              |
+	| 1      | 2  | qui est esse | est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla |
 
 @post_example
 Scenario: Post to an API and validate that the post data returned is correct

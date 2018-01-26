@@ -1,7 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+<<<<<<< HEAD
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+=======
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.9
+>>>>>>> origin/master
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zukini", "Zukini\Zukini.csproj", "{AA04CD0E-F5A9-4331-849B-30D3FACDFCEE}"
 EndProject
