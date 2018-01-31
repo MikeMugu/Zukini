@@ -60,6 +60,11 @@
     <Compile Include="CoypuExtensions.cs" />
     <Compile Include="BrowserSessionExtension.cs" />
     <Compile Include="ElementScopeExtension.cs" />
+    <Compile Include="Pages\BaseComponent.cs" />
+    <Compile Include="Pages\BaseView.cs" />
+    <Compile Include="Pages\IView.cs" />
+    <Compile Include="Pages\IViewFactory.cs" />
+    <Compile Include="Pages\ViewFactory.cs" />
     <Compile Include="Steps\UISteps.cs" />
     <Compile Include="UIHooks.cs" />
     <Compile Include="Pages\BasePage.cs" />
