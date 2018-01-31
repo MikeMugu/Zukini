@@ -1,7 +1,7 @@
 ﻿
 namespace Zukini.UI.Pages
 {
-    public interface IView<out TView> where TView : class, IView<TView>
+    public interface IView<out TView> where TView : class
     {
         /// <summary>
         /// Waits until IView is ready to be tested.

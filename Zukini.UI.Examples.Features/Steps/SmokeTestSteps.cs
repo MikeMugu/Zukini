@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using Zukini.UI.Examples.Pages;
+using Zukini.UI.Pages;
 using Zukini.UI.Steps;
 
 namespace Zukini.UI.Examples.Features.Steps
@@ -13,29 +14,51 @@ namespace Zukini.UI.Examples.Features.Steps
     public class SmokeTestSteps : UISteps
     {
         private SessionConfiguration _sessionConfiguration;
+        private IViewFactory _viewFactory;
 
-        public SmokeTestSteps(IObjectContainer objectContainer, SessionConfiguration sessionConfiguration)
+        public SmokeTestSteps(IObjectContainer objectContainer, IViewFactory viewFactory, SessionConfiguration sessionConfiguration)
             : base(objectContainer)
         {
             _sessionConfiguration = sessionConfiguration;
+            _viewFactory = viewFactory;
         }
 
         [Given(@"I navigate to Google")]
         public void GivenINavigateToGoogle()
         {
-            Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleUrl);
+            //Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleUrl);
+            Browser.Visit(TestSettings.GoogleUrl);
         }
 
         [Given(@"I enter a search value of ""(.*)""")]
         public void GivenIEnterASearchValueOf(string searchValue)
         {
-            new GoogleSearchPage(Browser).SearchTextBox.FillInWith(searchValue);
+            _viewFactory.Load<GoogleSearchPage>().SearchTextBox.FillInWith(searchValue);
+        }
+        
+        [Then(@"view factory throws an exception on attempt to load different page")]
+        public void ThenViewFactoryThrowsAnExceptionOnAttemptToLoadDifferentPage()
+        {
+            var ex = Assert.Throws<Exception>(() => _viewFactory.Load<GoogleSearchPage>());
         }
 
+        [Then(@"view factory can load W3Schools table reference page")]
+        public void ThenViewFactoryCanLoadWSchoolsTableReferencePage()
+        {
+            _viewFactory.Load<W3SchoolsTablePage>();
+        }
+
+        [Then(@"I can get different page object with view factory without loading it")]
+        public void ThenICanGetDifferentPageObjectWithViewFactoryWithoutLoadingIt()
+        {
+            var page = _viewFactory.Get<GoogleSearchPage>();
+            Assert.IsNotNull(page, "Failed to create page");
+        }
+        
         [When(@"I press Google Search")]
         public void WhenIPressGoogleSearch()
         {
-            new GoogleSearchPage(Browser).SearchButton.Click();
+            _viewFactory.Get<GoogleSearchPage>().SearchButton.Click();
         }
 
         [Then(@"I should see ""(.*)"" in the results")]
@@ -53,15 +76,14 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"I should see that the table tag is supported in ""(.*)""")]
         public void ThenIShouldSeeThatTheTableTagIsSupportedIn(string browserName)
         {
-            var page = new W3SchoolsTablePage(Browser);
-            page.AssertCurrentPage();
+            var page = _viewFactory.Load<W3SchoolsTablePage>().AssertCurrentPage();
             Assert.IsTrue(page.IsBrowserSupported(browserName), String.Format("Expected browser {0} to be supported.", browserName));
         }
 
         [Given(@"I remember the sub-header text")]
         public void GivenIRememberTheSubHeaderText()
         {
-            var page = new W3SchoolsTablePage(Browser);
+            var page = _viewFactory.Get<W3SchoolsTablePage>();
             var divText = page.TopTextDiv.Text;
             PropertyBucket.Remember("W3SchoolsHeaderText", divText);
         }
@@ -76,8 +98,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"I should see that the table tag is supported for the following")]
         public void ThenIShouldSeeThatTheTableTagIsSupportedForTheFollowing(Table table)
         {
-            var page = new W3SchoolsTablePage(Browser);
-            page.AssertCurrentPage();
+            var page = _viewFactory.Load<W3SchoolsTablePage>().AssertCurrentPage();
 
             // Iterate through the table and verify support for each browser
             foreach(TableRow row in table.Rows)

@@ -19,7 +19,7 @@ namespace Zukini.UI.Pages
         /// <typeparam name="TView">Type of view</typeparam>
         /// <returns>IView</returns>
         TView Load<TView>() where TView : class, IView<TView>;
-
+        
         /// <summary>
         /// This maybe used for Views with parent scope, like components.
         /// <code>
