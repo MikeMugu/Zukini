@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Coypu;
 using Zukini.UI.Pages;
 
@@ -28,7 +29,11 @@ namespace Zukini.UI.Examples.Pages
         
         private string ReadPageHtml()
         {
-            var path = Path.Combine(Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory), "fake.html");
+            var folder = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+            if (folder == null)
+                throw new ArgumentException("Something went wrong. Cannot find project directory.");
+
+            var path = Path.Combine(folder, "fake.html");
             return File.ReadAllText(path);
         }
 
