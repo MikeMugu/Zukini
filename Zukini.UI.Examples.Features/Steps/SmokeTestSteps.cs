@@ -32,26 +32,13 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I enter a search value of ""(.*)""")]
         public void GivenIEnterASearchValueOf(string searchValue)
         {
-            _viewFactory.Load<GoogleSearchPage>().SearchTextBox.FillInWith(searchValue);
+            _viewFactory.Get<GoogleSearchPage>().SearchTextBox.FillInWith(searchValue);
         }
         
-        [Then(@"view factory throws an exception on attempt to load different page object")]
+        [Then(@"view factory throws an exception on attempt to load page object that is never loaded")]
         public void ThenViewFactoryThrowsAnExceptionOnAttemptToLoadDifferentPage()
         {
             Assert.Throws<ZukiniAssertionException>(() => _viewFactory.Load<MissingFakePage>());
-        }
-
-        [Then(@"view factory can load W3Schools table reference page")]
-        public void ThenViewFactoryCanLoadWSchoolsTableReferencePage()
-        {
-            _viewFactory.Load<W3SchoolsTablePage>();
-        }
-
-        [Then(@"view factory can get different page object without waiting for it")]
-        public void ThenICanGetDifferentPageObjectWithViewFactoryWithoutLoadingIt()
-        {
-            var page = _viewFactory.Get<GoogleSearchPage>();
-            Assert.IsNotNull(page, "Failed to create page");
         }
         
         [When(@"I press Google Search")]
@@ -75,7 +62,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"I should see that the table tag is supported in ""(.*)""")]
         public void ThenIShouldSeeThatTheTableTagIsSupportedIn(string browserName)
         {
-            var page = _viewFactory.Load<W3SchoolsTablePage>().AssertCurrentPage();
+            var page = _viewFactory.Get<W3SchoolsTablePage>().AssertCurrentPage();
             Assert.IsTrue(page.IsBrowserSupported(browserName), String.Format("Expected browser {0} to be supported.", browserName));
         }
 
@@ -182,7 +169,7 @@ namespace Zukini.UI.Examples.Features.Steps
                 "After navigating to fake page, view factory didn't wait for delayed element");
         }
 
-        [Then(@"I can see a video object with title '(.*)'")]
+        [Then(@"I can find a youtube video component with title '(.*)'")]
         public void ThenICanSeeAVideoObjectWithTitle(string partOfTitle)
         {
             var title = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(partOfTitle).Title;
@@ -215,10 +202,10 @@ namespace Zukini.UI.Examples.Features.Steps
         {
             var images = _viewFactory.Get<FakePageObject>().GalleryImages2;
             var foundImg    = images.First(img => img.Desciption.Text == description);
-            Assert.That(foundImg, Is.Not.Null, "Image not found");
+            Assert.That(foundImg.Image.Exists(), Is.True, "Image not found");
         }
 
-        [Then(@"exception appear if I load component with view factory that does not exist")]
+        [Then(@"view factory throws an exception on attempt to load page component that is never loaded")]
         public void ThenExceptionAppearIfILoadComponentWithViewFactoryThatDoesNotExist()
         {
             Assert.Throws<ZukiniAssertionException>(() => 

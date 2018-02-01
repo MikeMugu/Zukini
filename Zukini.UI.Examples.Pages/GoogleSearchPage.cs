@@ -9,10 +9,5 @@ namespace Zukini.UI.Examples.Pages
 
         public ElementScope SearchTextBox => _.FindField("q");
         public ElementScope SearchButton  => _.FindButton("Search", Options.First);
-        
-        public override bool IsLoaded()
-        {
-            return SearchTextBox.Exists();
-        }
     }
 }
