@@ -47,7 +47,7 @@ namespace Zukini.UI.Examples.Features.Steps
             _viewFactory.Load<W3SchoolsTablePage>();
         }
 
-        [Then(@"view factory can get different page object without loading it")]
+        [Then(@"view factory can get different page object without waiting for it")]
         public void ThenICanGetDifferentPageObjectWithViewFactoryWithoutLoadingIt()
         {
             var page = _viewFactory.Get<GoogleSearchPage>();

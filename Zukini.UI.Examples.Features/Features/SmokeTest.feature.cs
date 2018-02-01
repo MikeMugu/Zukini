@@ -271,7 +271,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 74
  testRunner.And("view factory throws an exception on attempt to load different page object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
- testRunner.But("view factory can get different page object without loading it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+ testRunner.But("view factory can get different page object without waiting for it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -279,10 +279,12 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I want to demonstrate view factory can work with components")]
         [NUnit.Framework.CategoryAttribute("viewfactory")]
+        [NUnit.Framework.CategoryAttribute("page_component")]
         public virtual void IWantToDemonstrateViewFactoryCanWorkWithComponents()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate view factory can work with components", new string[] {
-                        "viewfactory"});
+                        "viewfactory",
+                        "page_component"});
 #line 78
 this.ScenarioSetup(scenarioInfo);
 #line 79

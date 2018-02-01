@@ -72,11 +72,12 @@ Scenario: I want to demonstrate view factory can wait for pages
 	Given I navigate to some page with delayed element
 	Then view factory can wait for delayed page
 	And  view factory throws an exception on attempt to load different page object
-	But  view factory can get different page object without loading it
+	But  view factory can get different page object without waiting for it
 
-@viewfactory
+@viewfactory @page_component
 Scenario: I want to demonstrate view factory can work with components
 	Given I navigate to some page with components
 	Then I can see a video object with title 'Rhapsody'
 	When I click play for 'Star Wars' video
 	Then player controls appear in 'Star Wars' video player
+
