@@ -41,18 +41,18 @@ namespace Zukini.UI.Examples.Pages
                            script);
         }
         
-        public FakeYouTubeComponent FindPlayerByTitle(string frameTitle)
+        public YouTubeComponent FindPlayerByTitle(string frameTitle)
         {
-            return _viewFactory.Load(() => new FakeYouTubeComponent(_.FindFrame(frameTitle)));
+            return _viewFactory.Load(() => new YouTubeComponent(_.FindFrame(frameTitle)));
         }
     }
 
     /// <summary>
     /// Implementation of youtube page component
     /// </summary>
-    public class FakeYouTubeComponent : BaseComponent<FakeYouTubeComponent>
+    public class YouTubeComponent : BaseComponent<YouTubeComponent>
     {
-        public FakeYouTubeComponent(DriverScope browserScope) : base(browserScope){}
+        public YouTubeComponent(DriverScope browserScope) : base(browserScope){}
 
         public ElementScope Title => _.FindCss(".ytp-title");
         public ElementScope PlayButton => _.FindCss(".ytp-large-play-button");
