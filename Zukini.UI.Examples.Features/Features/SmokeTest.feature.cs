@@ -256,24 +256,37 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("I want to demonstrate view factory")]
-        [NUnit.Framework.CategoryAttribute("google_search")]
+        [NUnit.Framework.DescriptionAttribute("I want to demonstrate view factory can wait for pages")]
         [NUnit.Framework.CategoryAttribute("viewfactory")]
-        public virtual void IWantToDemonstrateViewFactory()
+        public virtual void IWantToDemonstrateViewFactoryCanWaitForPages()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate view factory", new string[] {
-                        "google_search",
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate view factory can wait for pages", new string[] {
                         "viewfactory"});
 #line 71
 this.ScenarioSetup(scenarioInfo);
 #line 72
- testRunner.Given("I navigate to W3Schools table reference page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I navigate to some page with delayed element", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 73
- testRunner.Then("view factory can load W3Schools table reference page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("view factory can wait for delayed page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 74
- testRunner.And("view factory throws an exception on attempt to load different page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("view factory throws an exception on attempt to load different page object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
- testRunner.But("I can get different page object with view factory without loading it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+ testRunner.But("view factory can get different page object without loading it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "But ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demonstrate view factory can work with components")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        public virtual void IWantToDemonstrateViewFactoryCanWorkWithComponents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate view factory can work with components", new string[] {
+                        "viewfactory"});
+#line 78
+this.ScenarioSetup(scenarioInfo);
+#line 79
+ testRunner.Given("I navigate to some page with components", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -26,8 +26,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I navigate to Google")]
         public void GivenINavigateToGoogle()
         {
-            //Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleUrl);
-            Browser.Visit(TestSettings.GoogleUrl);
+            Browser.WaitForNavigation(_sessionConfiguration, TestSettings.GoogleUrl);
         }
 
         [Given(@"I enter a search value of ""(.*)""")]
@@ -36,7 +35,7 @@ namespace Zukini.UI.Examples.Features.Steps
             _viewFactory.Load<GoogleSearchPage>().SearchTextBox.FillInWith(searchValue);
         }
         
-        [Then(@"view factory throws an exception on attempt to load different page")]
+        [Then(@"view factory throws an exception on attempt to load different page object")]
         public void ThenViewFactoryThrowsAnExceptionOnAttemptToLoadDifferentPage()
         {
             var ex = Assert.Throws<Exception>(() => _viewFactory.Load<GoogleSearchPage>());
@@ -48,7 +47,7 @@ namespace Zukini.UI.Examples.Features.Steps
             _viewFactory.Load<W3SchoolsTablePage>();
         }
 
-        [Then(@"I can get different page object with view factory without loading it")]
+        [Then(@"view factory can get different page object without loading it")]
         public void ThenICanGetDifferentPageObjectWithViewFactoryWithoutLoadingIt()
         {
             var page = _viewFactory.Get<GoogleSearchPage>();
@@ -167,6 +166,20 @@ namespace Zukini.UI.Examples.Features.Steps
         public void GivenITryToNavigateToAUrlThatChangesTheBrowserLocation()
         {
             PropertyBucket.Remember("NavigationTimedOut", NavigationTimedOut(TestSettings.GoogleHttpUrl));
+        }
+
+        [Given(@"I navigate to some page(?:.*)")]
+        public void GivenINavigateToSomePageWithDelayedElement()
+        {
+            _viewFactory.Get<FakePageObject>();
+        }
+
+        [Then(@"view factory can wait for delayed page")]
+        public void ThenViewFactoryCanLoadDelayedPage()
+        {
+            var page = _viewFactory.Load<FakePageObject>();
+            Assert.That(page.DelayedElement.Exists(), Is.True, 
+                "After navigating to fake page, view factory didn't wait for delayed element");
         }
 
         [Then(@"navigation (does|does not) timeout")]

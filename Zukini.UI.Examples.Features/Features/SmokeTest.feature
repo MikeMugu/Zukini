@@ -67,9 +67,13 @@ Scenario: WaitForNavigation does not timeout
 	Given I try to navigate to Google
 	Then navigation does not timeout
 
-@google_search @viewfactory
-Scenario: I want to demonstrate view factory
-	Given I navigate to W3Schools table reference page
-	Then view factory can load W3Schools table reference page
-	And  view factory throws an exception on attempt to load different page
-	But I can get different page object with view factory without loading it
+@viewfactory
+Scenario: I want to demonstrate view factory can wait for pages
+	Given I navigate to some page with delayed element
+	Then view factory can wait for delayed page
+	And  view factory throws an exception on attempt to load different page object
+	But  view factory can get different page object without loading it
+
+@viewfactory
+Scenario: I want to demonstrate view factory can work with components
+	Given I navigate to some page with components
