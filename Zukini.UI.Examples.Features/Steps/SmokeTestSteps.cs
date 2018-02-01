@@ -185,21 +185,21 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"I can see a video object with title '(.*)'")]
         public void ThenICanSeeAVideoObjectWithTitle(string partOfTitle)
         {
-            var title = _viewFactory.Load<FakePageObject>().RapsodyPlayer.Title;
+            var title = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(partOfTitle).Title;
             Assert.That(title.Text, Does.Contain(partOfTitle), "Wrong title");
         }
 
-        [When(@"I click play for Star Wars video")]
-        public void WhenIClickPlayForStarWarsVideo()
+        [When(@"I click play for '(.*)' video")]
+        public void WhenIClickPlayForStarWarsVideo(string title)
         {
-            var player = _viewFactory.Load<FakePageObject>().StarWardsPlayer;
+            var player = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(title);
             player.PlayButton.Click();
         }
 
-        [Then(@"player controls appear in Star Wars video player")]
-        public void ThenPlayerControlsAppearInStarWarsVideoPlayer()
+        [Then(@"player controls appear in '(.*)' video player")]
+        public void ThenPlayerControlsAppearInStarWarsVideoPlayer(string title)
         {
-            var player = _viewFactory.Load<FakePageObject>().StarWardsPlayer;
+            var player = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(title);
             Assert.That(player.Controls.Exists(), Is.True, "Controls doesn't appear after");
         }
 

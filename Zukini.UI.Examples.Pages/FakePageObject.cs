@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Coypu;
 using Zukini.UI.Pages;
 
@@ -23,6 +20,7 @@ namespace Zukini.UI.Examples.Pages
         public ElementScope Title => _.FindCss("h1");
         public ElementScope DelayedElement => _.FindId("delayed");
 
+        /// Being polled for DelayedElement to exist if ViewFactory#Load is called.
         public override bool IsLoaded()
         {
             return DelayedElement.Exists();
@@ -42,11 +40,16 @@ namespace Zukini.UI.Examples.Pages
                            document.close();",
                            script);
         }
-
-        public FakeYouTubeComponent RapsodyPlayer => _viewFactory.Load(() => new FakeYouTubeComponent(_.FindFrame("Rhapsody")));
-        public FakeYouTubeComponent StarWardsPlayer => _viewFactory.Load(() => new FakeYouTubeComponent(_.FindFrame("Star Wars")));
+        
+        public FakeYouTubeComponent FindPlayerByTitle(string frameTitle)
+        {
+            return _viewFactory.Load(() => new FakeYouTubeComponent(_.FindFrame(frameTitle)));
+        }
     }
 
+    /// <summary>
+    /// Implementation of youtube page component
+    /// </summary>
     public class FakeYouTubeComponent : BaseComponent<FakeYouTubeComponent>
     {
         public FakeYouTubeComponent(DriverScope browserScope) : base(browserScope){}
@@ -54,5 +57,11 @@ namespace Zukini.UI.Examples.Pages
         public ElementScope Title => _.FindCss(".ytp-title");
         public ElementScope PlayButton => _.FindCss(".ytp-large-play-button");
         public ElementScope Controls => _.FindCss("[class*=controls] [class*=time-display]");
+
+        /// Being polled for DelayedElement to exist if ViewFactory#Load is called.
+        public override bool IsLoaded()
+        {
+            return Title.Exists();
+        }
     }
 }

@@ -77,6 +77,6 @@ Scenario: I want to demonstrate view factory can wait for pages
 @viewfactory
 Scenario: I want to demonstrate view factory can work with components
 	Given I navigate to some page with components
-	Then I can see a video object with title 'Bohemian Rhapsody'
-	When I click play for Star Wars video
-	Then player controls appear in Star Wars video player
+	Then I can see a video object with title 'Rhapsody'
+	When I click play for 'Star Wars' video
+	Then player controls appear in 'Star Wars' video player
