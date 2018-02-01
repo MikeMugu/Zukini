@@ -182,6 +182,27 @@ namespace Zukini.UI.Examples.Features.Steps
                 "After navigating to fake page, view factory didn't wait for delayed element");
         }
 
+        [Then(@"I can see a video object with title '(.*)'")]
+        public void ThenICanSeeAVideoObjectWithTitle(string partOfTitle)
+        {
+            var title = _viewFactory.Load<FakePageObject>().RapsodyPlayer.Title;
+            Assert.That(title.Text, Does.Contain(partOfTitle), "Wrong title");
+        }
+
+        [When(@"I click play for Star Wars video")]
+        public void WhenIClickPlayForStarWarsVideo()
+        {
+            var player = _viewFactory.Load<FakePageObject>().StarWardsPlayer;
+            player.PlayButton.Click();
+        }
+
+        [Then(@"player controls appear in Star Wars video player")]
+        public void ThenPlayerControlsAppearInStarWarsVideoPlayer()
+        {
+            var player = _viewFactory.Load<FakePageObject>().StarWardsPlayer;
+            Assert.That(player.Controls.Exists(), Is.True, "Controls doesn't appear after");
+        }
+
         [Then(@"navigation (does|does not) timeout")]
         public void ThenNavigationWillTimeOut(string flag)
         {
