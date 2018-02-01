@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Coypu;
 using Zukini.UI.Pages;
 
 namespace Zukini.UI.Examples.Pages
 {
+    /// <summary>
+    /// Almost real page.
+    /// </summary>
     public class FakePageObject : BasePage<FakePageObject>
     {
         private readonly IViewFactory _viewFactory;
@@ -37,6 +41,9 @@ namespace Zukini.UI.Examples.Pages
             return File.ReadAllText(path);
         }
 
+        /// <summary>
+        /// Populates the page with DOM.
+        /// </summary>
         private void PopulatePageWithSomeContent()
         {
             var script = ReadPageHtml();
@@ -50,6 +57,12 @@ namespace Zukini.UI.Examples.Pages
         {
             return _viewFactory.Load(() => new YouTubeComponent(_.FindFrame(frameTitle)));
         }
+
+        public IEnumerable<GalleryImageComponent> GalleryImages1
+            => _viewFactory.LoadAll<GalleryImageComponent>(_.FindAllCss(".gallery"));
+
+        public IEnumerable<GalleryImageComponent> GalleryImages2
+            => _viewFactory.LoadAll(_.FindAllCss(".gallery"), el => new GalleryImageComponent(el));
     }
 
     /// <summary>
@@ -67,6 +80,34 @@ namespace Zukini.UI.Examples.Pages
         public override bool IsLoaded()
         {
             return Title.Exists();
+        }
+    }
+
+    public class GalleryImageComponent : BaseComponent<GalleryImageComponent>
+    {
+        public GalleryImageComponent(DriverScope browserScope) : base(browserScope){}
+
+        public ElementScope Desciption => _.FindCss(".desc");
+        public ElementScope Image => _.FindCss("img");
+    }
+    
+    public class MissingFakePage : BasePage<MissingFakePage>
+    {
+        public MissingFakePage(BrowserSession browser) : base(browser) { }
+
+        public override bool IsLoaded()
+        {
+            return false;
+        }
+    }
+
+    public class MissingFakeComponent : BaseComponent<MissingFakeComponent>
+    {
+        public MissingFakeComponent(DriverScope browserScope) : base(browserScope) { }
+
+        public override bool IsLoaded()
+        {
+            return false;
         }
     }
 }

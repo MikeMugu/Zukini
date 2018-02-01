@@ -38,7 +38,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"view factory throws an exception on attempt to load different page object")]
         public void ThenViewFactoryThrowsAnExceptionOnAttemptToLoadDifferentPage()
         {
-            var ex = Assert.Throws<Exception>(() => _viewFactory.Load<GoogleSearchPage>());
+            Assert.Throws<ZukiniAssertionException>(() => _viewFactory.Load<MissingFakePage>());
         }
 
         [Then(@"view factory can load W3Schools table reference page")]
@@ -201,6 +201,28 @@ namespace Zukini.UI.Examples.Features.Steps
         {
             var player = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(title);
             Assert.That(player.Controls.Exists(), Is.True, "Controls doesn't appear after");
+        }
+        
+        [Then(@"I can load '(.*)' gallery components with view factory")]
+        public void ThenICanLoadGalleryComponentsWithViewFactory(int count)
+        {
+            var images = _viewFactory.Get<FakePageObject>().GalleryImages1;
+            Assert.That(images.Count(), Is.EqualTo(count), "Not all images loaded");
+        }
+
+        [Then(@"I can find gallery component using view factory with title '(.*)'")]
+        public void ThenICanFindGalleryComponentUsingViewFactoryWithTitle(string description)
+        {
+            var images = _viewFactory.Get<FakePageObject>().GalleryImages2;
+            var foundImg    = images.First(img => img.Desciption.Text == description);
+            Assert.That(foundImg, Is.Not.Null, "Image not found");
+        }
+
+        [Then(@"exception appear if I load component with view factory that does not exist")]
+        public void ThenExceptionAppearIfILoadComponentWithViewFactoryThatDoesNotExist()
+        {
+            Assert.Throws<ZukiniAssertionException>(() => 
+                _viewFactory.Load(() => new MissingFakeComponent(Browser)), "Exception does not appear for view factory.");
         }
 
         [Then(@"navigation (does|does not) timeout")]

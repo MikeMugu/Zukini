@@ -298,6 +298,44 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demostrate view factory can create many components")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        [NUnit.Framework.CategoryAttribute("page_component")]
+        public virtual void IWantToDemostrateViewFactoryCanCreateManyComponents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demostrate view factory can create many components", new string[] {
+                        "viewfactory",
+                        "page_component"});
+#line 85
+this.ScenarioSetup(scenarioInfo);
+#line 86
+ testRunner.Given("I navigate to some page with components", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 87
+ testRunner.Then("I can load \'2\' gallery components with view factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 88
+ testRunner.And("I can find gallery component using view factory with title \'Image 2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demostrate view factory fails when no expected component present")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        [NUnit.Framework.CategoryAttribute("page_component")]
+        public virtual void IWantToDemostrateViewFactoryFailsWhenNoExpectedComponentPresent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demostrate view factory fails when no expected component present", new string[] {
+                        "viewfactory",
+                        "page_component"});
+#line 91
+this.ScenarioSetup(scenarioInfo);
+#line 92
+ testRunner.Then("exception appear if I load component with view factory that does not exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

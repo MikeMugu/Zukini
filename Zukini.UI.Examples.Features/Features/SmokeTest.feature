@@ -81,3 +81,12 @@ Scenario: I want to demonstrate view factory can work with components
 	When I click play for 'Star Wars' video
 	Then player controls appear in 'Star Wars' video player
 
+@viewfactory @page_component
+Scenario: I want to demostrate view factory can create many components
+	Given I navigate to some page with components
+	Then I can load '2' gallery components with view factory
+	And I can find gallery component using view factory with title 'Image 2'
+
+@viewfactory @page_component
+Scenario: I want to demostrate view factory fails when no expected component present
+	Then exception appear if I load component with view factory that does not exist

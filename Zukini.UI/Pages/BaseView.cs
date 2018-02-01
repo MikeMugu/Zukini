@@ -44,7 +44,7 @@ namespace Zukini.UI.Pages
             }
             catch (Exception e)
             {
-                throw new Exception($"Expected '{typeof(TView)}' failed to load.\nReason: {e}");
+                throw new ZukiniAssertionException($"Expected '{typeof(TView)}' failed to load.\nReason: {e}");
             }
             return this as TView;
         }
@@ -62,7 +62,7 @@ namespace Zukini.UI.Pages
         protected virtual void AssertView(bool condition)
         {
             if (! condition)
-                throw new Exception($"Expected view '{typeof(TView)}' does not pass the assert requirement.");
+                throw new ZukiniAssertionException($"Expected view '{typeof(TView)}' does not pass the assert requirement.");
         }
     }
 }
