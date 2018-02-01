@@ -16,7 +16,6 @@ namespace Zukini.UI.Pages
         
         /// <summary>
         /// Actualy can be used as selector to find elements. Will be working differently for pages and components.
-        /// Alternative of $() from old framework. 
         /// page      -> looks from the root of the doom
         /// component -> looks inside parent scope (element, frame, window etc)
         /// public Element SomeElement => _.FindCss("");
