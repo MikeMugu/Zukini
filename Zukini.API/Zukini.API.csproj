@@ -63,7 +63,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="lib\net46\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zukini\Zukini.csproj">
       <Project>{aa04cd0e-f5a9-4331-849b-30d3facdfcee}</Project>
@@ -71,6 +73,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)Zukini.dll" "$(TargetDir)..\..\lib\net46\Zukini.dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
