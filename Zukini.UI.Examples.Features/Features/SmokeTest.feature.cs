@@ -254,6 +254,90 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demonstrate view factory can wait for pages")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        public virtual void IWantToDemonstrateViewFactoryCanWaitForPages()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate view factory can wait for pages", new string[] {
+                        "viewfactory"});
+#line 71
+this.ScenarioSetup(scenarioInfo);
+#line 72
+ testRunner.Given("I navigate to some page with delayed element", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 73
+ testRunner.Then("view factory can wait for delayed page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demonstrate view factory can work with complex components")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        [NUnit.Framework.CategoryAttribute("page_component")]
+        public virtual void IWantToDemonstrateViewFactoryCanWorkWithComplexComponents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demonstrate view factory can work with complex components", new string[] {
+                        "viewfactory",
+                        "page_component"});
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line 77
+ testRunner.Given("I navigate to some page with components", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 78
+ testRunner.Then("I can find a youtube video component with title \'Rhapsody\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 79
+ testRunner.When("I click play for \'Star Wars\' video", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 80
+ testRunner.Then("player controls appear in \'Star Wars\' video player", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demostrate view factory can create many components")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        [NUnit.Framework.CategoryAttribute("page_component")]
+        public virtual void IWantToDemostrateViewFactoryCanCreateManyComponents()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demostrate view factory can create many components", new string[] {
+                        "viewfactory",
+                        "page_component"});
+#line 83
+this.ScenarioSetup(scenarioInfo);
+#line 84
+ testRunner.Given("I navigate to some page with components", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 85
+ testRunner.Then("I can load \'2\' gallery components with view factory", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 86
+ testRunner.And("I can find gallery component using view factory with title \'Image 2\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("I want to demostrate view factory fails when no expected page or component presen" +
+            "t")]
+        [NUnit.Framework.CategoryAttribute("viewfactory")]
+        [NUnit.Framework.CategoryAttribute("page_component")]
+        public virtual void IWantToDemostrateViewFactoryFailsWhenNoExpectedPageOrComponentPresent()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I want to demostrate view factory fails when no expected page or component presen" +
+                    "t", new string[] {
+                        "viewfactory",
+                        "page_component"});
+#line 89
+this.ScenarioSetup(scenarioInfo);
+#line 90
+ testRunner.Then("view factory throws an exception on attempt to load page object that is never loa" +
+                    "ded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 91
+ testRunner.And("view factory throws an exception on attempt to load page component that is never " +
+                    "loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

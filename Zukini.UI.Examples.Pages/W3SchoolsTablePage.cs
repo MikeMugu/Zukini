@@ -5,21 +5,27 @@ using Zukini.UI.Pages;
 
 namespace Zukini.UI.Examples.Pages
 {
-    public class W3SchoolsTablePage : BasePage
+    public class W3SchoolsTablePage : BasePage<W3SchoolsTablePage>
     {
         private const string PageTitle = "HTML table tag";
 
-        public ElementScope BrowserReferenceTable { get { return Browser.FindCss(".browserref"); } }
-        public ElementScope TopTextDiv { get { return Browser.FindCss(".toptext"); } }
+        public ElementScope BrowserReferenceTable => _.FindCss(".browserref");
+        public ElementScope TopTextDiv => _.FindCss(".toptext");
+        private readonly IViewFactory _vF;
 
-        public W3SchoolsTablePage(BrowserSession browserSession)
-            : base(browserSession)
+        public W3SchoolsTablePage(BrowserSession browserSession, IViewFactory vF) : base(browserSession)
         {
+            _vF = vF;
         }
 
-        public void AssertCurrentPage()
+        public W3SchoolsTablePage AssertCurrentPage()
         {
-            AssertCurrentPage("W3Schools Table", Browser.Title == PageTitle);
+            return AssertCurrentPage("W3Schools Table", Browser.Title == PageTitle);
+        }
+
+        public override bool IsLoaded()
+        {
+            return Browser.Title == PageTitle;
         }
 
         public bool IsBrowserSupported(string browserName)

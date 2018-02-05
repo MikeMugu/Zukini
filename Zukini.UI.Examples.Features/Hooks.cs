@@ -9,6 +9,7 @@ using System.Configuration;
 using TechTalk.SpecFlow;
 using Zukini.UI.Examples.Features.CustomDrivers;
 using Zukini.UI;
+using Zukini.UI.Pages;
 
 namespace Zukini.UI.Examples.Features
 {
@@ -26,6 +27,9 @@ namespace Zukini.UI.Examples.Features
             _objectContainer = container;
             _sessionConfiguration = sessionConfig;
             _zukiniConfiguration = zukiniConfig;
+
+            // View factory binding
+            _objectContainer.RegisterInstanceAs<IViewFactory>(new ViewFactory(_objectContainer));
         }
 
         [BeforeScenario]

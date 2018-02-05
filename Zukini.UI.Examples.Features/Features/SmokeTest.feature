@@ -66,3 +66,26 @@ Scenario: WaitForNavigation does timeout
 Scenario: WaitForNavigation does not timeout
 	Given I try to navigate to Google
 	Then navigation does not timeout
+
+@viewfactory
+Scenario: I want to demonstrate view factory can wait for pages
+	Given I navigate to some page with delayed element
+	Then view factory can wait for delayed page
+	
+@viewfactory @page_component
+Scenario: I want to demonstrate view factory can work with complex components
+	Given I navigate to some page with components
+	Then I can find a youtube video component with title 'Rhapsody'
+	When I click play for 'Star Wars' video
+	Then player controls appear in 'Star Wars' video player
+
+@viewfactory @page_component
+Scenario: I want to demostrate view factory can create many components
+	Given I navigate to some page with components
+	Then I can load '2' gallery components with view factory
+	And I can find gallery component using view factory with title 'Image 2'
+
+@viewfactory @page_component
+Scenario: I want to demostrate view factory fails when no expected page or component present
+	Then view factory throws an exception on attempt to load page object that is never loaded
+	And view factory throws an exception on attempt to load page component that is never loaded

@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using TechTalk.SpecFlow;
 using Zukini.UI.Examples.Pages;
+using Zukini.UI.Pages;
 using Zukini.UI.Steps;
 
 namespace Zukini.UI.Examples.Features.Steps
@@ -13,11 +14,13 @@ namespace Zukini.UI.Examples.Features.Steps
     public class SmokeTestSteps : UISteps
     {
         private SessionConfiguration _sessionConfiguration;
+        private IViewFactory _viewFactory;
 
-        public SmokeTestSteps(IObjectContainer objectContainer, SessionConfiguration sessionConfiguration)
+        public SmokeTestSteps(IObjectContainer objectContainer, IViewFactory viewFactory, SessionConfiguration sessionConfiguration)
             : base(objectContainer)
         {
             _sessionConfiguration = sessionConfiguration;
+            _viewFactory = viewFactory;
         }
 
         [Given(@"I navigate to Google")]
@@ -29,13 +32,19 @@ namespace Zukini.UI.Examples.Features.Steps
         [Given(@"I enter a search value of ""(.*)""")]
         public void GivenIEnterASearchValueOf(string searchValue)
         {
-            new GoogleSearchPage(Browser).SearchTextBox.FillInWith(searchValue);
+            _viewFactory.Get<GoogleSearchPage>().SearchTextBox.FillInWith(searchValue);
         }
-
+        
+        [Then(@"view factory throws an exception on attempt to load page object that is never loaded")]
+        public void ThenViewFactoryThrowsAnExceptionOnAttemptToLoadDifferentPage()
+        {
+            Assert.Throws<ZukiniAssertionException>(() => _viewFactory.Load<MissingFakePage>());
+        }
+        
         [When(@"I press Google Search")]
         public void WhenIPressGoogleSearch()
         {
-            new GoogleSearchPage(Browser).SearchButton.Click();
+            _viewFactory.Get<GoogleSearchPage>().SearchButton.Click();
         }
 
         [Then(@"I should see ""(.*)"" in the results")]
@@ -53,15 +62,14 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"I should see that the table tag is supported in ""(.*)""")]
         public void ThenIShouldSeeThatTheTableTagIsSupportedIn(string browserName)
         {
-            var page = new W3SchoolsTablePage(Browser);
-            page.AssertCurrentPage();
+            var page = _viewFactory.Get<W3SchoolsTablePage>().AssertCurrentPage();
             Assert.IsTrue(page.IsBrowserSupported(browserName), String.Format("Expected browser {0} to be supported.", browserName));
         }
 
         [Given(@"I remember the sub-header text")]
         public void GivenIRememberTheSubHeaderText()
         {
-            var page = new W3SchoolsTablePage(Browser);
+            var page = _viewFactory.Get<W3SchoolsTablePage>();
             var divText = page.TopTextDiv.Text;
             PropertyBucket.Remember("W3SchoolsHeaderText", divText);
         }
@@ -76,8 +84,7 @@ namespace Zukini.UI.Examples.Features.Steps
         [Then(@"I should see that the table tag is supported for the following")]
         public void ThenIShouldSeeThatTheTableTagIsSupportedForTheFollowing(Table table)
         {
-            var page = new W3SchoolsTablePage(Browser);
-            page.AssertCurrentPage();
+            var page = _viewFactory.Load<W3SchoolsTablePage>().AssertCurrentPage();
 
             // Iterate through the table and verify support for each browser
             foreach(TableRow row in table.Rows)
@@ -146,6 +153,63 @@ namespace Zukini.UI.Examples.Features.Steps
         public void GivenITryToNavigateToAUrlThatChangesTheBrowserLocation()
         {
             PropertyBucket.Remember("NavigationTimedOut", NavigationTimedOut(TestSettings.GoogleHttpUrl));
+        }
+
+        [Given(@"I navigate to some page(?:.*)")]
+        public void GivenINavigateToSomePageWithDelayedElement()
+        {
+            _viewFactory.Get<FakePageObject>();
+        }
+
+        [Then(@"view factory can wait for delayed page")]
+        public void ThenViewFactoryCanLoadDelayedPage()
+        {
+            var page = _viewFactory.Load<FakePageObject>();
+            Assert.That(page.DelayedElement.Exists(), Is.True, 
+                "After navigating to fake page, view factory didn't wait for delayed element");
+        }
+
+        [Then(@"I can find a youtube video component with title '(.*)'")]
+        public void ThenICanSeeAVideoObjectWithTitle(string partOfTitle)
+        {
+            var title = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(partOfTitle).Title;
+            Assert.That(title.Text, Does.Contain(partOfTitle), "Wrong title");
+        }
+
+        [When(@"I click play for '(.*)' video")]
+        public void WhenIClickPlayForStarWarsVideo(string title)
+        {
+            var player = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(title);
+            player.PlayButton.Click();
+        }
+
+        [Then(@"player controls appear in '(.*)' video player")]
+        public void ThenPlayerControlsAppearInStarWarsVideoPlayer(string title)
+        {
+            var player = _viewFactory.Load<FakePageObject>().FindPlayerByTitle(title);
+            Assert.That(player.Controls.Exists(), Is.True, "Controls doesn't appear after");
+        }
+        
+        [Then(@"I can load '(.*)' gallery components with view factory")]
+        public void ThenICanLoadGalleryComponentsWithViewFactory(int count)
+        {
+            var images = _viewFactory.Get<FakePageObject>().GalleryImages1;
+            Assert.That(images.Count(), Is.EqualTo(count), "Not all images loaded");
+        }
+
+        [Then(@"I can find gallery component using view factory with title '(.*)'")]
+        public void ThenICanFindGalleryComponentUsingViewFactoryWithTitle(string description)
+        {
+            var images = _viewFactory.Get<FakePageObject>().GalleryImages2;
+            var foundImg    = images.First(img => img.Desciption.Text == description);
+            Assert.That(foundImg.Image.Exists(), Is.True, "Image not found");
+        }
+
+        [Then(@"view factory throws an exception on attempt to load page component that is never loaded")]
+        public void ThenExceptionAppearIfILoadComponentWithViewFactoryThatDoesNotExist()
+        {
+            Assert.Throws<ZukiniAssertionException>(() => 
+                _viewFactory.Load(() => new MissingFakeComponent(Browser)), "Exception does not appear for view factory.");
         }
 
         [Then(@"navigation (does|does not) timeout")]

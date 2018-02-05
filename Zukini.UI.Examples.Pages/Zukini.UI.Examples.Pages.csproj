@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserName.cs" />
+    <Compile Include="FakePageObject.cs" />
     <Compile Include="GoogleSearchPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="W3SchoolsTablePage.cs" />
@@ -71,6 +72,11 @@
       <Project>{8e5638a8-13da-4f84-b2a7-4ab79a534e12}</Project>
       <Name>Zukini.UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fake.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
